@@ -5,7 +5,8 @@
     "quote": "Complete path from beginner to full-stack developer",
     "time": "6-8 months",
     "roadmap": "Beginner to Advanced",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750926232/programming_njyqrk.png",
+    "link":""
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "quote": "Master data analysis, machine learning, and real-world projects",
     "time": "8-10 months",
     "roadmap": "Foundations to Deployment",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930564/data-science_cl69ft.png",
+    "link":""
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "quote": "Learn to build powerful Android apps with Kotlin and Java",
     "time": "5-7 months",
     "roadmap": "Beginner to Advanced",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/android_qkkpon.png",
+    "link":""
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "quote": "Design intuitive user experiences with real-world tools and tips",
     "time": "3-5 months",
     "roadmap": "Fundamentals to Portfolio",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/ux_vj3cbb.png",
+    "link":""
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "quote": "Explore core AI concepts with practical use cases",
     "time": "7-9 months",
     "roadmap": "Theory to Application",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/ai_jyquqb.png",
+    "link":""
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "quote": "Learn how to protect systems, data, and networks from threats",
     "time": "6-8 months",
     "roadmap": "Beginner to Ethical Hacker",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/cyber-security_stefec.png",
+    "link":""
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@
     "quote": "Master AWS, Azure, and cloud-native technologies",
     "time": "6-8 months",
     "roadmap": "Intro to Certified Cloud Architect",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/cloud-server_uhfkqk.png",
+    "link":""
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@
     "quote": "Sharpen your problem-solving skills with structured practice",
     "time": "4-6 months",
     "roadmap": "Basics to Advanced Concepts",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930562/programming-language_kjgvhm.png",
+    "link":""
   },
   {
     "id": 9,
@@ -69,7 +77,8 @@
     "quote": "Learn CI/CD, Docker, Kubernetes, and automation tools",
     "time": "5-7 months",
     "roadmap": "Fundamentals to Deployment",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930562/devops_u3gnxp.png",
+    "link":""
   },
   {
     "id": 10,
@@ -77,6 +86,7 @@
     "quote": "Create games using Unity, C#, and real-time graphics",
     "time": "6-9 months",
     "roadmap": "Zero to Game Creator",
-    "img": ""
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930562/game-development_ikxdpl.png",
+    "link":""
   }
 ]
