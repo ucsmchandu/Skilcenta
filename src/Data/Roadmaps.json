@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Web Development",
+    "quote": "Complete path from beginner to full-stack developer",
+    "time": "6-8 months",
+    "roadmap": "Beginner to Advanced",
+    "img": ""
+  },
+  {
+    "id": 2,
+    "name": "Data Science",
+    "quote": "Master data analysis, machine learning, and real-world projects",
+    "time": "8-10 months",
+    "roadmap": "Foundations to Deployment",
+    "img": ""
+  },
+  {
+    "id": 3,
+    "name": "Android App Development",
+    "quote": "Learn to build powerful Android apps with Kotlin and Java",
+    "time": "5-7 months",
+    "roadmap": "Beginner to Advanced",
+    "img": ""
+  },
+  {
+    "id": 4,
+    "name": "UI/UX Design",
+    "quote": "Design intuitive user experiences with real-world tools and tips",
+    "time": "3-5 months",
+    "roadmap": "Fundamentals to Portfolio",
+    "img": ""
+  },
+  {
+    "id": 5,
+    "name": "Artificial Intelligence",
+    "quote": "Explore core AI concepts with practical use cases",
+    "time": "7-9 months",
+    "roadmap": "Theory to Application",
+    "img": ""
+  },
+  {
+    "id": 6,
+    "name": "Cybersecurity",
+    "quote": "Learn how to protect systems, data, and networks from threats",
+    "time": "6-8 months",
+    "roadmap": "Beginner to Ethical Hacker",
+    "img": ""
+  },
+  {
+    "id": 7,
+    "name": "Cloud Computing",
+    "quote": "Master AWS, Azure, and cloud-native technologies",
+    "time": "6-8 months",
+    "roadmap": "Intro to Certified Cloud Architect",
+    "img": ""
+  },
+  {
+    "id": 8,
+    "name": "Competitive Programming",
+    "quote": "Sharpen your problem-solving skills with structured practice",
+    "time": "4-6 months",
+    "roadmap": "Basics to Advanced Concepts",
+    "img": ""
+  },
+  {
+    "id": 9,
+    "name": "DevOps",
+    "quote": "Learn CI/CD, Docker, Kubernetes, and automation tools",
+    "time": "5-7 months",
+    "roadmap": "Fundamentals to Deployment",
+    "img": ""
+  },
+  {
+    "id": 10,
+    "name": "Game Development",
+    "quote": "Create games using Unity, C#, and real-time graphics",
+    "time": "6-9 months",
+    "roadmap": "Zero to Game Creator",
+    "img": ""
+  }
+]
