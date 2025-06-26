@@ -45,7 +45,7 @@ const Roadmap = () => {
                   <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750929084/badge_ufqmis.png" className="h-5" />
                   <p className="text-sm text-gray-600">{data.roadmap}</p>
                 </div></div>
-                <div className="flex justify-between text-blue-800 mt-6 items-center justify-between">
+                <div className="flex justify-between text-blue-800 mt-6 items-center ">
                   <p className="font-semibold">View Roadmap</p>
                 </div>
               </div>
