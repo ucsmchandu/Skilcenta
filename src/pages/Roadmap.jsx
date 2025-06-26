@@ -20,7 +20,7 @@ const Roadmap = () => {
         <p className='text-gray-600 mb-6 line-clamp-2'>Complete path from beginner to full-stack developer</p>
       </div>
       </div>
-
+  
     </div>
   )
 }
