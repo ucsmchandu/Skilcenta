@@ -9,6 +9,8 @@ import Market from './pages/Market'
 import Profile from './pages/Profile'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Map from './pages/map'
+import Sellitem from './pages/Sellitem'
 const App = () => {
   return (
     <>
@@ -23,6 +25,8 @@ const App = () => {
         <Route path="contact" element={<Contact/>}/>
         <Route path="profile" element={<Profile/>} />
         <Route path="about" element={<About/>} />
+        <Route path="map" element={<Map/>} />
+        <Route path="sellitem" element={<Sellitem/>} />
         </Route>
       </Routes>
     </Router>

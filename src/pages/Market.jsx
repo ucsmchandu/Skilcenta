@@ -1,5 +1,6 @@
 import React from "react";
 import Productlistings from "../components/Productlistings";
+import { Link } from "react-router-dom";
 const Market = () => {
   return (
     <div className="mt-30">
@@ -31,9 +32,11 @@ const Market = () => {
               />
             </div>
             <div className="relative sm:-top-3 lg:top-0 ">
+              <Link to="/sellitem">
               <button className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm cursor-pointer md:-p-5">
                 + Sell Item
               </button>
+              </Link>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-4 md:-mt-3">
