@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "productName": "Wireless Mouse",
+    "cost": 499,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "TechMart"
+  },
+  {
+    "id": 2,
+    "productName": "Laptop Stand",
+    "cost": 999,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "GadgetZone"
+  },
+  {
+    "id": 3,
+    "productName": "Noise Cancelling Headphones",
+    "cost": 2499,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "SoundStore"
+  },
+  {
+    "id": 4,
+    "productName": "Portable SSD 1TB",
+    "cost": 5999,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "DataGear"
+  },
+  {
+    "id": 5,
+    "productName": "USB-C Hub",
+    "cost": 799,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "PlugNPlay"
+  },
+  {
+    "id": 6,
+    "productName": "Bluetooth Speaker",
+    "cost": 1499,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "BassBoom"
+  },
+  {
+    "id": 7,
+    "productName": "Smartwatch",
+    "cost": 3499,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "TimeTech"
+  },
+  {
+    "id": 8,
+    "productName": "Desk Lamp",
+    "cost": 699,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "HomeEssentials"
+  },
+  {
+    "id": 9,
+    "productName": "Gaming Keyboard",
+    "cost": 2299,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "ProGamerStore"
+  },
+  {
+    "id": 10,
+    "productName": "Webcam HD",
+    "cost": 1199,
+    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
+    "soldBy": "CamConnect"
+  }
+]
