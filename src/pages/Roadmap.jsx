@@ -7,7 +7,7 @@ const Roadmap = () => {
   // }
   return (
     <div className="mt-30 ">
-      <div className=" flex flex-col shadow-2xl p-6 justify-center rounded-2xl text-white h-auto items-center m-6 bg-gradient-to-r from-[#DDF6D2] to-[#CAE8BD]">
+      <div className=" flex flex-col shadow-lg p-6 justify-center rounded-2xl text-white h-auto items-center m-6 bg-gradient-to-r from-[#DDF6D2] to-[#CAE8BD]">
         <h1 className="text-4xl md:text-6xl  text-amber-950 font-serif mb-4">
           Roadmaps
         </h1>
