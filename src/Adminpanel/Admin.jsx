@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { firestore } from "../server/Firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const Admin = () => {
   const [products, setProducts] = useState([]);
@@ -84,7 +85,11 @@ const Admin = () => {
   );
 
   return (
-    <div className="min-h-screen mt-20 bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-8 px-2 flex flex-col items-center">
+    <div className="min-h-screen mt-30 bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-8 px-2 flex flex-col items-center">
+      <div className="flex space-x-10 m-5">
+       <Link to="/deletedata"> <button className="shadow-md hover:shadow-2xl px-4 py-2 p-1 rounded-lg text-white text-sm bg-red-500 cursor-pointer">Delete Product</button></Link>
+        <Link to="/updatedata"><button className="shadow-md hover:shadow-2xl px-4 py-2 p-1 rounded-lg text-white text-sm bg-blue-500 cursor-pointer">Update Product</button></Link>
+      </div>
       <div className="w-full max-w-lg md:max-w-2xl bg-white rounded-2xl shadow-2xl p-6 md:p-10 mb-8">
         <h2 className="text-2xl font-bold mb-6 text-center">Add Product</h2>
         <form className="space-y-4" onSubmit={handleAdd}>
@@ -93,6 +98,7 @@ const Admin = () => {
               Product ID
             </label>
             <input
+            required
               type="number"
               name="id"
               value={form.id}
@@ -154,6 +160,7 @@ const Admin = () => {
               <input
                 type="url"
                 name="img"
+                required
                 value={form.img}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg"
