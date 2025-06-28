@@ -4,69 +4,79 @@
     "productName": "Wireless Mouse",
     "cost": 499,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "TechMart"
+    "soldBy": "TechMart",
+    "description": "Smooth and precise wireless mouse with ergonomic design."
   },
   {
     "id": 2,
     "productName": "Laptop Stand",
     "cost": 999,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "GadgetZone"
+    "soldBy": "GadgetZone",
+    "description": "Adjustable aluminum stand for better laptop cooling and posture."
   },
   {
     "id": 3,
     "productName": "Noise Cancelling Headphones",
     "cost": 2499,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "SoundStore"
+    "soldBy": "SoundStore",
+    "description": "Immersive sound experience with active noise cancellation."
   },
   {
     "id": 4,
     "productName": "Portable SSD 1TB",
     "cost": 5999,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "DataGear"
+    "soldBy": "DataGear",
+    "description": "High-speed 1TB SSD with USB 3.1 connectivity for fast file transfers."
   },
   {
     "id": 5,
     "productName": "USB-C Hub",
     "cost": 799,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "PlugNPlay"
+    "soldBy": "PlugNPlay",
+    "description": "Multi-port USB-C hub with HDMI, USB 3.0, and card reader support."
   },
   {
     "id": 6,
     "productName": "Bluetooth Speaker",
     "cost": 1499,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "BassBoom"
+    "soldBy": "BassBoom",
+    "description": "Portable Bluetooth speaker with deep bass and 10-hour playtime."
   },
   {
     "id": 7,
     "productName": "Smartwatch",
     "cost": 3499,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "TimeTech"
+    "soldBy": "TimeTech",
+    "description": "Fitness tracking smartwatch with heart rate monitor and notifications."
   },
   {
     "id": 8,
     "productName": "Desk Lamp",
     "cost": 699,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "HomeEssentials"
+    "soldBy": "HomeEssentials",
+    "description": "LED desk lamp with adjustable brightness and flexible neck."
   },
   {
     "id": 9,
     "productName": "Gaming Keyboard",
     "cost": 2299,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "ProGamerStore"
+    "soldBy": "ProGamerStore",
+    "description": "RGB backlit mechanical keyboard with anti-ghosting support."
   },
   {
     "id": 10,
     "productName": "Webcam HD",
     "cost": 1199,
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750522364/black_grande_jeujvg.jpg",
-    "soldBy": "CamConnect"
+    "soldBy": "CamConnect",
+    "description": "HD webcam with built-in mic, perfect for video calls and streaming."
   }
 ]

@@ -11,6 +11,9 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Map from './pages/map'
 import Sellitem from './pages/Sellitem'
+import Upload from './server/Upload'
+import Retrive from './server/Retrive'
+import Admin from './Adminpanel/Admin'
 const App = () => {
   return (
     <>
@@ -27,6 +30,9 @@ const App = () => {
         <Route path="about" element={<About/>} />
         <Route path="map" element={<Map/>} />
         <Route path="sellitem" element={<Sellitem/>} />
+        <Route path="uploaddata" element={<Upload/>} />
+        <Route path="retrivedata" element={<Retrive/>} />
+        <Route path="admin" element={<Admin/>} />
         </Route>
       </Routes>
     </Router>

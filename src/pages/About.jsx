@@ -3,7 +3,7 @@ import React from 'react';
 const About = () => {
   return (
     <section className="mt-30 max-w-4xl mx-auto p-6 rounded-2xl shadow-lg">
-      <h1 className="text-3xl font-bold text-blue-600 mb-4">📘 Welcome to the Student Portal!</h1>
+      <h1 className="text-3xl font-bold text-blue-600 mb-4">📘 Welcome to the Skilcenta!</h1>
       <p className="text-lg text-gray-500 mb-6">
         Hey there! 👋<br />
         This platform is specially built <strong>for students, by a student</strong> — to make your academic journey easier and smarter.

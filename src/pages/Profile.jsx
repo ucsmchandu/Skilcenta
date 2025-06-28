@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const Profile = () => {
-  // Example user data (replace with real data or props/context)
   const [user, setUser] = useState({
     name: "chandu",
     email: "chandu@gmail.com",
@@ -14,6 +13,7 @@ const Profile = () => {
 
   const [editing, setEditing] = useState(false);
   const [editFields, setEditFields] = useState({
+    bio:user.bio,
     branch: user.branch,
     year: user.year,
     location: user.location
@@ -58,6 +58,17 @@ const Profile = () => {
                   type="text"
                   name="branch"
                   value={editFields.branch}
+                  onChange={handleEditChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                <input
+                  type="text"
+                  name="bio"
+                  value={editFields.bio}
                   onChange={handleEditChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                   required
