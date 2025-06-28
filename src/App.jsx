@@ -1,4 +1,7 @@
 import React from 'react'
+import { ToastContainer } from 'react-toastify'
+import AuthContextProvider from './contextApi/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
 import MainLayout from './mainLayout/MainLayout'
 import Home from './pages/Home'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
@@ -14,14 +17,20 @@ import Sellitem from './pages/Sellitem'
 import Admin from './Adminpanel/Admin'
 import Delete from './server/Delete'
 import Update from './server/Update'
+import Login from './pages/Login'
+import Register from './pages/Register'
 const App = () => {
   return (
-    <>
+    <AuthContextProvider>
     <Router>
       <Routes>
         <Route path="/*" element={<MainLayout/>} >
         <Route index element={<Home/>}/>
-        <Route path="aibot" element={<Aibot/>} />
+        <Route path="aibot" element={
+          <ProtectedRoute>
+            <Aibot/>
+          </ProtectedRoute>
+        } />
         <Route path="roadmap" element={<Roadmap/>} />
         <Route path="resources" element={<Resources/>} />
         <Route path="market" element={<Market/>} />
@@ -29,14 +38,21 @@ const App = () => {
         <Route path="profile" element={<Profile/>} />
         <Route path="about" element={<About/>} />
         <Route path="map" element={<Map/>} />
-        <Route path="sellitem" element={<Sellitem/>} />
+        <Route path="sellitem" element={
+          <ProtectedRoute>
+            <Sellitem/>
+          </ProtectedRoute>
+        } />
         <Route path="admin" element={<Admin/>} />
         <Route path="deletedata" element={<Delete/>} />
         <Route path="updatedata" element={<Update/>} />
+        <Route path="login" element={<Login/>}/>
+        <Route path="register" element={<Register/>} />
         </Route>
       </Routes>
+      <ToastContainer/>
     </Router>
-    </>
+    </AuthContextProvider>
   )
 }
 
