@@ -1,0 +1,152 @@
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+const ProductBuy = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const productName = params.get('name') || '';
+  const cost = params.get('cost') || '';
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    branch: '',
+    year: '',
+    number: ''
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Place order logic here
+    alert('Order placed!');
+  };
+
+  return (
+    <div className="min-h-screen mt-20 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-10">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-lg bg-white rounded-2xl shadow-2xl p-8 flex flex-col gap-4"
+      >
+        <h2 className="text-2xl font-bold text-indigo-800 mb-4 text-center">Place Order</h2>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+          <input
+            type="text"
+            name="productName"
+            value={productName}
+            readOnly
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Cost (₹)</label>
+          <input
+            type="text"
+            name="cost"
+            value={cost}
+            readOnly
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your name"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your phone number"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+          <input
+            type="text"
+            name="address"
+            value={form.address}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your address"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Branch</label>
+          <input
+            type="text"
+            name="branch"
+            value={form.branch}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your branch"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Year</label>
+          <input
+            type="text"
+            name="year"
+            value={form.year}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your year"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+          <input
+            type="text"
+            name="number"
+            value={form.number}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your number"
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-indigo-600 text-white rounded-lg px-6 py-2 font-semibold hover:bg-indigo-700 transition mt-2"
+        >
+          Place Order
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default ProductBuy;

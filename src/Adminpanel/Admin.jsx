@@ -195,15 +195,26 @@ const Admin = () => {
       <div className="w-full max-w-full overflow-x-auto bg-white rounded-2xl shadow p-4 md:p-8">
         <h2 className="text-xl font-bold mb-4 text-center">Products List</h2>
 
-        <div className="flex mb-4">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by ID, Product ID, Name, Customer"
-            className="px-3 py-2 border border-gray-300 rounded-lg w-full max-w-xs"
-          />
-        </div>
+        <div className="flex mb-4 items-center">
+  <input
+    type="text"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    placeholder="Search by ID, Product ID, Name, Customer"
+    className="px-3 py-2 border border-gray-300 rounded-lg w-full max-w-xs"
+  />
+  <button
+    className="ml-3 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+    onClick={() => {
+      setProducts(prev =>
+        [...prev].sort((a, b) => Number(a.id) - Number(b.id))
+      );
+    }}
+    style={{ whiteSpace: 'nowrap' }}
+  >
+    Sort by ID
+  </button>
+</div>
         {filteredProducts.length === 0 ? (
           <p className="text-gray-500 text-center">No products available.</p>
         ) : (

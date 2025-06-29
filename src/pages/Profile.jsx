@@ -24,7 +24,7 @@ const Profile = () => {
         <img
           src={
             currentUser.photoURL ||
-            "https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff"
+            `https://ui-avatars.com/api/?name=${currentUser.displayName || "User"}&background=0D8ABC&color=fff`
           }
           alt="Profile"
           className="w-32 h-32 rounded-full border-4 border-indigo-200 shadow mb-6 object-cover"

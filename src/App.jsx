@@ -19,6 +19,8 @@ import Delete from './server/Delete'
 import Update from './server/Update'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Checkout from './pages/Checkout'
+import ProductBuy from './pages/ProductBuy'
 const App = () => {
   return (
     <AuthContextProvider>
@@ -52,6 +54,8 @@ const App = () => {
         <Route path="updatedata" element={<Update/>} />
         <Route path="login" element={<Login/>}/>
         <Route path="register" element={<Register/>} />
+        <Route path="product/:id" element={<Checkout/>} />
+        <Route path='BuyProduct' element={<ProductBuy/>}/>
         </Route>
       </Routes>
       <ToastContainer/>

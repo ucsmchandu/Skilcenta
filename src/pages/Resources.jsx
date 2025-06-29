@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Browsefiles from "../components/Browsefiles";
-import Uploadfiles from "../components/Uploadfiles";
+// import Browsefiles from "../components/Browsefiles";
+// import Uploadfiles from "../components/Uploadfiles";
 const Resources = () => {
   const [resources,setResources]=useState(false); //for the re-toggleing
   return (
@@ -17,7 +17,7 @@ const Resources = () => {
         </p>
       </div>
       {/* chart */}
-      <div className="border-blue-100 border-2 m-10 rounded-2xl lg:m-20">
+      {/* <div className="border-blue-100 border-2 m-10 rounded-2xl lg:m-20">
         <nav className="flex p-3 space-x-10 border-b-2 border-blue-100">
           <div className="cursor-pointer p-1 ">
             <button className=" hover:text-black cursor-pointer " onClick={()=>setResources(false)}>
@@ -33,6 +33,9 @@ const Resources = () => {
       {
         !resources ? (<Browsefiles/>):(<Uploadfiles/>)
       }
+      </div> */}
+      <div className="flex justify-center mt-30">
+        <h1 className="text-4xl text-gray-600 font-mono">Coming Soon</h1>
       </div>
     </div>
   );

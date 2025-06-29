@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Link, useNavigate } from "react-router-dom";
+import { span } from "motion/react-client";
 const Navbar = () => {
   const [hidden, setHidden] = useState(false); //scrolling effect
   const [isOpen, setIsOpen] = useState(false); //side bar
@@ -47,6 +48,8 @@ const Navbar = () => {
     },
   ];
 
+  const [presentLoc,setPresentLoc]=useState("Home");
+
   useEffect(() => {
     let previousScrollY = window.scrollY;
     const handleScroll = () => {
@@ -88,12 +91,14 @@ const Navbar = () => {
         <div className="md:flex hidden mt-3 mr-10">
           <ul className="flex space-x-6 ">
             {elements.map((data) => (
-              <li key={data.id}>
+              <li key={data.id} onClick={()=>setPresentLoc(data.name)}>
                 <button>
                   <Link to={data.link}>
-                    <li className="hover:text-blue-700 font-semibold text-gray-600">
-                      {data.id <= 5 && <span className="shadow rounded lg:p-2">{data.name}</span>}
-                      {data.id >= 6 && <img src={data.name} className="h-6" />}
+                    <li className={`hover:text-blue-700 font-semibold text-gray-600
+                      ${presentLoc === data.name ? "border-b-2 rounded-sm border-b-blue-600":"border-0" }
+                      `}>
+                      {data.id <= 5 && <span   className=" rounded lg:p-2">{data.name}</span>}
+                      {data.id >= 6 && <img  src={data.name} className="h-6" />}
                     </li>
                   </Link>
                 </button>
@@ -142,14 +147,16 @@ const Navbar = () => {
             className="h-full w-20"
           />
           {elements.map((data) => (
-            <li key={data.id} className="bg-gray-100 rounded-lg">
+            <li key={data.id} onClick={()=>setPresentLoc(data.name)} className="bg-gray-100 rounded-lg">
               <Link
                 to={data.link}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center space-x-2  p-2 text-gray-600 hover:text-blue-800 font-semibold"
+                className={`flex items-center space-x-2  p-2 text-gray-600 hover:text-blue-800 font-semibold
+                  ${presentLoc == data.name ? "border-b-2 rounded":"border-0"}
+                  `}
               >
-                {data.id <= 5 && <span>{data.name}</span>}
-                {data.id >= 6 && <img src={data.name} className="h-6" alt="" />}
+                {data.id <= 5 && <span >{data.name}</span>}
+                 {data.id >= 6 && <img src={data.name} className="h-6" alt="" />}
               </Link>
             </li>
           ))}
