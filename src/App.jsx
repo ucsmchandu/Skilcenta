@@ -35,7 +35,11 @@ const App = () => {
         <Route path="resources" element={<Resources/>} />
         <Route path="market" element={<Market/>} />
         <Route path="contact" element={<Contact/>}/>
-        <Route path="profile" element={<Profile/>} />
+        <Route path="profile" element={
+          <ProtectedRoute>
+            <Profile/>
+          </ProtectedRoute>
+        } />
         <Route path="about" element={<About/>} />
         <Route path="map" element={<Map/>} />
         <Route path="sellitem" element={

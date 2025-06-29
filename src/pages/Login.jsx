@@ -4,11 +4,14 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../server/Firebase';
 import { toast } from 'react-toastify';
 import SigninWithGoogle from '../components/SigninWithGoogle';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
-
+  const location=useLocation();
+  const navigate=useNavigate();
+  const from = location.state?.from?.pathname || '/';
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -28,6 +31,7 @@ const Login = () => {
         toast.success('logged in successfully',{
             position:'top-right',
         });
+        navigate(from,{replace:true});
     }
     catch(error){
         console.log(error.message);

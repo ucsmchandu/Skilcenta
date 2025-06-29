@@ -5,7 +5,12 @@ import { Link } from 'react-router-dom';
 import { firestore } from '../server/Firebase';
 import { auth } from '../server/Firebase';
 import { setDoc,doc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 const Register = () => {
+  const location=useLocation();
+  const navigate=useNavigate();
+  const from=location.state?.from?.pathname || '/';
   const [form, setForm] = useState({
     username: '',
     email: '',
@@ -57,6 +62,7 @@ const Register = () => {
     toast.success('User registered successfully',{
         position:'top-right'
     });
+    navigate(from,{replace:true});
     setForm({
       username: '',
       email: '',
