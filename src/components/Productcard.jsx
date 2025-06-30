@@ -19,9 +19,11 @@ const Productcard = ({ id, productName, img, cost, soldBy }) => {
         <div className="text-sm text-gray-600 mb-4">
           Sold by:<span className="font-medium">{soldBy}</span>
         </div>
-        <button className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
-          <span>Add to Cart</span>
+       <Link to={`/product/${id}`}>
+        <button className="w-full bg-green-600 cursor-pointer text-white py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
+          <span>Buy</span>
         </button>
+       </Link>
       </div>
     </div>
   );

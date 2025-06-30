@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contextApi/AuthContext';
+import { firestore } from '../server/Firebase';
+import { addDoc,doc,collection } from 'firebase/firestore';
+import { where,query,getDocs } from 'firebase/firestore';
 const ProductBuy = () => {
+  const navigate=useNavigate();
+  const {currentUser}=useAuth();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const productName = params.get('name') || '';
   const cost = params.get('cost') || '';
-
+  const id=params.get('id') || '';
+// console.log(currentUser.uid);
+// console.log(currentUser);
   const [form, setForm] = useState({
     name: '',
     email: '',
-    phone: '',
     address: '',
     branch: '',
     year: '',
@@ -21,10 +29,56 @@ const ProductBuy = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Place order logic here
-    alert('Order placed!');
+    
+    try{
+      
+      const getImg=query(
+        collection(firestore,'products'),
+        where('id','==',id)
+      );
+      const value=await getDocs(getImg);
+      let img='';
+      if(!getImg.empty){
+        img=value.docs[0].data().img;
+      }
+
+      //to add the data into orders sections
+      const docRef=await addDoc(collection(firestore,'orders'),{
+        buyerId:currentUser.uid,
+        buyerName:form.name,
+        product:productName,
+        price:cost,
+        buyerEmail:form.email,
+        buyerPhone:form.number,
+        buyerAddress:form.address,
+        buyerBranch:form.branch,
+        buyerYear:form.year,
+        productImg:img,
+      });
+
+      setForm({
+         name: '',
+    email: '',
+    address: '',
+    branch: '',
+    year: '',
+    number: ''
+      })
+      e.target.reset();
+      // console.log("successfull");
+      navigate(`/orderPop?product=${productName}`);
+      toast.success("Order placed successfully",{
+        position:'top-right'
+      });
+    }
+    catch(error){
+      console.log("Error :",error.message);
+      toast.error("Order not placed!",{
+        position:'top-left'
+      });
+    }
   };
 
   return (
@@ -76,18 +130,6 @@ const ProductBuy = () => {
             required
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
             placeholder="Enter your email"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-          <input
-            type="tel"
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-            placeholder="Enter your phone number"
           />
         </div>
         <div>

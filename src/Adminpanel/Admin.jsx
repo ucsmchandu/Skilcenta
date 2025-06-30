@@ -25,6 +25,8 @@ const Admin = () => {
     id: "",
     productName: "",
     soldBy: "",
+    phone:"",
+    email:"",
     cost: "",
     description: "",
     img: "",
@@ -43,6 +45,8 @@ const Admin = () => {
         id: form.id,
         productName: form.productName,
         soldBy: form.soldBy,
+        phone:form.phone,
+        email:form.email,
         cost: Number(form.cost),
         description: form.description,
         img: form.img,
@@ -53,6 +57,8 @@ const Admin = () => {
         id: form.id,
         productName: form.productName,
         soldBy: form.soldBy,
+        phone:form.phone,
+        email:form.email,
         cost: Number(form.cost),
         description: form.description,
         img: form.img,
@@ -62,6 +68,8 @@ const Admin = () => {
         id: "",
         productName: "",
         soldBy: "",
+        phone:"",
+        email:"",
         cost: "",
         description: "",
         img: "",
@@ -76,12 +84,14 @@ const Admin = () => {
 
   const filteredProducts = products.filter(
     (p) =>
-      (p.id && p.id.toString().toLowerCase().includes(search.toLowerCase())) ||
+      (p.id && p.id.toString().toLowerCase().includes(search.toLowerCase().trim())) ||
       (p.productId &&
-        p.productId.includes(search)) ||
+        p.productId.includes(search.trim())) ||
       (p.productName &&
-        p.productName.toLowerCase().includes(search.toLowerCase())) ||
-      (p.soldBy && p.soldBy.toLowerCase().includes(search.toLowerCase()))
+        p.productName.toLowerCase().includes(search.toLowerCase().trim())) ||
+      (p.soldBy && p.soldBy.toLowerCase().includes(search.toLowerCase().trim())) ||
+      (p.phone && p.phone.includes(search.trim())) ||
+      (p.mail && p.email.toString().toLowerCase().includes(search.toLowerCase().trim()))
   );
 
   return (
@@ -134,6 +144,36 @@ const Admin = () => {
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                 placeholder="Enter customer name"
+              />
+            </div>
+            <div className="flex-1 mt-4 md:mt-0">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Customer phone
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                 pattern="[0-9]{10,15}" 
+  maxLength={15}
+                required
+                value={form.phone}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter customer phone"
+              />
+            </div>
+            <div className="flex-1 mt-4 md:mt-0">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Customer mail
+              </label>
+              <input
+                type="email"
+                name="email"
+                required
+                value={form.email}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter customer mail"
               />
             </div>
           </div>
@@ -224,6 +264,8 @@ const Admin = () => {
                 <th className="py-2 px-3">ID</th>
                 <th className="py-2 px-3">Product ID</th>
                 <th className="py-2 px-3">Product Name</th>
+                <th className="py-2 px-3">phone</th>
+                <th className="py-2 px-3">email</th>
                 <th className="py-2 px-3">Customer</th>
                 <th className="py-2 px-3">Cost</th>
                 <th className="py-2 px-3">Description</th>
@@ -236,6 +278,8 @@ const Admin = () => {
                   <td className="py-2 px-3">{p.id}</td>
                   <td className="py-2 px-3">{p.productId}</td>
                   <td className="py-2 px-3">{p.productName}</td>
+                  <td className="py-2 px-3">{p.phone}</td>
+                  <td className="py-2 px-3">{p.email}</td>
                   <td className="py-2 px-3">{p.soldBy}</td>
                   <td className="py-2 px-3">₹{p.cost}</td>
                   <td className="py-2 px-3">{p.description}</td>

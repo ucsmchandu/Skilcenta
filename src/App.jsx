@@ -21,6 +21,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import ProductBuy from './pages/ProductBuy'
+import OrderPop from './pages/OrderPop'
 const App = () => {
   return (
     <AuthContextProvider>
@@ -56,6 +57,7 @@ const App = () => {
         <Route path="register" element={<Register/>} />
         <Route path="product/:id" element={<Checkout/>} />
         <Route path='BuyProduct' element={<ProductBuy/>}/>
+        <Route path='orderPop' element={<OrderPop/>} />
         </Route>
       </Routes>
       <ToastContainer/>
