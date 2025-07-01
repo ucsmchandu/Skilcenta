@@ -10,7 +10,7 @@ const Footer = () => (
           alt="Logo"
           className="h-10 w-10 rounded-full shadow-sm border border-gray-300 bg-white"
         />
-        <span className="font-bold text-lg text-blue-700">Student Portal</span>
+        <span className="font-bold text-lg text-blue-700">Skilcenta</span>
       </div>
 
       <nav className="flex flex-wrap justify-center gap-5 text-sm font-medium text-gray-700">
@@ -23,7 +23,7 @@ const Footer = () => (
       </nav>
 
       <div className="text-center text-xs text-gray-500 md:text-right">
-        <div className="font-medium mb-1">&copy; {new Date().getFullYear()} Student Portal</div>
+        <div className="font-medium mb-1">&copy; {new Date().getFullYear()} Skilcenta</div>
         <span>
           Need help?{' '}
           <Link to="/contact" className="text-blue-600 underline hover:text-blue-800 font-semibold">
