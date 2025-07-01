@@ -9,7 +9,9 @@ const OrdersPage = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchOrders = async () => {
-    setLoading(true);
+    if(!auth.currentUser) return;
+   try{
+     setLoading(true);
     const q = query(
       collection(firestore, "orders"),
       where("buyerId", "==", auth.currentUser.uid)
@@ -17,7 +19,13 @@ const OrdersPage = () => {
     const querySnapshot = await getDocs(q);
     const ordersArr = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     setOrders(ordersArr);
+   }
+   catch(err){
+    console.log(err.message);
+   }
+   finally{
     setLoading(false);
+   }
   };
 
   useEffect(() => {
