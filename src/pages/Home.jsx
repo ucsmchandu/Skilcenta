@@ -168,10 +168,10 @@ const Home = () => {
       </div>
 
       <div className="bg-blue-600 h-60 text-white flex flex-col justify-center items-center">
-        <p className="text-3xl font-bold mb-4">
+        <p className="text-3xl font-bold mb-4 text-center">
           Ready to Start Your Career Journey?
         </p>
-        <p className="text-xl mb-8 text-blue-100">
+        <p className="text-xl text-center mb-8 text-blue-100">
           Trusted by students. Powered by purpose.
         </p>
         <Link to="/roadmap">
