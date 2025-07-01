@@ -24,6 +24,13 @@ const OrdersPage = () => {
     fetchOrders();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#e0e7ff] to-[#f8fafc]">
+        <div className="text-3xl text-indigo-700 font-extrabold animate-pulse">Loading your orders...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen mt-20 p-6 bg-gradient-to-br from-[#e0e7ff] to-[#f8fafc] py-16 flex flex-col items-center">
@@ -34,11 +41,6 @@ const OrdersPage = () => {
       </h2>
       <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         {
-          loading ? (
-            <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#e0e7ff] to-[#f8fafc]">
-        <div className="text-3xl text-indigo-700 font-extrabold animate-pulse">Loading your orders...</div>
-      </div>
-          ):
         orders.length === 0 ? (
           <div className='col-span-full flex flex-col items-center mt-20'>
             <img
