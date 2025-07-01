@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { firestore } from "../server/Firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import { address } from "motion/react-client";
 
 const Admin = () => {
   const [products, setProducts] = useState([]);
@@ -27,6 +28,7 @@ const Admin = () => {
     soldBy: "",
     phone:"",
     email:"",
+    address:"",
     cost: "",
     description: "",
     img: "",
@@ -47,6 +49,7 @@ const Admin = () => {
         soldBy: form.soldBy,
         phone:form.phone,
         email:form.email,
+        address:form.address,
         cost: Number(form.cost),
         description: form.description,
         img: form.img,
@@ -59,6 +62,7 @@ const Admin = () => {
         soldBy: form.soldBy,
         phone:form.phone,
         email:form.email,
+        address:form.address,
         cost: Number(form.cost),
         description: form.description,
         img: form.img,
@@ -70,6 +74,7 @@ const Admin = () => {
         soldBy: "",
         phone:"",
         email:"",
+        address:"",
         cost: "",
         description: "",
         img: "",
@@ -176,6 +181,20 @@ const Admin = () => {
                 placeholder="Enter customer mail"
               />
             </div>
+             <div className="flex-1 mt-4 md:mt-0">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Customer address (very important give it correctly)
+              </label>
+              <input
+                type="text"
+                name="address"
+                required
+                value={form.address}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter customer address"
+              />
+            </div>
           </div>
           <div className="md:flex gap-4">
             <div className="flex-1">
@@ -267,6 +286,7 @@ const Admin = () => {
                 <th className="py-2 px-3">phone</th>
                 <th className="py-2 px-3">email</th>
                 <th className="py-2 px-3">Customer</th>
+                <th className="py-2 px-3">Customer Address</th>
                 <th className="py-2 px-3">Cost</th>
                 <th className="py-2 px-3">Description</th>
                 <th className="py-2 px-3">Image</th>
@@ -281,6 +301,7 @@ const Admin = () => {
                   <td className="py-2 px-3">{p.phone}</td>
                   <td className="py-2 px-3">{p.email}</td>
                   <td className="py-2 px-3">{p.soldBy}</td>
+                  <td className="py-2 px-3">{p.address}</td>
                   <td className="py-2 px-3">₹{p.cost}</td>
                   <td className="py-2 px-3">{p.description}</td>
                   <td className="py-2 px-3">

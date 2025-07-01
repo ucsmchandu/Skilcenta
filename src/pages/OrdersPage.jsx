@@ -22,7 +22,6 @@ const OrdersPage = () => {
 
   useEffect(() => {
     fetchOrders();
-    // eslint-disable-next-line
   }, []);
 
   if (loading) {
@@ -40,9 +39,9 @@ const OrdersPage = () => {
         {orders.length === 0 ? (
           <div className='col-span-full flex flex-col items-center mt-16'>
             <div className="text-center text-gray-500 text-xl mb-6">No orders found.</div>
-            <Link to="/" className=''>
+            <Link to="/market" className=''>
               <button className='px-6 cursor-pointer py-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow hover:from-blue-700 hover:to-indigo-700 transition'>
-                Go to Home
+                Go to Market
               </button>
             </Link>
           </div>

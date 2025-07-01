@@ -76,6 +76,10 @@ const Checkout = () => {
             <span className="font-semibold text-blue-700">Contact Owner:</span>
             <span className="font-medium text-gray-900 ml-2">{product.email}</span>
           </p>
+           <p className="text-lg text-gray-700 mb-3">
+            <span className="font-semibold text-blue-700">Owner Address:</span>
+            <span className="font-medium text-gray-900 ml-2">{product.address}</span>
+          </p>
           <div className='mt-6 flex items-center bg-blue-50 rounded-lg p-3'>
             <img src='https://res.cloudinary.com/dllvcgpsk/image/upload/v1751291333/info_fbbhkq.png' className='h-6 w-6 mr-3' alt="info" />
             <p className='text-blue-900'>
