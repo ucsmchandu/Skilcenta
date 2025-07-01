@@ -12,7 +12,6 @@ import Market from './pages/Market'
 import Profile from './pages/Profile'
 import About from './pages/About'
 import Contact from './pages/Contact'
-import Map from './pages/map'
 import Sellitem from './pages/Sellitem'
 import Admin from './Adminpanel/Admin'
 import Delete from './server/Delete'
@@ -46,7 +45,6 @@ const App = () => {
           </ProtectedRoute>
         } />
         <Route path="about" element={<About/>} />
-        <Route path="map" element={<Map/>} />
         <Route path="sellitem" element={
           <ProtectedRoute>
             <Sellitem/>

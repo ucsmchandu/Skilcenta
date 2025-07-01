@@ -13,7 +13,6 @@ const GeminiChat = () => {
 
     setLoading(true);
     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
-
     try {
       const result = await model.generateContent(input);
       const response = await result.response;

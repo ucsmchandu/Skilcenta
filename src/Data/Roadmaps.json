@@ -6,16 +6,16 @@
     "time": "6-8 months",
     "roadmap": "Beginner to Advanced",
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750926232/programming_njyqrk.png",
-    "link":""
+    "link":"https://roadmap.sh/full-stack"
   },
   {
     "id": 2,
-    "name": "Data Science",
+    "name": "Data Analyst",
     "quote": "Master data analysis, machine learning, and real-world projects",
     "time": "8-10 months",
     "roadmap": "Foundations to Deployment",
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930564/data-science_cl69ft.png",
-    "link":""
+    "link":"https://roadmap.sh/data-analyst"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "time": "5-7 months",
     "roadmap": "Beginner to Advanced",
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/android_qkkpon.png",
-    "link":""
+    "link":"https://roadmap.sh/android"
   },
   {
     "id": 4,
@@ -33,7 +33,7 @@
     "time": "3-5 months",
     "roadmap": "Fundamentals to Portfolio",
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/ux_vj3cbb.png",
-    "link":""
+    "link":"https://roadmap.sh/ux-design"
   },
   {
     "id": 5,
@@ -42,7 +42,7 @@
     "time": "7-9 months",
     "roadmap": "Theory to Application",
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/ai_jyquqb.png",
-    "link":""
+    "link":"https://roadmap.sh/ai-engineer"
   },
   {
     "id": 6,
@@ -51,42 +51,24 @@
     "time": "6-8 months",
     "roadmap": "Beginner to Ethical Hacker",
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/cyber-security_stefec.png",
-    "link":""
+    "link":"https://roadmap.sh/cyber-security"
   },
   {
     "id": 7,
     "name": "Cloud Computing",
-    "quote": "Master AWS, Azure, and cloud-native technologies",
+    "quote": "Master AWS",
     "time": "6-8 months",
     "roadmap": "Intro to Certified Cloud Architect",
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930563/cloud-server_uhfkqk.png",
-    "link":""
+    "link":"https://roadmap.sh/aws"
   },
   {
     "id": 8,
-    "name": "Competitive Programming",
-    "quote": "Sharpen your problem-solving skills with structured practice",
-    "time": "4-6 months",
-    "roadmap": "Basics to Advanced Concepts",
-    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930562/programming-language_kjgvhm.png",
-    "link":""
-  },
-  {
-    "id": 9,
     "name": "DevOps",
     "quote": "Learn CI/CD, Docker, Kubernetes, and automation tools",
     "time": "5-7 months",
     "roadmap": "Fundamentals to Deployment",
     "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930562/devops_u3gnxp.png",
-    "link":""
-  },
-  {
-    "id": 10,
-    "name": "Game Development",
-    "quote": "Create games using Unity, C#, and real-time graphics",
-    "time": "6-9 months",
-    "roadmap": "Zero to Game Creator",
-    "img": "https://res.cloudinary.com/dllvcgpsk/image/upload/v1750930562/game-development_ikxdpl.png",
-    "link":""
+    "link":"https://roadmap.sh/devops"
   }
 ]

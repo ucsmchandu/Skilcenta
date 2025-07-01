@@ -46,7 +46,7 @@ const Roadmap = () => {
                   <p className="text-sm text-gray-600">{data.roadmap}</p>
                 </div></div>
                 <div className="flex justify-between text-blue-800 mt-6 items-center ">
-                  <p className="font-semibold">View Roadmap</p>
+                  <a href={data.link} target="_blank" className="font-semibold">View Roadmap</a>
                 </div>
               </div>
             </li>
