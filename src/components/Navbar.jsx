@@ -79,7 +79,7 @@ const Navbar = () => {
       className="font-[#Roboto] fixed top-0 left-0 w-full bg-[#FBFBFB] z-50 "
     >
       <div className="flex  justify-between p-5 shadow-lg ">
-        <div className="ml-12 flex items-center space-x-2">
+        <div className="ml-4 flex items-center space-x-2">
         <Link to="/" className="flex items-center space-x-2">
           <img
             src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
