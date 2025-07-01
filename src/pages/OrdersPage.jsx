@@ -49,7 +49,7 @@ const OrdersPage = () => {
             />
             <div className="text-center text-gray-500 text-2xl mb-8 font-semibold">No orders found.</div>
             <Link to="/market">
-              <button className='px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold shadow-lg hover:from-blue-700 hover:to-indigo-700 transition text-lg'>
+              <button className='px-8 cursor-pointer py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold shadow-lg hover:from-blue-700 hover:to-indigo-700 transition text-lg'>
                 Go to Market
               </button>
             </Link>

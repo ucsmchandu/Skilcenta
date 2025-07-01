@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const Resources = () => {
   const [resources,setResources]=useState(false); //for the re-toggleing
   return (
-    <div className="mt-30">
+    <div className="mt-30 min-h-screen">
       <div className=" flex flex-col shadow-lg p-6 justify-center rounded-2xl text-white h-auto items-center m-6 bg-gradient-to-r from-[#B1F0F7] to-[#81BFDA]">
         <h1 className="text-4xl md:text-6xl  text-black font-serif mb-4">
           Resource Sharing

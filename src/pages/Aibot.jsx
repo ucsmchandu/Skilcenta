@@ -33,7 +33,7 @@ const GeminiChat = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-40 p-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-lg flex flex-col items-center space-y-6">
+    <div className="max-w-xl min-h-screen mx-auto mt-40 p-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-lg flex flex-col items-center space-y-6">
       <h2 className="text-2xl font-extrabold text-indigo-700 tracking-tight mb-2">AI Chatbot</h2>
       <div className="w-full flex flex-col sm:flex-row gap-3">
         <input
