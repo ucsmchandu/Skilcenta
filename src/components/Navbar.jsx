@@ -79,14 +79,18 @@ const Navbar = () => {
       className="font-[#Roboto] fixed top-0 left-0 w-full bg-[#FBFBFB] z-50 "
     >
       <div className="flex  justify-between p-5 shadow-lg ">
-        <div className="ml-12">
-          <Link to="/">
-            <img
-              src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
-              className="h-12 "
-            />
-          </Link>
-        </div>
+        <div className="ml-12 flex items-center space-x-2">
+        <Link to="/" className="flex items-center space-x-2">
+          <img
+            src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
+            className="h-10 w-10 rounded bg-white border border-gray-200"
+            alt="Student Portal Logo"
+          />
+          <span className="text-xl font-bold text-gray-700">
+            Student Portal
+          </span>
+        </Link>
+      </div>
 
         <div className="md:flex hidden mt-3 mr-10">
           <ul className="flex space-x-6 ">
