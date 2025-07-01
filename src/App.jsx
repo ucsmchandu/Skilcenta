@@ -23,6 +23,7 @@ import Checkout from './pages/Checkout'
 import ProductBuy from './pages/ProductBuy'
 import OrderPop from './pages/OrderPop'
 import OrdersPage from './pages/OrdersPage'
+import AllOrders from './Adminpanel/AllOrders'
 const App = () => {
   return (
     <AuthContextProvider>
@@ -60,6 +61,7 @@ const App = () => {
         <Route path='BuyProduct' element={<ProductBuy/>}/>
         <Route path='orderPop' element={<OrderPop/>} />
         <Route path='orders' element={<OrdersPage/>} />
+        <Route path='allorders' element={<AllOrders/>} />
         </Route>
       </Routes>
       <ToastContainer/>

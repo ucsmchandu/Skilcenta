@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { toast } from 'react-toastify';
 const Contact = () => {
   const [form, setForm] = useState({
     name: '',
@@ -7,14 +7,40 @@ const Contact = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-
+  const [loading,setLoading]=useState(false);
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
+    setLoading(true);
+    try{
+      const formData=new FormData(e.target);
+    formData.append("access_key","379f8770-c691-43da-ab5c-143d2c7089b8");
+    const res=await fetch("https://api.web3forms.com/submit",{
+      method:"POST",
+      body:formData
+    }).then((res)=>res.json());
+    if(res.success){
+      // console.log("success",res);
+      toast.success("Message sent successfully",{
+        position:'top-left'
+      });
+    }
+    else{
+      // console.log("error");
+       toast.error("Error Message not Sent!",{
+        position:'top-left'
+      });
+    }
+    }
+    catch(err){
+      console.log(err.message);
+    }
+    finally{
+      setLoading(false);
+    }
     setSubmitted(true);
     setForm({ name: '', email: '', message: '' });
   };
@@ -26,7 +52,15 @@ const Contact = () => {
         <p className="text-gray-600 mb-8 text-center">
           Have a question or need help? Fill out the form and our team will get back to you soon.
         </p>
-        {submitted ? (
+        {loading ? (
+          <div className="flex flex-col items-center py-12">
+          <svg className="animate-spin h-10 w-10 text-blue-600 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+          </svg>
+          <span className="text-blue-700 font-semibold text-lg">Sending your message...</span>
+        </div>
+        ): submitted ? (
           <div className="text-green-600 text-center font-semibold py-8">
             Thank you for contacting us! We will respond soon.
           </div>
@@ -77,7 +111,7 @@ const Contact = () => {
           </form>
         )}
         <div className="mt-10 text-center text-gray-500 text-sm">
-          Or email us at <a href="mailto:support@studentportal.com" className="text-blue-600 underline">support@studentportal.com</a>
+          Or email us at <a href="mailto:skilcenta.contact@gmail.com" className="text-blue-600 underline">skilcenta.contact@gmail.com</a>
         </div>
       </div>
     </div>

@@ -1,52 +1,116 @@
-import React, { useState } from 'react'
-
+import React, { useState } from "react";
+import emailjs from "emailjs-com";
+import { toast } from "react-toastify";
 const Sellitem = () => {
   const [form, setForm] = useState({
-    productName: '',
-    sellerName: '',
-    address: '',
-    description:'',
-    price: '',
+    productName: "",
+    sellerName: "",
+    email: "",
+    phone: "",
+    address: "",
+    description: "",
+    price: "",
     image: null,
-    video: null,
   });
-  
-  const [message, setMessage] = useState('');
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "image" || name === "video") {
+    if (name === "image") {
       setForm({ ...form, [name]: files[0] });
     } else {
       setForm({ ...form, [name]: value });
     }
   };
 
+  //uploading image to cloudinary
+  const uploadImageToCloudinary = async (file) => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "unsigned_upload");
+    data.append("cloud_name", "dllvcgpsk");
+    setLoading(true)
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dllvcgpsk/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const json = await res.json();
+      return json.secure_url;
+    } catch (error) {
+      console.error("Cloudinary Upload Failed:", error);
+      return null;
+    }
+    finally{
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    try {
+      const file = e.target.image.files[0];
+      const imgUrl = await uploadImageToCloudinary(file);
+      if (!imgUrl) {
+        setMessage("image upload failed");
+        toast.error("image upload failed", {
+          position: "top-left",
+        });
+        return;
+      }
 
-    // Prepare email content (for demonstration, you would use a backend/email service in production)
-    const emailBody = `
-      Product Name: ${form.productName}
-      Seller Name: ${form.sellerName}
-      Address: ${form.address}
-      Description: ${form.description}
-      Price: ${form.price}
-      Image: ${form.image ? form.image.name : 'No image uploaded'}
-      Video: ${form.video ? form.video.name : 'No video uploaded'}
-    `;
+      const templateParams = {
+        productName: form.productName,
+        name: form.sellerName,
+        email: form.email,
+        phone: form.phone,
+        address: form.address,
+        price: form.price,
+        description: form.description,
+        image: imgUrl,
+      };
 
-    // Simulate sending email (replace with real API/email service)
-    setMessage("Your product details have been sent to the administrator!");
-    console.log(emailBody);
-    // Reset form
+      await emailjs.send(
+        "service_90kwoez",
+        "template_q7sjax8",
+        templateParams,
+        "RvlyoDCRmr-EyoSG_"
+      );
+      await emailjs.send(
+        "service_90kwoez",
+        "template_l1qqybe",
+        templateParams,
+        "RvlyoDCRmr-EyoSG_"
+      );
+      toast.success("Details submitted successfully", {
+        position: "top-left",
+      });
+      setMessage("Your product details have been sent to the administrator!");
+    } catch (error) {
+      console.error("Email error:", error);
+      toast.error("Error try again", {
+        position: "top-left",
+      });
+      setMessage("There was an error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+
     setForm({
-      productName: '',
-      sellerName: '',
-      address: '',
-      price: '',
+      productName: "",
+      sellerName: "",
+      email: "",
+      phone: "",
+      address: "",
+      description: "",
+      price: "",
       image: null,
-      video: null,
     });
     e.target.reset();
   };
@@ -54,18 +118,51 @@ const Sellitem = () => {
   return (
     <div className="mt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-10">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8">
-        <h2 className="text-3xl font-extrabold text-gray-900 mb-2 text-center">Sell Your Product</h2>
+        <h2 className="text-3xl font-extrabold text-gray-900 mb-2 text-center">
+          Sell Your Product
+        </h2>
         <p className="text-gray-600 mb-8 text-center">
-          Fill in the details below. Your product info will be sent to the site administrator for approval.
+          Fill in the details below. Your product info will be sent to the site
+          administrator for approval.
         </p>
-        {message && (
-          <div className="text-green-600 text-center font-semibold py-4 mb-4">
-            {message}
+        {loading ? (
+          <div className="flex flex-col items-center py-12">
+            <svg
+              className="animate-spin h-10 w-10 text-blue-600 mb-4"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z"
+              ></path>
+            </svg>
+            <span className="text-blue-700 font-semibold text-lg">
+              Sending your message...
+            </span>
           </div>
+        ) : (
+          message && (
+            <div className="text-green-600 text-center font-semibold py-4 mb-4">
+              {message}
+            </div>
+          )
         )}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Product Name</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Product Name
+            </label>
             <input
               type="text"
               name="productName"
@@ -77,7 +174,9 @@ const Sellitem = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Seller Name</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Seller Name
+            </label>
             <input
               type="text"
               name="sellerName"
@@ -89,7 +188,9 @@ const Sellitem = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Address</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Address
+            </label>
             <textarea
               name="address"
               required
@@ -101,7 +202,39 @@ const Sellitem = () => {
             ></textarea>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Phone
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              required
+              pattern="[0-9]{10,15}"
+              value={form.phone}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
+              placeholder="Enter your phone number"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Description
+            </label>
             <textarea
               name="description"
               required
@@ -113,7 +246,9 @@ const Sellitem = () => {
             ></textarea>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Price (₹)</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Price (₹)
+            </label>
             <input
               type="number"
               name="price"
@@ -126,7 +261,9 @@ const Sellitem = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Upload Product Image</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Upload Product Image
+            </label>
             <input
               type="file"
               name="image"
@@ -136,29 +273,20 @@ const Sellitem = () => {
               className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 cursor-pointer"
             />
           </div>
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Upload Product Video</label>
-            <input
-              type="file"
-              name="video"
-              accept="video/*"
-              onChange={handleChange}
-              className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 cursor-pointer"
-            />
-          </div>
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-lg font-bold text-lg shadow hover:from-orange-600 hover:to-orange-700 transition-all"
+            className="w-full bg-gradient-to-r cursor-pointer from-orange-500 to-orange-600 text-white py-3 rounded-lg font-bold text-lg shadow hover:from-orange-600 hover:to-orange-700 transition-all"
           >
             Submit for Review
           </button>
         </form>
         <div className="mt-8 text-center text-gray-500 text-sm">
-          Your product details will be reviewed by the administrator before being listed.
+          Your product details will be reviewed by the administrator before
+          being listed.
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sellitem
+export default Sellitem;

@@ -104,153 +104,107 @@ const Admin = () => {
       <div className="flex space-x-10 m-5">
        <Link to="/deletedata"> <button className="shadow-md hover:shadow-2xl px-4 py-2 p-1 rounded-lg text-white text-sm bg-red-500 cursor-pointer">Delete Product</button></Link>
         <Link to="/updatedata"><button className="shadow-md hover:shadow-2xl px-4 py-2 p-1 rounded-lg text-white text-sm bg-blue-500 cursor-pointer">Update Product</button></Link>
+        <Link to="/allorders"><button className="shadow-md hover:shadow-2xl px-4 py-2 p-1 rounded-lg text-white text-sm bg-amber-500 cursor-pointer">All Orders</button></Link>
       </div>
       <div className="w-full max-w-lg md:max-w-2xl bg-white rounded-2xl shadow-2xl p-6 md:p-10 mb-8">
-        <h2 className="text-2xl font-bold mb-6 text-center">Add Product</h2>
-        <form className="space-y-4" onSubmit={handleAdd}>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Product ID
-            </label>
-            <input
-            required
-              type="number"
-              name="id"
-              value={form.id}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              placeholder="Enter product ID"
-            />
-          </div>
-          <div className="md:flex gap-4">
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Product Name
-              </label>
-              <input
-                type="text"
-                name="productName"
-                required
-                value={form.productName}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter product name"
-              />
-            </div>
-            <div className="flex-1 mt-4 md:mt-0">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Customer Name
-              </label>
-              <input
-                type="text"
-                name="soldBy"
-                required
-                value={form.soldBy}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter customer name"
-              />
-            </div>
-            <div className="flex-1 mt-4 md:mt-0">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Customer phone
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                 pattern="[0-9]{10,15}" 
-  maxLength={15}
-                required
-                value={form.phone}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter customer phone"
-              />
-            </div>
-            <div className="flex-1 mt-4 md:mt-0">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Customer mail
-              </label>
-              <input
-                type="email"
-                name="email"
-                required
-                value={form.email}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter customer mail"
-              />
-            </div>
-             <div className="flex-1 mt-4 md:mt-0">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Customer address (very important give it correctly)
-              </label>
-              <input
-                type="text"
-                name="address"
-                required
-                value={form.address}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter customer address"
-              />
-            </div>
-          </div>
-          <div className="md:flex gap-4">
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Cost (₹)
-              </label>
-              <input
-                type="number"
-                name="cost"
-                required
-                value={form.cost}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter cost"
-                min="0"
-              />
-            </div>
-            <div className="flex-1 mt-4 md:mt-0">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Product img
-              </label>
-              <input
-                type="url"
-                name="img"
-                required
-                value={form.img}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter product image URL"
-              />
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Description
-            </label>
-            <textarea
-              name="description"
-              required
-              value={form.description}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              placeholder="Enter product description"
-              rows={2}
-            />
-          </div>
-          <div className="flex gap-2 justify-center">
-            <button
-              type="submit"
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
-            >
-              Add
-            </button>
-          </div>
-        </form>
-      </div>
+  <h2 className="text-2xl font-bold mb-6 text-center">Add Product</h2>
+  <form className="space-y-3" onSubmit={handleAdd}>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input
+        required
+        type="number"
+        name="id"
+        value={form.id}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Product ID"
+      />
+      <input
+        type="text"
+        name="productName"
+        required
+        value={form.productName}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Product Name"
+      />
+      <input
+        type="text"
+        name="soldBy"
+        required
+        value={form.soldBy}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Customer Name"
+      />
+      <input
+        type="tel"
+        name="phone"
+        pattern="[0-9]{10,15}"
+        maxLength={15}
+        required
+        value={form.phone}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Customer Phone"
+      />
+      <input
+        type="email"
+        name="email"
+        required
+        value={form.email}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Customer Email"
+      />
+      <input
+        type="text"
+        name="address"
+        required
+        value={form.address}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Customer Address"
+      />
+      <input
+        type="number"
+        name="cost"
+        required
+        value={form.cost}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Cost (₹)"
+        min="0"
+      />
+      <input
+        type="url"
+        name="img"
+        required
+        value={form.img}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Product Image URL"
+      />
+    </div>
+    <textarea
+      name="description"
+      required
+      value={form.description}
+      onChange={handleChange}
+      className="w-full px-3 py-2 border border-gray-300 rounded-lg mt-2"
+      placeholder="Product Description"
+      rows={2}
+    />
+    <div className="flex gap-2 justify-center mt-2">
+      <button
+        type="submit"
+        className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+      >
+        Add
+      </button>
+    </div>
+  </form>
+</div>
       <div className="w-full max-w-full overflow-x-auto bg-white rounded-2xl shadow p-4 md:p-8">
         <h2 className="text-xl font-bold mb-4 text-center">Products List</h2>
 

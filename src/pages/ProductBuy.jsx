@@ -46,6 +46,7 @@ const ProductBuy = () => {
 
       //to add the data into orders sections
       const docRef=await addDoc(collection(firestore,'orders'),{
+        productId:id,
         buyerId:currentUser.uid,
         buyerName:form.name,
         product:productName,
@@ -57,6 +58,13 @@ const ProductBuy = () => {
         buyerYear:form.year,
         productImg:img,
       });
+
+    const formData = new FormData(e.target);
+    formData.append("access_key", "f2318b2c-b7c8-4814-bfb1-fed5ca8a5641");
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    }).then((res) => res.json());
 
       setForm({
          name: '',
@@ -171,18 +179,20 @@ const ProductBuy = () => {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
           <input
-            type="text"
+            type="tel"
             name="number"
             value={form.number}
             onChange={handleChange}
             required
+             pattern="[0-9]{10,15}" 
+  maxLength={15}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
             placeholder="Enter your number"
           />
         </div>
         <button
           type="submit"
-          className="bg-indigo-600 text-white rounded-lg px-6 py-2 font-semibold hover:bg-indigo-700 transition mt-2"
+          className="bg-indigo-600 cursor-pointer text-white rounded-lg px-6 py-2 font-semibold hover:bg-indigo-700 transition mt-2"
         >
           Place Order
         </button>
