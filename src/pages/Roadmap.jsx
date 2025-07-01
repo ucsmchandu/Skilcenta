@@ -1,10 +1,13 @@
 import React from "react";
 import Roadmaps from "../Data/Roadmaps.json";
-
+import { useAuth } from "../contextApi/AuthContext";
+import { Navigate, useNavigate } from "react-router-dom";
 const Roadmap = () => {
   // {
   //   console.log(Roadmaps);
   // }
+  const navigate=useNavigate();
+  const {currentUser}=useAuth();
   return (
     <div className="mt-30 ">
       <div className=" flex flex-col shadow-lg p-6 justify-center rounded-2xl text-white h-auto items-center m-6 bg-gradient-to-r from-[#DDF6D2] to-[#CAE8BD]">
@@ -46,7 +49,11 @@ const Roadmap = () => {
                   <p className="text-sm text-gray-600">{data.roadmap}</p>
                 </div></div>
                 <div className="flex justify-between text-blue-800 mt-6 items-center ">
-                  <a href={data.link} target="_blank" className="font-semibold">View Roadmap</a>
+                 {
+                  currentUser ? (
+                    <a href={data.link} target="_blank" className="font-semibold">View Roadmap</a>
+                  ):(<button onClick={()=>navigate("/login")} className="font-semibold cursor-pointer">View Roadmap</button>)
+                 }
                 </div>
               </div>
             </li>

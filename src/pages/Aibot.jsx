@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-
+import { useAuth } from '../contextApi/AuthContext';
+import { useNavigate } from 'react-router-dom';
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
 const GeminiChat = () => {
+  const {currentUser}=useAuth();
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
-
+ const navigate=useNavigate();
   const handleSend = async () => {
+    if(!currentUser){
+      navigate("/login");
+      return;
+    }
     if (!input.trim()) return;
 
     setLoading(true);

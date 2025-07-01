@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 const Productcard = ({ id, productName, img, cost, soldBy }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm  hover:shadow-xl transition-shadow group">

@@ -30,11 +30,7 @@ const App = () => {
       <Routes>
         <Route path="/*" element={<MainLayout/>} >
         <Route index element={<Home/>}/>
-        <Route path="aibot" element={
-          <ProtectedRoute>
-            <Aibot/>
-          </ProtectedRoute>
-        } />
+        <Route path="aibot" element={<Aibot/> } />
         <Route path="roadmap" element={<Roadmap/>} />
         <Route path="resources" element={<Resources/>} />
         <Route path="market" element={<Market/>} />

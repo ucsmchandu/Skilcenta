@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { firestore } from '../server/Firebase'
 import { collection, getDocs, where, query } from 'firebase/firestore'
-
+import { useAuth } from '../contextApi/AuthContext'
 
 const Checkout = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const Navigate = useNavigate();
-
+  const {currentUser}=useAuth();
   const buyProduct = () => {
+    if(!currentUser){
+      Navigate("/login");
+      return;
+    }
     Navigate(`/BuyProduct?id=${id}&name=${product.productName}&cost=${product.cost}`);
   }
 
