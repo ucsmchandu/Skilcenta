@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="mt-30  ">
@@ -58,10 +59,12 @@ const Home = () => {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 p-10">
-        <motion.div 
-        whileHover={{scale:1.04}}
-        transition={{duration:0.3}}
-        className="bg-cyan-100 rounded-xl cursor-pointer p-6 text-center shadow-sm">
+        <Link to="/aibot">
+        <motion.div
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 0.3 }}
+          className="bg-cyan-100 rounded-xl cursor-pointer p-6 text-center shadow-sm"
+        >
           <div>
             <img
               src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750918175/ai-technology_xium3j.png"
@@ -82,11 +85,14 @@ const Home = () => {
             <p className="text-black">→</p>
           </div>
         </motion.div>
+        </Link>
 
+       <Link to="/market">
         <motion.div
-        whileHover={{scale:1.04}}
-        transition={{duration:0.3}}
-        className=" rounded-xl p-6 bg-[#578FCA] cursor-pointer text-center shadow-sm">
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 0.3 }}
+          className=" rounded-xl p-6 bg-[#578FCA] cursor-pointer text-center shadow-sm"
+        >
           <div>
             <img
               src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750918846/shopping-cart_thhcim.png"
@@ -100,17 +106,18 @@ const Home = () => {
             Buy and sell second-hand books, notes, and study materials
           </p>
           <div className="flex justify-between">
-            <p className="text-sm text-start text-black font-semibold">
-              Items
-            </p>
+            <p className="text-sm text-start text-black font-semibold">Items</p>
             <p className="text-white">→</p>
           </div>
         </motion.div>
+       </Link>
 
+       <Link to="/roadmap">
         <motion.div
-        whileHover={{scale:1.04}}
-        transition={{duration:0.3}}
-        className=" rounded-xl bg-amber-200 cursor-pointer p-6 text-center shadow-sm">
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 0.3 }}
+          className=" rounded-xl bg-amber-200 cursor-pointer p-6 text-center shadow-sm"
+        >
           <div>
             <img
               src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750919017/pointer_k6umy7.png"
@@ -130,11 +137,14 @@ const Home = () => {
             <p className="text-black">→</p>
           </div>
         </motion.div>
+       </Link>
 
+        <Link to="/resources">
         <motion.div
-        whileHover={{scale:1.04}}
-        transition={{duration:0.3}}
-        className=" rounded-xl bg-blue-200 cursor-pointer p-6 text-center shadow-sm">
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 0.3 }}
+          className=" rounded-xl bg-blue-200 cursor-pointer p-6 text-center shadow-sm"
+        >
           <div>
             <img
               src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750919186/paper_tlhpvy.png"
@@ -154,14 +164,22 @@ const Home = () => {
             <p>→</p>
           </div>
         </motion.div>
+        </Link>
       </div>
 
       <div className="bg-blue-600 h-60 text-white flex flex-col justify-center items-center">
-        <p className="text-3xl font-bold mb-4">Ready to Start Your Career Journey?</p>
-        <p className="text-xl mb-8 text-blue-100">Trusted by students. Powered by purpose.</p>
-        <button className="bg-white cursor-pointer text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">Get started</button>
+        <p className="text-3xl font-bold mb-4">
+          Ready to Start Your Career Journey?
+        </p>
+        <p className="text-xl mb-8 text-blue-100">
+          Trusted by students. Powered by purpose.
+        </p>
+        <Link to="/roadmap">
+        <button className="bg-white cursor-pointer text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+          Get started
+        </button>
+        </Link>
       </div>
-
     </div>
   );
 };

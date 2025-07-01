@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import {  motion } from "motion/react";
 import { Link, useNavigate } from "react-router-dom";
-import { span } from "motion/react-client";
+import { useAuth } from "../contextApi/AuthContext";
 const Navbar = () => {
   const [hidden, setHidden] = useState(false); //scrolling effect
   const [isOpen, setIsOpen] = useState(false); //side bar
@@ -47,7 +47,7 @@ const Navbar = () => {
       link: "/about",
     },
   ];
-
+  const {currentUser}=useAuth();
   const [presentLoc,setPresentLoc]=useState("Home");
 
   useEffect(() => {
@@ -156,7 +156,13 @@ const Navbar = () => {
                   `}
               >
                 {data.id <= 5 && <span >{data.name}</span>}
-                 {data.id >= 6 && <img src={data.name} className="h-6" alt="" />}
+                 {data.id >= 6 && 
+                 <span className="flex space-x-4">
+                  <img src={data.name} className="h-6" alt="" />{
+                  (data.id==6 && <p className="text-black font-mono"> {currentUser && currentUser.displayName ? currentUser.displayName : "Login"}</p>)|| 
+                  (data.id==7 && <p>contact</p>) || 
+                  (data.id==8 && <p >About</p>)}</span>
+                  }
               </Link>
             </li>
           ))}
