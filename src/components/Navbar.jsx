@@ -87,7 +87,7 @@ const Navbar = () => {
             alt="Student Portal Logo"
           />
           <span className="text-xl font-bold text-gray-700">
-            Student Portal
+            Skilcenta
           </span>
         </Link>
       </div>
