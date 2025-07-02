@@ -31,7 +31,7 @@ const SigninWithGoogle = () => {
     <div>
         <button
           onClick={handleGoogleSignIn}
-          className="w-full shadow-md hover:shadow-lg bg-gray-100 border border-gray-200 flex items-center justify-center gap-2 bg-ed-500 text-gray-600 rounded-lg px-6 py-2 font-semibold cursor-pointer transition"
+          className="flex cursor-pointer items-center justify-center gap-3 w-full px-6 py-2 rounded-lg bg-gray-900 text-white font-semibold shadow hover:bg-gray-700 transition"
         >
             <img src='https://res.cloudinary.com/dllvcgpsk/image/upload/v1743403171/google_zgmnav.png' className='h-6' />
           <span>Sign in with Google</span>
