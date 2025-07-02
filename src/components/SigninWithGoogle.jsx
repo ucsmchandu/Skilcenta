@@ -8,23 +8,26 @@ const SigninWithGoogle = () => {
     const location=useLocation();
     const navigate=useNavigate();
     const from=location.state?.from?.pathname || '/';
-    const handleGoogleSignIn=()=>{
+    const handleGoogleSignIn=async()=>{
         const provider=new GoogleAuthProvider();
-        signInWithPopup(auth,provider).then(
-            async(result)=>{
-                const userData=result.user;
-                if(userData){
-                    await setDoc(doc(firestore,"users",userData.uid),{
-                        email:userData.email,
-                        userName:userData.displayName
-                    });
-                    toast.success('User login Successful',{
+        try{
+          const result=await signInWithPopup(auth,provider);
+          const user=result.user;
+          if(user){
+            await setDoc(doc(firestore,'users',user.uid),{
+              email:user.email,
+              userName:user.displayName
+            });
+            toast.success('User login Successful',{
                       position:'top-right'
-                    });
+                   });
                     navigate(from,{replace:true});
-                }
-            }
-        ).catch((error)=>console.log("Error from signinwithgoogle.jsx :",error.message));
+          }
+        }
+        catch(err){
+          console.log("Error :",err.message);
+          toast.error("Google signin failed",{position :'top-left'});
+        }
     }
 
   return (

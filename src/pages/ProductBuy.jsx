@@ -6,6 +6,7 @@ import { useAuth } from '../contextApi/AuthContext';
 import { firestore } from '../server/Firebase';
 import { addDoc,doc,collection } from 'firebase/firestore';
 import { where,query,getDocs } from 'firebase/firestore';
+import emailjs from "emailjs-com"
 const ProductBuy = () => {
   const navigate=useNavigate();
   const {currentUser}=useAuth();
@@ -66,6 +67,33 @@ const ProductBuy = () => {
       method: "POST",
       body: formData
     }).then((res) => res.json());
+
+    const orderedMail={
+      email: form.email,
+      name: form.name,
+      productName: productName,
+      cost: cost,
+      description: value.docs[0].data().description || "",
+    }
+    const adminMail={
+      productName:productName,
+      buyerAddress: form.address,
+      buyerPhone: form.number,
+      price: cost,
+      productId: id
+    }
+    await emailjs.send(
+      "service_gqk078k",
+      "template_08pyia1",
+      orderedMail,
+      "McgVshzTLl63ofZ8I"
+    );
+    await emailjs.send(
+      "service_gqk078k",
+      "template_jitr8ng",
+      adminMail,
+      "McgVshzTLl63ofZ8I"
+    );
 
       setForm({
          name: '',
