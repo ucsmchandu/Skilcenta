@@ -94,21 +94,24 @@ const Navbar = () => {
 
         <div className="md:flex hidden mt-3 mr-10">
           <ul className="flex space-x-6 ">
-            {elements.map((data) => (
-              <li key={data.id} onClick={()=>setPresentLoc(data.name)}>
-                <button>
-                  <Link to={data.link}>
-                    <li className={`hover:text-blue-700 font-semibold text-gray-600
-                      ${presentLoc === data.name ? "border-b-2 rounded-sm border-b-blue-600":"border-0" }
-                      `}>
-                      {data.id <= 5 && <span   className=" rounded lg:p-2">{data.name}</span>}
-                      {data.id >= 6 && <img  src={data.name} className="h-6" />}
-                    </li>
-                  </Link>
-                </button>
-              </li>
-            ))}
-          </ul>
+  {elements.map((data) => (
+  <li
+    key={data.id}
+    onClick={() => setPresentLoc(data.name)}
+    className={`
+      hover:text-blue-700 font-semibold text-gray-600
+      ${presentLoc === data.name ? "border-b-2 rounded-sm border-b-blue-600" : "border-0"}
+      ${data.name === "Market"  ? "bg-blue-400 text-white rounded shadow-lg"
+            : "hover:text-black"}
+    `}
+  >
+    <Link to={data.link}>
+      {data.id <= 5 && <span className="rounded lg:p-2">{data.name}</span>}
+      {data.id >= 6 && <img src={data.name} className="h-6" />}
+    </Link>
+  </li>
+))}
+</ul>
         </div>
         <div className="md:hidden flex">
           <button
@@ -146,31 +149,44 @@ const Navbar = () => {
   `}
       >
         <ul className="flex flex-col space-y-4 p-6">
-          <img
-            src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
-            className="h-full w-20"
-          />
-          {elements.map((data) => (
-            <li key={data.id} onClick={()=>setPresentLoc(data.name)} className="bg-gray-100 rounded-lg">
-              <Link
-                to={data.link}
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center space-x-2  p-2 text-gray-600 hover:text-blue-800 font-semibold
-                  ${presentLoc == data.name ? "border-b-2 rounded":"border-0"}
-                  `}
-              >
-                {data.id <= 5 && <span >{data.name}</span>}
-                 {data.id >= 6 && 
-                 <span className="flex space-x-4">
-                  <img src={data.name} className="h-6" alt="" />{
-                  (data.id==6 && <p className="text-black font-mono"> {currentUser && currentUser.displayName ? currentUser.displayName : "Login"}</p>)|| 
-                  (data.id==7 && <p>contact</p>) || 
-                  (data.id==8 && <p >About</p>)}</span>
-                  }
-              </Link>
-            </li>
-          ))}
-        </ul>
+  <img
+    src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
+    className="h-full w-20"
+  />
+  {elements.map((data) => (
+    <li
+      key={data.id}
+      onClick={() => setPresentLoc(data.name)}
+      className={`
+        ${data.name === "Market" ? "bg-yellow-700 text-black font-bold shadow-lg" : ""}
+        rounded-lg
+      `}
+    >
+      <Link
+        to={data.link}
+        onClick={() => setIsOpen(false)}
+        className={`flex items-center space-x-2 p-2 font-semibold
+          ${data.name === "Market" ? "text-white" : "text-gray-600 hover:text-blue-800"}
+          ${presentLoc === data.name ? "border-b-2 rounded" : "border-0"}
+        `}
+      >
+        {data.id <= 5 && <span>{data.name}</span>}
+        {data.id >= 6 && (
+          <span className="flex space-x-4">
+            <img src={data.name} className="h-6" alt="" />
+            {(data.id === 6 && (
+              <p className="text-black font-mono">
+                {currentUser && currentUser.displayName ? currentUser.displayName : "Login"}
+              </p>
+            )) ||
+              (data.id === 7 && <p>contact</p>) ||
+              (data.id === 8 && <p>About</p>)}
+          </span>
+        )}
+      </Link>
+    </li>
+  ))}
+</ul>
       </div>
       {isOpen && (
         <div
