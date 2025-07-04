@@ -5,7 +5,7 @@ const Productcard = ({ id, productName, img, cost, soldBy }) => {
     <div className="bg-white rounded-lg shadow-sm  hover:shadow-xl transition-shadow group">
       <div className="flex justify-center cursor-pointer">
        <Link to={`/product/${id}`}>
-        <img src={img} className=" h-28 object-cover" />
+        <img src={img} className=" h-40 w-auto object-cover" />
        </Link>
       </div>
       <div className="p-4">

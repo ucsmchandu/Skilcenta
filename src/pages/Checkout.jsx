@@ -60,7 +60,7 @@ const Checkout = () => {
         <img
           src={product.img || "https://via.placeholder.com/300"}
           alt={product.productName}
-          className="w-80 h-80 object-cover rounded-2xl border-4 border-blue-300 shadow-lg transition-transform hover:scale-105"
+          className="w-80 h-auto object-cover rounded-2xl border-4 border-blue-300 shadow-lg transition-transform hover:scale-105"
         />
         <div className="flex-1">
           <h2 className="text-4xl font-extrabold text-blue-800 mb-4">{product.productName}</h2>
@@ -76,10 +76,10 @@ const Checkout = () => {
             <span className="font-semibold text-blue-700">Description:</span>
             <span className="font-medium text-gray-900 ml-2">{product.description}</span>
           </p>
-          <p className="text-lg text-gray-700 mb-3">
+          {/* <p className="text-lg text-gray-700 mb-3">
             <span className="font-semibold text-blue-700">Contact Owner:</span>
             <span className="font-medium text-gray-900 ml-2">{product.email}</span>
-          </p>
+          </p> */}
            <p className="text-lg text-gray-700 mb-3">
             <span className="font-semibold text-blue-700">Owner Address:</span>
             <span className="font-medium text-gray-900 ml-2">{product.address}</span>
@@ -87,7 +87,7 @@ const Checkout = () => {
           <div className='mt-6 flex items-center bg-blue-50 rounded-lg p-3'>
             <img src='https://res.cloudinary.com/dllvcgpsk/image/upload/v1751291333/info_fbbhkq.png' className='h-6 w-6 mr-3' alt="info" />
             <p className='text-blue-900'>
-              If the owner does not respond, please{' '}
+             For product queries, please{' '}
               <Link to="/contact" className='text-blue-600 hover:underline font-semibold '>contact us</Link>
             </p>
           </div>
