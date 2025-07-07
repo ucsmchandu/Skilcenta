@@ -22,10 +22,12 @@ import ProductBuy from './pages/ProductBuy'
 import OrderPop from './pages/OrderPop'
 import OrdersPage from './pages/OrdersPage'
 import AllOrders from './Adminpanel/AllOrders'
+import Scroll from './components/Scroll'
 const App = () => {
   return (
     <AuthContextProvider>
     <Router>
+      <Scroll/>
       <Routes>
         <Route path="/*" element={<MainLayout/>} >
         <Route index element={<Home/>}/>
