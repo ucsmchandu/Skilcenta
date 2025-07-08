@@ -223,7 +223,9 @@ const Sellitem = () => {
               type="tel"
               name="phone"
               required
-              pattern="[0-9]{10,15}"
+              pattern="[0-9]{10}"
+              maxLength={10}
+              minLength={10}
               value={form.phone}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"

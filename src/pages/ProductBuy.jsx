@@ -213,8 +213,9 @@ const ProductBuy = () => {
             value={form.number}
             onChange={handleChange}
             required
-             pattern="[0-9]{10,15}" 
-  maxLength={15}
+             pattern="[0-9]{10}" 
+  maxLength={10}
+  minLength={10}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
             placeholder="Enter your number"
           />
