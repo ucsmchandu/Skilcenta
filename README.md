@@ -64,6 +64,7 @@ git clone https://github.com/your-username/skilcenta.git
 cd skilcenta
 npm install
 npm run dev
+```
 
 ---
 
