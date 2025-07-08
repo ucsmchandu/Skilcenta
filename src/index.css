@@ -25,9 +25,9 @@
     #8b00ff,   
     #ff0000 100%
   );
-  background-size: 100% 100%;
+  background-size: 200% 300%;
   filter: blur(8px);
-  animation: rainbow-bar 4s linear infinite;
+  animation: rainbow-bar 1.5s linear infinite;
   content: "";
   display: block;
 }
