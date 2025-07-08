@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+.market-animate-border {
+  position: relative;
+  overflow: visible;
+}
+.market-rgb-border {
+  position: absolute;
+  left: 50%;
+  top:30px;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 8px;
+  border-radius: 0 0 1.5rem 1.5rem;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+   #ff0000,  
+    #ff7f00,   
+    #ffff00, 
+    #00ff00,   
+    #00ffff,  
+    #0000ff,  
+    #8b00ff,   
+    #ff0000 100%
+  );
+  background-size: 100% 100%;
+  filter: blur(8px);
+  animation: rainbow-bar 4s linear infinite;
+  content: "";
+  display: block;
+}
+
+@keyframes rainbow-bar {
+  0% {
+    background-position: 0% 50%;
+    filter: blur(8px);
+  }
+  100% {
+    background-position: 100% 50%;
+    filter: blur(8px);
+  }
+}

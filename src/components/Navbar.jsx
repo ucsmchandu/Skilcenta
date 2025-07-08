@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  motion } from "motion/react";
+import { motion } from "motion/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contextApi/AuthContext";
 const Navbar = () => {
@@ -47,8 +47,8 @@ const Navbar = () => {
       link: "/about",
     },
   ];
-  const {currentUser}=useAuth();
-  const [presentLoc,setPresentLoc]=useState("Home");
+  const { currentUser } = useAuth();
+  const [presentLoc, setPresentLoc] = useState("Home");
 
   useEffect(() => {
     let previousScrollY = window.scrollY;
@@ -80,38 +80,47 @@ const Navbar = () => {
     >
       <div className="flex  justify-between p-5 shadow-lg ">
         <div className="ml-4 flex items-center space-x-2">
-        <Link to="/" className="flex items-center space-x-2">
-          <img
-            src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
-            className="h-10 w-10 rounded bg-white border border-gray-200"
-            alt="Student Portal Logo"
-          />
-          <span className="text-xl font-bold text-gray-700">
-            Skilcenta
-          </span>
-        </Link>
-      </div>
+          <Link to="/" className="flex items-center space-x-2">
+            <img
+              src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
+              className="h-10 w-10 rounded bg-white border border-gray-200"
+              alt="Student Portal Logo"
+            />
+            <span className="text-xl font-bold text-gray-700">Skilcenta</span>
+          </Link>
+        </div>
 
         <div className="md:flex hidden mt-3 mr-10">
           <ul className="flex space-x-6 ">
-  {elements.map((data) => (
-  <li
-    key={data.id}
-    onClick={() => setPresentLoc(data.name)}
-    className={`
-      hover:text-blue-700 font-semibold text-gray-600
-      ${presentLoc === data.name ? "border-b-2 rounded-sm border-b-blue-600" : "border-0"}
-      ${data.name === "Market"  ? "bg-blue-400 text-white rounded shadow-lg"
-            : "hover:text-black"}
-    `}
-  >
-    <Link to={data.link}>
-      {data.id <= 5 && <span className="rounded lg:p-2">{data.name}</span>}
-      {data.id >= 6 && <img src={data.name} className="h-6" />}
-    </Link>
-  </li>
-))}
-</ul>
+            {elements.map((data) => (
+              <li
+                key={data.id}
+                onClick={() => setPresentLoc(data.name)}
+                className={`
+          font-semibold text-gray-600
+          ${presentLoc === data.name ? " rounded-sm " : "border-0"}
+          ${
+            data.name === "Market"
+              ? "relative text-black rounded market-animate-border"
+              : "hover:text-black"
+          }
+        `}
+              >
+                <Link to={data.link} className="relative z-10">
+                  {data.id <= 5 && (
+                    <span className="rounded lg:p-2">{data.name}</span>
+                  )}
+                  {data.id >= 6 && <img src={data.name} className="h-6" />}
+                </Link>
+                {data.name === "Market" && (
+                  <span
+                    className="text-black pointer-events-none absolute  z-0 market-rgb-border"
+                    aria-hidden="true"
+                  ></span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="md:hidden flex">
           <button
@@ -139,7 +148,6 @@ const Navbar = () => {
           onClick={() => setIsOpen(false)}
         />
       )}
-      {/* Sidebar for mobile */}
       <div
         className={`
     fixed top-0 w-52 h-full  bg-white shadow-lg z-50
@@ -149,44 +157,62 @@ const Navbar = () => {
   `}
       >
         <ul className="flex flex-col space-y-4 p-6">
-  <img
-    src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
-    className="h-full w-20"
-  />
-  {elements.map((data) => (
-    <li
-      key={data.id}
-      onClick={() => setPresentLoc(data.name)}
-      className={`
-        ${data.name === "Market" ? "bg-yellow-700 text-black font-bold shadow-lg" : ""}
+          <img
+            src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750874502/school_ruxnla.png"
+            className="h-full w-20"
+          />
+          {elements.map((data) => (
+            <li
+              key={data.id}
+              onClick={() => setPresentLoc(data.name)}
+              className={`
+        ${
+          data.name === "Market"
+            ? "relative font-bold shadow-lg market-animate-border-mobile"
+            : ""
+        }
         rounded-lg
       `}
-    >
-      <Link
-        to={data.link}
-        onClick={() => setIsOpen(false)}
-        className={`flex items-center space-x-2 p-2 font-semibold
-          ${data.name === "Market" ? "text-white" : "text-gray-600 hover:text-blue-800"}
-          ${presentLoc === data.name ? "border-b-2 rounded" : "border-0"}
+              style={data.name === "Market" ? { zIndex: 1 } : {}}
+            >
+              <Link
+                to={data.link}
+                onClick={() => setIsOpen(false)}
+                className={`flex items-center space-x-2 p-2 font-semibold
+          ${
+            data.name === "Market"
+              ? " text-black"
+              : "text-gray-600 hover:text-blue-800"
+          }
+          ${presentLoc === data.name ? " rounded" : "border-0"}
         `}
-      >
-        {data.id <= 5 && <span>{data.name}</span>}
-        {data.id >= 6 && (
-          <span className="flex space-x-4">
-            <img src={data.name} className="h-6" alt="" />
-            {(data.id === 6 && (
-              <p className="text-black font-mono">
-                {currentUser && currentUser.displayName ? currentUser.displayName : "Login"}
-              </p>
-            )) ||
-              (data.id === 7 && <p>contact</p>) ||
-              (data.id === 8 && <p>About</p>)}
-          </span>
-        )}
-      </Link>
-    </li>
-  ))}
-</ul>
+              >
+                {data.id <= 5 && <span>{data.name}</span>}
+                {data.id >= 6 && (
+                  <span className="flex space-x-4">
+                    <img src={data.name} className="h-6" alt="" />
+                    {(data.id === 6 && (
+                      <p className="text-black font-mono">
+                        {currentUser && currentUser.displayName
+                          ? currentUser.displayName
+                          : "Login"}
+                      </p>
+                    )) ||
+                      (data.id === 7 && <p>contact</p>) ||
+                      (data.id === 8 && <p>About</p>)}
+                  </span>
+                )}
+              </Link>
+              {/* RGB border animation for Market (Mobile only) */}
+              {data.name === "Market" && (
+                <span
+                  className="block md:hidden pointer-events-none absolute -inset-1 rounded z-0 market-rgb-border"
+                  aria-hidden="true"
+                ></span>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
       {isOpen && (
         <div
