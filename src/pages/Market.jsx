@@ -51,7 +51,7 @@ const Market = () => {
           <div className="flex flex-wrap gap-2 mt-4 md:-mt-3">
             <div className="flex flex-wrap gap-2 mt-4">
               <Link to="/orders">
-              <button className="px-4 cursor-pointer py-2 rounded-full text-sm font-medium transition-colors bg-green-600 text-white">
+              <button className="px-4 cursor-pointer py-2 rounded-full text-sm font-medium transition-colors bg-cyan-600 text-white">
                Your Orders
               </button>
               </Link>
