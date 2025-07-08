@@ -61,12 +61,12 @@ const ProductBuy = () => {
       });
 
       //email to me
-    const formData = new FormData(e.target);
-    formData.append("access_key", "f2318b2c-b7c8-4814-bfb1-fed5ca8a5641");
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    }).then((res) => res.json());
+    // const formData = new FormData(e.target);
+    // formData.append("access_key", "f2318b2c-b7c8-4814-bfb1-fed5ca8a5641");
+    // const res = await fetch("https://api.web3forms.com/submit", {
+    //   method: "POST",
+    //   body: formData
+    // }).then((res) => res.json());
 
     const orderedMail={
       email: form.email,
