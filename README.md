@@ -1,12 +1,96 @@
-# React + Vite
+🧠 Skilcenta
+Skilcenta is a student-focused platform designed to empower learners by providing:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🛍️ A Student Market to buy/sell second-hand academic products
 
-Currently, two official plugins are available:
+📚 A Resources Hub for sharing PDFs, notes, and study materials
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🤖 AI-Powered Assistants to solve doubts, assist with development, and help debug code
 
-## Expanding the ESLint configuration
+🗺️ Curated Career Roadmaps for web development, app development, and more
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🔥 Features
+🛒 Student Market
+Buy and sell second-hand academic products like:
+
+Calculators
+
+Books
+
+Lab Equipment
+
+Study Materials
+All within your student network.
+
+📂 Resources Section
+Upload and access categorized materials by:
+
+Semester
+
+Branch
+
+Year
+Supports PDFs, notes, links to videos, and more.
+
+🤖 AI Integration
+Three specialized AI assistants:
+
+Doubt Solver – Ask academic questions anytime
+
+Dev Assistant – Help with coding and project logic
+
+Debug Helper – Find and fix code issues faster
+
+🧭 Career Roadmaps
+Step-by-step guides to start and grow in:
+
+Web Development
+
+App Development
+
+More paths coming soon!
+
+💻 Tech Stack
+Frontend: React.js, Tailwind CSS
+
+Auth & Backend: Firebase Authentication, Firestore, Firebase Storage
+
+🚀 Getting Started
+Clone the repository
+bash
+Copy
+Edit
+git clone https://github.com/your-username/skilcenta.git
+cd skilcenta
+Install dependencies
+bash
+Copy
+Edit
+npm install
+Run the project
+bash
+Copy
+Edit
+npm run dev
+📌 Future Enhancements
+Performance optimization and lazy loading
+
+SEO improvements and meta tags
+
+Better file handling and validation
+
+Enhanced UX for uploading and browsing content
+
+AI integration improvements (more personalized, faster)
+
+🤝 Contributing
+Want to contribute? Fork the repo, make your changes, and create a pull request.
+Ideas, suggestions, and bug reports are always welcome!
+
+📬 Contact
+For queries or feedback, reach out via:
+
+LinkedIn: [your-link]
+
+Email: [your-email]
+
