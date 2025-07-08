@@ -1,96 +1,66 @@
-🧠 Skilcenta
-Skilcenta is a student-focused platform designed to empower learners by providing:
+# 🧠 Skilcenta
 
-🛍️ A Student Market to buy/sell second-hand academic products
+**Skilcenta** is a student-focused platform built to empower learners by providing:
 
-📚 A Resources Hub for sharing PDFs, notes, and study materials
+- 🛍️ A **Student Market** to buy/sell second-hand academic products  
+- 📚 A **Resources Hub** for sharing PDFs, notes, and study materials  
+- 🤖 **AI-Powered Assistants** to solve doubts, assist with development, and help debug code  
+- 🗺️ Curated **Career Roadmaps** for web, app development, and more
 
-🤖 AI-Powered Assistants to solve doubts, assist with development, and help debug code
+---
 
-🗺️ Curated Career Roadmaps for web development, app development, and more
+## 🔥 Features
 
-🔥 Features
-🛒 Student Market
+### 🛒 Student Market
 Buy and sell second-hand academic products like:
+- Calculators  
+- Books  
+- Lab Equipment  
+- Study Materials  
 
-Calculators
-
-Books
-
-Lab Equipment
-
-Study Materials
 All within your student network.
 
-📂 Resources Section
+---
+
+### 📂 Resources Section
 Upload and access categorized materials by:
+- Semester  
+- Branch  
+- Year  
 
-Semester
+Supports PDFs, notes, and links to external resources.
 
-Branch
+---
 
-Year
-Supports PDFs, notes, links to videos, and more.
-
-🤖 AI Integration
+### 🤖 AI Integration
 Three specialized AI assistants:
+1. **Doubt Solver** – Ask academic questions anytime  
+2. **Dev Assistant** – Help with coding and project logic  
+3. **Debug Helper** – Find and fix code issues faster  
 
-Doubt Solver – Ask academic questions anytime
+---
 
-Dev Assistant – Help with coding and project logic
-
-Debug Helper – Find and fix code issues faster
-
-🧭 Career Roadmaps
+### 🧭 Career Roadmaps
 Step-by-step guides to start and grow in:
+- Web Development  
+- App Development  
+- More tracks coming soon!
 
-Web Development
+---
 
-App Development
+## 💻 Tech Stack
 
-More paths coming soon!
+- **Frontend**: React.js, Tailwind CSS  
+- **Auth & Backend**: Firebase Authentication, Firestore, Firebase Storage  
 
-💻 Tech Stack
-Frontend: React.js, Tailwind CSS
+---
 
-Auth & Backend: Firebase Authentication, Firestore, Firebase Storage
+## 🚀 Getting Started
 
-🚀 Getting Started
-Clone the repository
-bash
-Copy
-Edit
+### Clone the repository
+
+```bash
 git clone https://github.com/your-username/skilcenta.git
 cd skilcenta
-Install dependencies
-bash
-Copy
-Edit
 npm install
-Run the project
-bash
-Copy
-Edit
 npm run dev
-📌 Future Enhancements
-Performance optimization and lazy loading
-
-SEO improvements and meta tags
-
-Better file handling and validation
-
-Enhanced UX for uploading and browsing content
-
-AI integration improvements (more personalized, faster)
-
-🤝 Contributing
-Want to contribute? Fork the repo, make your changes, and create a pull request.
-Ideas, suggestions, and bug reports are always welcome!
-
-📬 Contact
-For queries or feedback, reach out via:
-
-LinkedIn: [your-link]
-
-Email: [your-email]
-
