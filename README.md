@@ -64,3 +64,28 @@ git clone https://github.com/your-username/skilcenta.git
 cd skilcenta
 npm install
 npm run dev
+
+---
+
+## 📌 Future Enhancements
+
+- Performance optimization and lazy loading
+- SEO improvements and meta tags
+- Better file handling and validation
+- Enhanced UX for uploading and browsing content
+- AI integration improvements (more personalized and faster)
+
+---
+
+## 🤝 Contributing
+
+- Want to contribute? Fork the repo, make your changes, and create a pull request.
+Ideas, suggestions, and bug reports are always welcome!
+
+---
+
+## 📬 Contact
+
+For queries or feedback, reach out via:
+- LinkedIn: [https://www.linkedin.com/in/chandra-sai-mahesh-uppu-8aa3802b7?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BVv6R0paBTwuTvdyEzyiVeg%3D%3D]
+- Email: [uchandrasaimahesh@gmail.com]
