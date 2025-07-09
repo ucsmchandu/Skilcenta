@@ -8,6 +8,7 @@ const Sellitem = () => {
     email: "",
     phone: "",
     address: "",
+    college:"",
     description: "",
     price: "",
     image: null,
@@ -23,6 +24,7 @@ const Sellitem = () => {
     } else {
       setForm({ ...form, [name]: value });
     }
+    // console.log(value);
   };
 
   //uploading image to cloudinary
@@ -31,7 +33,7 @@ const Sellitem = () => {
     data.append("file", file);
     data.append("upload_preset", "unsigned_upload");
     data.append("cloud_name", "dllvcgpsk");
-    setLoading(true)
+    setLoading(true);
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dllvcgpsk/image/upload",
@@ -45,8 +47,7 @@ const Sellitem = () => {
     } catch (error) {
       console.error("Cloudinary Upload Failed:", error);
       return null;
-    }
-    finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -71,6 +72,7 @@ const Sellitem = () => {
         email: form.email,
         phone: form.phone,
         address: form.address,
+        college:form.college,
         price: form.price,
         description: form.description,
         image: imgUrl,
@@ -101,19 +103,24 @@ const Sellitem = () => {
     } finally {
       setLoading(false);
     }
-
+   // console.log(form);
     setForm({
       productName: "",
       sellerName: "",
       email: "",
       phone: "",
       address: "",
+      college:"",
       description: "",
       price: "",
       image: null,
     });
     e.target.reset();
   };
+
+  const scrollToTop=()=>{
+    window.scrollTo(0,0);
+  }
 
   return (
     <div className="mt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-10">
@@ -203,6 +210,23 @@ const Sellitem = () => {
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
+              College
+            </label>
+            <select
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
+              name="college"
+              id="college"
+              value={form.college}
+              onChange={handleChange}
+            >
+              <option value="">select college</option>
+              <option value="Anits">Anits</option>
+              <option value="Au">Au</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Email
             </label>
             <input
@@ -276,6 +300,7 @@ const Sellitem = () => {
             />
           </div>
           <button
+          onClick={()=>scrollToTop()}
             type="submit"
             className="w-full bg-gradient-to-r cursor-pointer from-orange-500 to-orange-600 text-white py-3 rounded-lg font-bold text-lg shadow hover:from-orange-600 hover:to-orange-700 transition-all"
           >

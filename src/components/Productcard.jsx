@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Productcard = ({ id, productName, img, cost, soldBy }) => {
+const Productcard = ({ id, productName, img, cost, soldBy,college }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm  hover:shadow-xl transition-shadow group">
       <div className="flex justify-center cursor-pointer">
        <Link to={`/product/${id}`}>
-        <img src={img} className=" h-40 w-auto object-cover" />
+        <img src={img} className=" h-40 w-auto object-cover rounded-lg" />
        </Link>
       </div>
       <div className="p-4">
@@ -16,7 +16,10 @@ const Productcard = ({ id, productName, img, cost, soldBy }) => {
           <span className="text-xl font-bold text-green-600">₹{cost}</span>
         </div>
         <div className="text-sm text-gray-600 mb-4">
-          Sold by:<span className="font-medium">{soldBy}</span>
+          Sold by:<span className="font-medium"> {soldBy}</span>
+        </div>
+         <div className="text-sm text-gray-600 mb-4">
+          College:<span className="font-medium"> {college}</span>
         </div>
        <Link to={`/product/${id}`}>
         <button className="w-full bg-green-600 cursor-pointer text-white py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">

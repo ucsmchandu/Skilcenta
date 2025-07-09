@@ -45,6 +45,10 @@ const Contact = () => {
     setForm({ name: '', email: '', message: '' });
   };
 
+  const scrollToTop=()=>{
+    window.scrollTo(0,0);
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-10 mt-20">
       <div className="w-full max-w-xl bg-white rounded-2xl shadow-2xl p-8">
@@ -103,6 +107,7 @@ const Contact = () => {
               ></textarea>
             </div>
             <button
+            onClick={()=>scrollToTop()}
               type="submit"
               className="cursor-pointer w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg font-bold text-lg shadow hover:from-blue-600 hover:to-blue-700 transition-all"
             >

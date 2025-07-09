@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Productlistings from "../components/Productlistings";
 import { Link } from "react-router-dom";
+import { firestore } from "../server/Firebase";
+import { getDoc,doc,where,query } from "firebase/firestore";
 const Market = () => {
   const [search,setSearch]=useState('');
 
@@ -56,17 +58,24 @@ const Market = () => {
               </button>
               </Link>
             </div>
-            {/* <div className="flex flex-wrap gap-2 mt-4">
-              <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-green-600 text-white">
-                Electronics
+          </div>
+           <div className="mt-5 text-gray-500 font-semibold"><p>*Choose your college :</p></div>
+           <div className="flex space-x-4">
+              <div className="flex flex-wrap gap-2 mt-4">
+              <button 
+              onClick={()=>setSearch("anits")}
+              className=" cursor-pointer px-4 py-2 rounded-full text-sm font-medium transition-colors bg-green-600 text-white">
+                ANITS
               </button>
             </div>
             <div className="flex flex-wrap gap-2 mt-4">
-              <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-green-600 text-white">
-                Others
+              <button
+              onClick={()=>setSearch("au")}
+              className="px-4 cursor-pointer py-2 rounded-full text-sm font-medium transition-colors bg-green-600 text-white">
+               AU
               </button>
-            </div> */}
-          </div>
+            </div>
+            </div>
         </div>
       </div>
 

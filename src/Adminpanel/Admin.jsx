@@ -29,6 +29,7 @@ const Admin = () => {
     phone:"",
     email:"",
     address:"",
+    college:"",
     cost: "",
     description: "",
     img: "",
@@ -50,6 +51,7 @@ const Admin = () => {
         phone:form.phone,
         email:form.email,
         address:form.address,
+        college:form.college,
         cost: Number(form.cost),
         description: form.description,
         img: form.img,
@@ -63,6 +65,7 @@ const Admin = () => {
         phone:form.phone,
         email:form.email,
         address:form.address,
+        college:form.college,
         cost: Number(form.cost),
         description: form.description,
         img: form.img,
@@ -75,6 +78,7 @@ const Admin = () => {
         phone:"",
         email:"",
         address:"",
+        college:"",
         cost: "",
         description: "",
         img: "",
@@ -167,6 +171,15 @@ const Admin = () => {
         placeholder="Customer Address"
       />
       <input
+        type="text"
+        name="college"
+        required
+        value={form.college}
+        onChange={handleChange}
+        className="px-3 py-2 border border-gray-300 rounded-lg"
+        placeholder="Customer college"
+      />
+      <input
         type="number"
         name="cost"
         required
@@ -241,6 +254,7 @@ const Admin = () => {
                 <th className="py-2 px-3">email</th>
                 <th className="py-2 px-3">Customer</th>
                 <th className="py-2 px-3">Customer Address</th>
+                <th className="py-2 px-3">College</th>
                 <th className="py-2 px-3">Cost</th>
                 <th className="py-2 px-3">Description</th>
                 <th className="py-2 px-3">Image</th>
@@ -256,6 +270,7 @@ const Admin = () => {
                   <td className="py-2 px-3">{p.email}</td>
                   <td className="py-2 px-3">{p.soldBy}</td>
                   <td className="py-2 px-3">{p.address}</td>
+                  <td className="py-2 px-3">{p.college}</td>
                   <td className="py-2 px-3">₹{p.cost}</td>
                   <td className="py-2 px-3">{p.description}</td>
                   <td className="py-2 px-3">
@@ -263,7 +278,7 @@ const Admin = () => {
                       <img
                         src={p.img}
                         alt={p.productName}
-                        className="h-12 w-12 object-cover rounded"
+                        className="h-auto w-auto object-cover rounded"
                         style={{ maxWidth: "80px" }}
                       />
                     ) : (

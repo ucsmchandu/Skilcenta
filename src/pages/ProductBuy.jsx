@@ -118,6 +118,10 @@ const ProductBuy = () => {
     }
   };
 
+  const scrollToTop=()=>{
+    window.scrollTo(0,0);
+  }
+
   return (
     <div className="min-h-screen mt-20 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-10">
       <form
@@ -221,6 +225,7 @@ const ProductBuy = () => {
           />
         </div>
         <button
+        onClick={()=>scrollToTop()}
           type="submit"
           className="bg-indigo-600 cursor-pointer text-white rounded-lg px-6 py-2 font-semibold hover:bg-indigo-700 transition mt-2"
         >
