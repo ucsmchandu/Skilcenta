@@ -3,7 +3,7 @@ const express=require('express');
 const mongoose=require('mongoose')
 const connectDB=require('./db')
 const cors=require('cors');
-// const route=require('')
+const route=require('./routes/index')
 
 connectDB();
 const app=express();
@@ -12,11 +12,11 @@ app.use(cors({
     credentials:true
 }))
 app.use(express.json());
-// app.use('/skilcenta/api/v1',route);
-app.get("/",(req,res)=>{
-    res.send("hello");
-})
-
-app.listen(3000,()=>{
+app.use('/skilcenta/api/v1',route);
+// app.get("/",(req,res)=>{
+//     res.send("hello");
+// })
+//  /skilcenta/api/v1/mailto/post
+app.listen(process.env.PORT,()=>{
     console.log("server starts at 3000 port");
 })
