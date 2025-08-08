@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +7,7 @@ import { useAuth } from '../contextApi/AuthContext';
 import { firestore } from '../server/Firebase';
 import { addDoc,doc,collection } from 'firebase/firestore';
 import { where,query,getDocs } from 'firebase/firestore';
-import emailjs from "emailjs-com"
+// import emailjs from "emailjs-com"
 const ProductBuy = () => {
   const navigate=useNavigate();
   const {currentUser}=useAuth();
@@ -82,18 +83,25 @@ const ProductBuy = () => {
       price: cost,
       productId: id
     }
-    await emailjs.send(
-      "service_gqk078k",
-      "template_08pyia1",
-      orderedMail,
-      "McgVshzTLl63ofZ8I"
-    );
-    await emailjs.send(
-      "service_gqk078k",
-      "template_jitr8ng",
-      adminMail,
-      "McgVshzTLl63ofZ8I"
-    );
+    // await emailjs.send(
+    //   "service_gqk078k",
+    //   "template_08pyia1",
+    //   orderedMail,
+    //   "McgVshzTLl63ofZ8I"
+    // );
+    // await emailjs.send(
+    //   "service_gqk078k",
+    //   "template_jitr8ng",
+    //   adminMail,
+    //   "McgVshzTLl63ofZ8I"
+    // );
+
+    const custRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/customer/buy",orderedMail);
+    console.log("Mail sent success for customer :",custRes.data);
+
+    const adminRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/admin/buy",adminMail);
+    console.log("mail sent success for admin",adminRes);
+
 
       setForm({
          name: '',

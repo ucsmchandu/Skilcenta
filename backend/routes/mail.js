@@ -1,10 +1,12 @@
 const express=require('express')
 const mailRouter=express.Router();
-const {handleBuyEmail,handleContactEmail,handleSellEmail}=require('../controllers/mailcontrollers');
+const {handleAdminBuyEmail,handleAdminSellEmail,handleContactEmail,handleCustomerBuyEmail,handleCustomerSellEmail}=require('../controllers/mailcontrollers');
 
 
-mailRouter.post("/buy",handleBuyEmail);
-mailRouter.post("/sell",handleSellEmail);
+mailRouter.post("/customer/buy",handleCustomerBuyEmail);
+mailRouter.post("/admin/buy",handleAdminBuyEmail)
+mailRouter.post("/customer/sell",handleCustomerSellEmail);
+mailRouter.post("/admin/sell",handleAdminSellEmail)
 mailRouter.post("/contact",handleContactEmail);
 
 

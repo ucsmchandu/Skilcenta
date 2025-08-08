@@ -1,33 +1,26 @@
 const sendMail=require('../utils.js/sendMail')
-const handleBuyEmail=async (req,res)=>{
+const handleCustomerBuyEmail=async (req,res)=>{
     try{
-        const {customerEmail,productName,customerName}=req.body;
+        const {email,name,productName,cost,description}=req.body;
         //to customer
         await sendMail({
-            to:customerEmail,
+            to:email,
             subject:"Order confirmation from Skilcenta",
             html:`
-            <h2>Thank you for your purchase!</h2>
-<p>Dear ${customerName},</p>
-<p>We’ve received your order for <strong>${productName}</strong>. Our team will process and ship it shortly.</p>
-<p>We appreciate your trust in Skilcenta. You’ll receive another email once your item is shipped.</p>
-<p>For any questions, contact us at <a href="mailto:skilcenta.contact@gmail.com">skilcenta.contact@gmail.com</a>.</p>
-<p>Regards,<br>Skilcenta Team</p>
-            `
-        });
+           <h2>🧾 Thank you for your purchase!</h2>
 
-        //to me
-        await sendMail({
-            to:"skilcenta.orders@gmail.com",
-            subject:"New order Placed",
-           html:`
-           <h2>New Order Notification</h2>
-<p><strong>Customer Name:</strong> ${customerName}</p>
-<p><strong>Email:</strong> ${customerEmail}</p>
-<p><strong>Product:</strong> ${productName}</p>
-<p>Please process the order and update status in the dashboard.</p>
+<p>Dear ${name},</p>
+
+<p>We’ve received your order for the product <strong>${productName}</strong> priced at <strong>₹${cost}</strong>.</p>
+
+<p><strong>Product Description:</strong> ${description}</p>
+
+<p>We appreciate your trust in <strong>Skilcenta</strong>. For any questions, feel free to contact us at  
+<a href="mailto:skilcenta.contact@gmail.com">skilcenta.contact@gmail.com</a>.</p>
+
 <p>Regards,<br>Skilcenta Team</p>
-           `
+
+            `
         });
         res.status(200).json({message:"mails sent"});
     }catch(err){
@@ -38,8 +31,39 @@ const handleBuyEmail=async (req,res)=>{
     
 }
 
+const handleAdminBuyEmail=async(req,res)=>{
+    try{
+        //data from the frontend user
+        const {productName,buyerAddress,buyerPhone,price,productId}=req.body;
+         await sendMail({
+            to:"skilcenta.orders@gmail.com",
+            subject:"New order Placed",
+           html:`
+           <h2>📦 New Order Notification</h2>
+
+<p><strong>Product:</strong> ${productName}</p>
+<p><strong>Price:</strong> ₹${price}</p>
+<p><strong>Buyer Phone:</strong> ${buyerPhone}</p>
+<p><strong>Buyer Address:</strong> ${buyerAddress}</p>
+<p><strong>Product ID:</strong> ${productId}</p>
+
+<hr>
+<p>Please log in to the dashboard to process and update the order status.</p>
+
+<p>Regards,<br>Skilcenta Team</p>
+
+           `
+        });
+        res.status(200).json({message:"mail sent"});
+    }catch(err){
+        console.log(err);
+        console.log(err.message);
+        res.status(500).json({message:"mail sending failed",error:err.message});
+    }
+}
+
 //for selling mail
-const handleSellEmail=async (req,res)=>{
+const handleCustomerSellEmail=async (req,res)=>{
     try{
           const {customerEmail,productName,customerName}=req.body;
           //for customer
@@ -62,9 +86,18 @@ const handleSellEmail=async (req,res)=>{
 <p>Regards,<br>Skilcenta Team</p>
                 `
             })
+            res.status(200).json({message:"mails are sent"});
+    }catch(err){
+        console.log(err);
+        console.log(err.message);
+        res.status(500).json({message:"mail sending failed",error:err.message});
+    }
+}
 
-            //for me
-            await sendMail({
+const handleAdminSellEmail=async(req,res)=>{
+    try{
+        //data frm the frontend
+         await sendMail({
                 to:"skilcenta.sell@gmail.com",
                 subject:`New Product Submitted for Review – ${productName}`,
                 html:`
@@ -81,14 +114,13 @@ const handleSellEmail=async (req,res)=>{
 <p>Please log in to the admin panel to review and approve the listing.</p>
 
 <p>Regards,<br>Automated Notification – Skilcenta</p>
-
                 `
             })
-            res.status(200).json({message:"mails are sent"});
+            res.status(200).json({message:"mail sent"});
     }catch(err){
         console.log(err);
         console.log(err.message);
-        res.status(500).json({message:"mail sending failed",error:err.message});
+        res.status(500).json({message:"mailed sent failed :",error:err.message});
     }
 }
 
@@ -123,4 +155,10 @@ const handleContactEmail=async(req,res)=>{
 }
 
 
-module.exports={handleBuyEmail,handleSellEmail,handleContactEmail};
+module.exports={
+    handleAdminBuyEmail,
+    handleAdminSellEmail,
+    handleCustomerBuyEmail,
+    handleCustomerSellEmail,
+    handleContactEmail
+}
