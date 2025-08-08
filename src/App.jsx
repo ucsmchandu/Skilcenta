@@ -35,7 +35,11 @@ const App = () => {
         <Route path="roadmap" element={<Roadmap/>} />
         <Route path="resources" element={<Resources/>} />
         <Route path="market" element={<Market/>} />
-        <Route path="contact" element={<Contact/>}/>
+        <Route path="contact" element={
+          <ProtectedRoute>
+            <Contact/>
+          </ProtectedRoute>
+        }/>
         <Route path="profile" element={
           <ProtectedRoute>
             <Profile/>

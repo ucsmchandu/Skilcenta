@@ -16,7 +16,11 @@ app.use('/skilcenta/api/v1',route);
 // app.get("/",(req,res)=>{
 //     res.send("hello");
 // })
-//  /skilcenta/api/v1/mailto/post
+// api links
+
+// /skilcenta/api/v1/mail/buy
+// /skilcenta/api/v1/mail/sell
+// /skilcenta/api/v1/mail/contact
 app.listen(process.env.PORT,()=>{
     console.log("server starts at 3000 port");
 })
