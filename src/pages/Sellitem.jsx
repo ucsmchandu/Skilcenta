@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
+import axios from "axios";
+// import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
 const Sellitem = () => {
   const [form, setForm] = useState({
@@ -78,18 +79,28 @@ const Sellitem = () => {
         image: imgUrl,
       };
 
-      await emailjs.send(
-        "service_90kwoez",
-        "template_q7sjax8",
-        templateParams,
-        "RvlyoDCRmr-EyoSG_"
-      );
-      await emailjs.send(
-        "service_90kwoez",
-        "template_l1qqybe",
-        templateParams,
-        "RvlyoDCRmr-EyoSG_"
-      );
+      // await emailjs.send(
+      //   "service_90kwoez",
+      //   "template_q7sjax8",
+      //   templateParams,
+      //   "RvlyoDCRmr-EyoSG_"
+      // );
+      // await emailjs.send(
+      //   "service_90kwoez",
+      //   "template_l1qqybe",
+      //   templateParams,
+      //   "RvlyoDCRmr-EyoSG_"
+      // );
+
+      //for customer
+      const custRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/customer/sell",templateParams);
+      console.log("mail sent to customer",custRes);
+
+
+      //for admin
+      const adminRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/admin/sell",templateParams);
+      console.log("mail send to admin",adminRes);
+
       toast.success("Details submitted successfully", {
         position: "top-left",
       });
