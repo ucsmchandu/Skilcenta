@@ -154,19 +154,18 @@ const handleAdminSellEmail=async(req,res)=>{
 
 const handleContactEmail=async(req,res)=>{
     try{
-         const {customerEmail,productName,customerName}=req.body;
+         const {name,email,message}=req.body;
          await sendMail({
             to:"skilcenta.contact@gmail.com",
-            subject:`New Contact Form Submission from ${customerName}`,
+            subject:`New Contact Form Submission from ${name}`,
             html:`
             <h2>📩 New Contact Message Received</h2>
 
-<p><strong>Name:</strong> ${customerName}</p>
-<p><strong>Email:</strong> <a href="mailto:${customerEmail}">${customerEmail}</a></p>
-<p><strong>Subject:</strong> [Subject]</p>
+<p><strong>Name:</strong> ${name}</p>
+<p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
 
 <p><strong>Message:</strong></p>
-<p>[User Message]</p>
+<p>${message}</p>
 
 <hr>
 <p>Please respond to this message as soon as possible.</p>

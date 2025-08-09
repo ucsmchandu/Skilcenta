@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 import { toast } from 'react-toastify';
 const Contact = () => {
   const [form, setForm] = useState({
@@ -16,13 +17,21 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     try{
-      const formData=new FormData(e.target);
-    formData.append("access_key","379f8770-c691-43da-ab5c-143d2c7089b8");
-    const res=await fetch("https://api.web3forms.com/submit",{
-      method:"POST",
-      body:formData
-    }).then((res)=>res.json());
-    if(res.success){
+      // const formData=new FormData(e.target);
+    // formData.append("access_key","379f8770-c691-43da-ab5c-143d2c7089b8");
+    // const res=await fetch("https://api.web3forms.com/submit",{
+    //   method:"POST",
+    //   body:formData
+    // }).then((res)=>res.json());
+    const emailTemplate={
+      name:form.name,
+      email:form.email,
+      message:form.message
+    }
+    // console.log(emailTemplate);
+    const res=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/contact",emailTemplate);
+   console.log(res);
+    if(res){
       // console.log("success",res);
       toast.success("Message sent successfully",{
         position:'top-left'
