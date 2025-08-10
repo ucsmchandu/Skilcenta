@@ -13,7 +13,8 @@ const ResourceFile = () => {
       sem:'',
       category:'',
       description:'',
-      file:null
+      // file:null
+      url:''
     });
     /*
     title:dbms notes
@@ -26,49 +27,51 @@ const ResourceFile = () => {
     */
   
     const handleChange=(e)=>{
-      const {name,value,files}=e.target;
-      if(name==='file'){
-        setData({...data,[name]:files[0]});
-      }
-      else{
-        setData({...data,[name]:value});
-      }
+      // const {name,value,files}=e.target;
+      // if(name==='file'){
+      //   setData({...data,[name]:files[0]});
+      // }
+      // else{
+      //   setData({...data,[name]:value});
+      // }
+      const {name,value}=e.target;
+      setData({...data,[name]:value});
     };
   
     const handleSubmit=async(e)=>{
       e.preventDefault();
-      const formData=new FormData();
-      formData.append("id",data.id);
-      formData.append("author",data.author);
-      formData.append("branch",data.branch);
-      formData.append("year",data.year);
-      formData.append("sem",data.sem);
-      formData.append("file",data.file);
-      formData.append("title",data.title);
-      formData.append("description",data.description);
-      formData.append("category",data.category);
+      // const formData=new FormData();
+      // formData.append("id",data.id);
+      // formData.append("author",data.author);
+      // formData.append("branch",data.branch);
+      // formData.append("year",data.year);
+      // formData.append("sem",data.sem);
+      // // formData.append("file",data.file);
+      // formData.append("url",data.url);
+      // formData.append("title",data.title);
+      // formData.append("description",data.description);
+      // formData.append("category",data.category);
+       const emailBody={
+      id:data.id,
+      author:data.author,
+      branch:data.branch,
+      year:data.year,
+      sem:data.sem,
+      title: data.title,
+      category: data.category,
+      description: data.description,
+      // file: data.file ? data.file : ""
+      url:data.url
+      };
       try{
-        const res=await axios.post("http://localhost:3000/skilcenta/api/v1/files/upload/file",formData,{
-          headers:{
-            "Content-Type":"multipart/form-data"
-          }
-        })
+        const res=await axios.post("http://localhost:3000/skilcenta/api/v1/files/upload/file",emailBody)
         console.log("file uploaded",res);
       }catch(err){
         console.log(err);
         console.log(err.message);
       }
-      const emailBody=`
-      id:${data.id}
-      author:${data.author}
-      branch:${data.branch}
-      year:${data.year}
-      sem:${data.sem}
-      Title: ${data.title}
-      Category: ${data.category}
-      Description: ${data.description}
-      File: ${data.file ? data.file : ""}
-      `;
+
+     
   
       console.log(emailBody);
       setData({
@@ -80,7 +83,8 @@ const ResourceFile = () => {
       sem:'',
       category:'',
       description:'',
-      file:''
+      // file:''
+      url:''
       });
       e.target.reset();
     }
@@ -196,7 +200,7 @@ const ResourceFile = () => {
                 onChange={handleChange}
                  placeholder='Describe your resource' rows="4" className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'></textarea>
           </div>
-          <div className=''>
+          {/* <div className=''>
               <label  className='block text-sm font-medium text-gray-700 mb-2'>Upload File</label>
               <input 
               name='file'
@@ -205,6 +209,16 @@ const ResourceFile = () => {
               accept='application/pdf'
               onChange={handleChange}
                 className=' text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 cursor-pointer'  />
+          </div> */}
+           <div>
+              <label  className='block text-sm font-medium text-gray-700 mb-2'>File URL</label>
+              <input
+               type="text"
+               required 
+               name='url'
+               value={data.url}
+               onChange={handleChange}
+               className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' placeholder='url' />
           </div>
           <button type='submit' className='w-full bg-orange-600 text-white py-3 rounded-lg hover:bg-orange-700 transition-colors'>Upload Resource</button>
         </form>

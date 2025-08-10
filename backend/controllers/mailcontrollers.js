@@ -181,11 +181,99 @@ const handleContactEmail=async(req,res)=>{
     }
 }
 
+const handleResourceFileEmail=async(req,res)=>{
+   try{
+    const {id,author,email,branch,year,sem,title,category,description}=req.body;
+    if(!req.file) return res.status(400).json({message:"no file found"});
+    // console.log(req.file);
+    // console.log(req.body);
+    await sendMail({
+        to:"skilcenta.sell@gmail.com",
+        subject:`New Resources Submitted for Review - ${title}`,
+        html:`
+        <h2>📥 New Resource Submission Alert</h2>
+
+<p><strong>User ID:</strong> ${id}</p>
+<p><strong>Author:</strong> ${author}</p>
+<p><strong>Email:</strong> ${email}</p>
+<p><strong>Branch:</strong> ${branch}</p>
+<p><strong>Year:</strong> ${year}</p>
+<p><strong>Semester:</strong> ${sem}</p>
+<p><strong>Title:</strong> ${title}</p>
+<p><strong>Category:</strong> ${category}</p>
+<p><strong>File link:</strong> ${req.file.path}</p>
+<p><strong>Description:</strong></p>
+<p>${description}</p>
+
+<hr>
+
+<p><strong>File Link:</strong> <a href="${req.file.path}" target="_blank">${req.file.path}</a></p>
+
+<p><strong>Preview:</strong></p>
+<iframe src="${req.file.path}" width="600" height="400" style="border: 1px solid #ccc; border-radius: 6px;"></iframe>
+
+<hr>
+
+<p>Please log in to the admin panel to review and approve the resource.</p>
+
+<p>Regards,<br>Automated Notification – Skilcenta</p>
+        `
+    });
+    res.status(200).json({message:"mail sent"});
+   }catch(err){
+    console.log(err);
+    console.log(err.message);
+    res.status(500).json({message:"mail sending failed",error:err.message});
+   }
+}
+
+const handleResourceCustomerEmail=async(req,res)=>{
+    try{
+        const {id,author,email,branch,year,sem,title,category,description}=req.body;
+    await sendMail({
+        to:email,
+        subject:"Your Resource Listing is Under Review",
+        html:`
+        <h2>✅ Resource Submission Received</h2>
+
+<p>Hi <strong>${author}</strong>,</p>
+<p>Thank you for submitting your resource to <strong>Skilcenta</strong>. Here’s a summary of what you submitted:</p>
+
+<hr>
+
+<p><strong>Your ID:</strong> ${id}</p>
+<p><strong>Branch:</strong> ${branch}</p>
+<p><strong>Email:</strong> ${email}</p>
+<p><strong>Year:</strong> ${year}</p>
+<p><strong>Semester:</strong> ${sem}</p>
+<p><strong>Title:</strong> ${title}</p>
+<p><strong>Category:</strong> ${category}</p>
+<p><strong>Description:</strong></p>
+<p>${description}</p>
+
+<hr>
+<hr>
+
+<p>Our team will review your submission shortly. You’ll be notified once it’s approved and made available to other students.</p>
+
+<p>Regards,<br>Team Skilcenta</p>
+        `
+    })
+
+    }catch(err){
+        console.log(err);
+        console.log(err.message);
+        res.status(500).json({message:"mail sent failed",error:err.message});
+    }
+}
+
 
 module.exports={
     handleAdminBuyEmail,
     handleAdminSellEmail,
     handleCustomerBuyEmail,
     handleCustomerSellEmail,
-    handleContactEmail
+    handleContactEmail,
+    handleResourceFileEmail,
+    handleResourceCustomerEmail
 }

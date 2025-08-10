@@ -1,10 +1,9 @@
 const File=require('../models/FileResources');
 const handleUploadFile=async(req,res)=>{
     try{
-        if(!req.file) return res.status(400).json({message:"no file found"});
         // console.log(req.file);
-        // console.log(req.body);
-        const {id,author,title,branch,year,sem,category,description}=req.body;
+        console.log(req.body);
+        const {id,author,title,branch,year,sem,category,description,url}=req.body;
         const newFile=new File({
             id:id,
             author:author,
@@ -14,10 +13,10 @@ const handleUploadFile=async(req,res)=>{
             sem:sem,
             category:category,
             description:description,
-            url:req.file.path+"?fl_attachment=false"
+            url:url
         });
         await newFile.save();
-        res.json({message:"file uploaded successfully",url:newFile.url});
+        res.json({message:"file uploaded successfully",url:url});
     }catch(err){
         console.log(err);
         console.log(err.message);

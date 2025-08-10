@@ -5,6 +5,7 @@ const Uploadfiles = () => {
   const {currentUser}=useAuth();
   const [data,setData]=useState({
     id:currentUser.uid,
+    email:currentUser.email,
     author:'',
     title:'',
     branch:'',
@@ -36,40 +37,34 @@ const Uploadfiles = () => {
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    // const formData=new FormData();
-    // formData.append("id",data.id);
-    // formData.append("author",data.author);
-    // formData.append("branch",data.branch);
-    // formData.append("year",data.year);
-    // formData.append("sem",data.sem);
-    // formData.append("file",data.file);
-    // formData.append("title",data.title);
-    // formData.append("description",data.description);
-    // formData.append("category",data.category);
-    // try{
-    //   const res=await axios.post("http://localhost:3000/skilcenta/api/v1/files/upload/file",formData,{
-    //     headers:{
-    //       "Content-Type":"multipart/form-data"
-    //     }
-    //   })
-    //   console.log("file uploaded",res);
-    // }catch(err){
-    //   console.log(err);
-    //   console.log(err.message);
-    // }
-    const emailBody=`
-    id:${data.id}
-    author:${data.author}
-    branch:${data.branch}
-    year:${data.year}
-    sem:${data.sem}
-    Title: ${data.title}
-    Category: ${data.category}
-    Description: ${data.description}
-    File: ${data.file ? data.file : ""}
-    `;
+    // email api ----> http://localhost:3000/skilcenta/api/v1/mail/resource/files
+    const emailBody={
+    id:data.id,
+    email:currentUser.email,
+    author:data.author,
+    branch:data.branch,
+    year:data.year,
+    sem:data.sem,
+    title: data.title,
+    category: data.category,
+    description: data.description,
+    file: data.file ? data.file : "",
+    };
 
-    console.log(emailBody);
+    try{
+      const res=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/resource/files",emailBody,{
+        headers:{
+          "Content-Type":"multipart/form-data"
+        }
+      });
+      const custRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/customer/resource/files",emailBody);
+      console.log("email sended");
+    }catch(err){
+      console.log(err);
+      console.log(err.message);
+    }
+
+    // console.log(emailBody);
     setData({
      id:currentUser.uid,
     author:'',
