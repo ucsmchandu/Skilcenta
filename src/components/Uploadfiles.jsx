@@ -50,13 +50,20 @@ const Uploadfiles = () => {
     description: data.description,
     file: data.file ? data.file : "",
     };
+    const formData = new FormData();
+    formData.append("id", data.id);
+formData.append("email", currentUser.email);
+formData.append("author", data.author);
+formData.append("branch", data.branch);
+formData.append("year", data.year);
+formData.append("sem", data.sem);
+formData.append("title", data.title);
+formData.append("category", data.category);
+formData.append("description", data.description);
+formData.append("file",data.file ? data.file :" ");
 
     try{
-      const res=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/resource/files",emailBody,{
-        headers:{
-          "Content-Type":"multipart/form-data"
-        }
-      });
+      const res=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/resource/files",formData);
       const custRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/customer/resource/files",emailBody);
       console.log("email sended");
     }catch(err){
@@ -64,7 +71,7 @@ const Uploadfiles = () => {
       console.log(err.message);
     }
 
-    // console.log(emailBody);
+    console.log(emailBody);
     setData({
      id:currentUser.uid,
     author:'',
@@ -74,7 +81,7 @@ const Uploadfiles = () => {
     sem:'',
     category:'',
     description:'',
-    file:''
+    file:null
     });
     e.target.reset();
   }

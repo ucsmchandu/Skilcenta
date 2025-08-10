@@ -6,7 +6,7 @@ const storage=new CloudinaryStorage({
     cloudinary:cloudconnect,
     params:{
         folder:"resources-pdf",
-         resource_type: "raw"
+         resource_type: "auto",
     }
 });
 

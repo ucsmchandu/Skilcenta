@@ -230,6 +230,7 @@ const handleResourceFileEmail=async(req,res)=>{
 const handleResourceCustomerEmail=async(req,res)=>{
     try{
         const {id,author,email,branch,year,sem,title,category,description}=req.body;
+        console.log("cust:",req.body);
     await sendMail({
         to:email,
         subject:"Your Resource Listing is Under Review",
