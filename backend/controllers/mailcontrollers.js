@@ -1,4 +1,5 @@
 const sendMail=require('../utils/sendMail')
+// for ordering
 const handleCustomerBuyEmail=async (req,res)=>{
     try{
         const {email,name,productName,cost,description}=req.body;
@@ -152,6 +153,7 @@ const handleAdminSellEmail=async(req,res)=>{
     }
 }
 
+// for contact
 const handleContactEmail=async(req,res)=>{
     try{
          const {name,email,message}=req.body;
@@ -181,6 +183,7 @@ const handleContactEmail=async(req,res)=>{
     }
 }
 
+// for uploading the resource files
 const handleResourceFileEmail=async(req,res)=>{
    try{
     const {id,author,email,branch,year,sem,title,category,description}=req.body;
@@ -230,7 +233,7 @@ const handleResourceFileEmail=async(req,res)=>{
 const handleResourceCustomerEmail=async(req,res)=>{
     try{
         const {id,author,email,branch,year,sem,title,category,description}=req.body;
-        console.log("cust:",req.body);
+        // console.log("cust:",req.body);
     await sendMail({
         to:email,
         subject:"Your Resource Listing is Under Review",
@@ -260,7 +263,51 @@ const handleResourceCustomerEmail=async(req,res)=>{
 <p>Regards,<br>Team Skilcenta</p>
         `
     })
+res.status(200).json({message:"mails sent"});
+    }catch(err){
+        console.log(err);
+        console.log(err.message);
+        res.status(500).json({message:"mail sent failed",error:err.message});
+    }
+}
 
+const handleResourceLiveEmail=async(req,res)=>{
+    try{
+        const { id, author, email, branch, year, sem, title, category, description } = req.body;
+// console.log("cust:", req.body);
+
+await sendMail({
+    to: email,
+    subject: "🎉 Your Resource Submission Has Been Approved – Skilcenta",
+    html: `
+    <h2>🎉 Resource Submission Approved</h2>
+
+    <p>Hi <strong>${author}</strong>,</p>
+    <p>We’re excited to let you know that your resource submission to <strong>Skilcenta</strong> has been <strong>approved</strong>! 
+    It is now available for other students to view and benefit from.</p>
+
+    <hr>
+
+    <p><strong>Your ID:</strong> ${id}</p>
+    <p><strong>Branch:</strong> ${branch}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Year:</strong> ${year}</p>
+    <p><strong>Semester:</strong> ${sem}</p>
+    <p><strong>Title:</strong> ${title}</p>
+    <p><strong>Category:</strong> ${category}</p>
+    <p><strong>Description:</strong></p>
+    <p>${description}</p>
+
+    <hr>
+    <p><a href="https://skilcenta.vercel.app">Skilcenta website</a></p>
+    <p>You can now share the link with your friends or classmates so they can access your resource.</p>
+
+    <p>Thank you for contributing to the Skilcenta community and helping students like you succeed.</p>
+
+    <p>Best regards,<br>Team Skilcenta</p>
+    `
+});
+res.status(200).json({message:"mail sent"});
     }catch(err){
         console.log(err);
         console.log(err.message);
@@ -276,5 +323,6 @@ module.exports={
     handleCustomerSellEmail,
     handleContactEmail,
     handleResourceFileEmail,
-    handleResourceCustomerEmail
+    handleResourceCustomerEmail,
+    handleResourceLiveEmail
 }

@@ -71,9 +71,9 @@ formData.append("file",data.file ? data.file :" ");
       console.log(err.message);
     }
 
-    console.log(emailBody);
+    // console.log(emailBody);
     setData({
-     id:currentUser.uid,
+     id:'',
     author:'',
     title:'',
     branch:'',

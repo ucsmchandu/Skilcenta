@@ -61,7 +61,7 @@ const App = () => {
         <Route path='orderPop' element={<OrderPop/>} />
         <Route path='orders' element={<OrdersPage/>} />
         <Route path='allorders' element={<AllOrders/>} />
-        <Route path='resourceFiles' element={<ResourceFile/>} />
+        <Route path='admin/resourceFiles' element={<ResourceFile/>} />
         </Route>
       </Routes>
       <ToastContainer/>
