@@ -23,6 +23,7 @@ import OrderPop from './pages/OrderPop'
 import OrdersPage from './pages/OrdersPage'
 import AllOrders from './Adminpanel/AllOrders'
 import Scroll from './components/Scroll'
+import ResourceFile from './Adminpanel/ResourceFile'
 const App = () => {
   return (
     <AuthContextProvider>
@@ -60,6 +61,7 @@ const App = () => {
         <Route path='orderPop' element={<OrderPop/>} />
         <Route path='orders' element={<OrdersPage/>} />
         <Route path='allorders' element={<AllOrders/>} />
+        <Route path='resourceFiles' element={<ResourceFile/>} />
         </Route>
       </Routes>
       <ToastContainer/>

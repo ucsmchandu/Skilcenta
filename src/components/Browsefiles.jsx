@@ -25,11 +25,12 @@ const Browsefiles = () => {
               <option value="all">All Resources</option>
               <option value="upsc">UPSC</option>
               <option value="gate">GATE</option>
-              <option value=""></option>
-            <option></option> 
+              {/* <option value=""></option> */}
+            {/* <option></option>  */}
             </select>
           </div>
         </div>
+
         <div className="grid grid-cols-1">
         <div className="border border-gray-200 rounded-lg p-6 m-6 hover:shadow-sm transition-shadow">
             <div className="sm:flex items-start justify-between space-y-3 ">

@@ -1,4 +1,4 @@
-const sendMail=require('../utils.js/sendMail')
+const sendMail=require('../utils/sendMail')
 const handleCustomerBuyEmail=async (req,res)=>{
     try{
         const {email,name,productName,cost,description}=req.body;

@@ -1,12 +1,28 @@
 import React, { useState } from 'react'
-
+import axios from 'axios';
+import { useAuth } from '../contextApi/AuthContext';
 const Uploadfiles = () => {
+  const {currentUser}=useAuth();
   const [data,setData]=useState({
+    id:currentUser.uid,
+    author:'',
     title:'',
+    branch:'',
+    year:'',
+    sem:'',
     category:'',
     description:'',
     file:null
   });
+  /*
+  title:dbms notes
+  branch:it
+  year:2nd year
+  sem:1st sem
+  category:gate/upsc/academic
+  description:some stuff
+  file:pdf  
+  */
 
   const handleChange=(e)=>{
     const {name,value,files}=e.target;
@@ -20,18 +36,48 @@ const Uploadfiles = () => {
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-
+    // const formData=new FormData();
+    // formData.append("id",data.id);
+    // formData.append("author",data.author);
+    // formData.append("branch",data.branch);
+    // formData.append("year",data.year);
+    // formData.append("sem",data.sem);
+    // formData.append("file",data.file);
+    // formData.append("title",data.title);
+    // formData.append("description",data.description);
+    // formData.append("category",data.category);
+    // try{
+    //   const res=await axios.post("http://localhost:3000/skilcenta/api/v1/files/upload/file",formData,{
+    //     headers:{
+    //       "Content-Type":"multipart/form-data"
+    //     }
+    //   })
+    //   console.log("file uploaded",res);
+    // }catch(err){
+    //   console.log(err);
+    //   console.log(err.message);
+    // }
     const emailBody=`
+    id:${data.id}
+    author:${data.author}
+    branch:${data.branch}
+    year:${data.year}
+    sem:${data.sem}
     Title: ${data.title}
     Category: ${data.category}
     Description: ${data.description}
-    File: ${data.file ? data.file.name : ""}
+    File: ${data.file ? data.file : ""}
     `;
 
     console.log(emailBody);
     setData({
-      title:'',
-       category:'',
+     id:currentUser.uid,
+    author:'',
+    title:'',
+    branch:'',
+    year:'',
+    sem:'',
+    category:'',
     description:'',
     file:''
     });
@@ -44,6 +90,16 @@ const Uploadfiles = () => {
       <p className='text-xl font-bold text-gray-900 mb-6'>Upload New Resource</p>
       <form onSubmit={handleSubmit} className='space-y-6'>
         <div>
+            <label  className='block text-sm font-medium text-gray-700 mb-2'>Your name</label>
+            <input
+             type="text"
+             required 
+             name='author'
+             value={data.author}
+             onChange={handleChange}
+             className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' placeholder='Author name' />
+        </div>
+        <div>
             <label  className='block text-sm font-medium text-gray-700 mb-2'>Resources Title</label>
             <input
              type="text"
@@ -52,6 +108,56 @@ const Uploadfiles = () => {
              value={data.title}
              onChange={handleChange}
              className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' placeholder=' Enter resource title' />
+        </div>
+         <div>
+            <label  className='block text-sm font-medium text-gray-700 mb-2'>Branch</label>
+            <select 
+            name="branch"
+            value={data.branch}
+            onChange={handleChange}
+             required
+              id=""
+               className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'>
+                <option value="">Select Branch</option>
+                <option value="cse">CSE</option>
+                  <option value="it">IT</option>
+                    <option value="csd">CSD</option>
+                      <option value="csm">CSM</option>
+                  <option value="ece">ECE</option>
+                    <option value="eee">EEE</option>
+                    <option value="civil">CIVIL</option>
+                      <option value="mech">MECH</option>
+            </select>
+        </div>
+        <div>
+            <label  className='block text-sm font-medium text-gray-700 mb-2'>Year</label>
+            <select 
+            name="year"
+            value={data.year}
+            onChange={handleChange}
+             required
+              id=""
+               className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'>
+                <option value="">Select year</option>
+                <option value="1y">1st year</option>
+                <option value="2y">2nd year</option>
+                <option value="3y">3rd year</option>
+                <option value="4y">4th year</option>
+            </select>
+        </div>
+         <div>
+            <label  className='block text-sm font-medium text-gray-700 mb-2'>Semester</label>
+            <select 
+            name="sem"
+            value={data.sem}
+            onChange={handleChange}
+             required
+              id=""
+               className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'>
+                <option value="">Select semester</option>
+                <option value="1s">1st sem</option>
+                <option value="2s">2nd sem</option>
+            </select>
         </div>
         <div>
             <label  className='block text-sm font-medium text-gray-700 mb-2'>category</label>
@@ -65,6 +171,7 @@ const Uploadfiles = () => {
                 <option value="">Select category</option>
                 <option value="upsc">UPSC</option>
                 <option value="gate">GATE</option>
+                 <option value="academic">ACADEMIC</option>
             </select>
         </div>
         <div>
