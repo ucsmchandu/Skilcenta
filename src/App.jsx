@@ -24,6 +24,7 @@ import OrdersPage from './pages/OrdersPage'
 import AllOrders from './Adminpanel/AllOrders'
 import Scroll from './components/Scroll'
 import ResourceFile from './Adminpanel/ResourceFile'
+import Uploadfiles from './components/Uploadfiles'
 const App = () => {
   return (
     <AuthContextProvider>

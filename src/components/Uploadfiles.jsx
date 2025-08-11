@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useAuth } from '../contextApi/AuthContext';
 const Uploadfiles = () => {
   const {currentUser}=useAuth();
+  const [loading,setLoading]=useState(false);
   const [data,setData]=useState({
     id:currentUser.uid,
     email:currentUser.email,
@@ -37,43 +39,38 @@ const Uploadfiles = () => {
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
+    setLoading(true);
     // email api ----> http://localhost:3000/skilcenta/api/v1/mail/resource/files
     const emailBody={
-    id:data.id,
+    id:currentUser.uid,
     email:currentUser.email,
-    author:data.author,
+    author:data.author.trim(),
     branch:data.branch,
     year:data.year,
     sem:data.sem,
-    title: data.title,
+    title: data.title.trim(),
     category: data.category,
-    description: data.description,
+    description: data.description.trim(),
     file: data.file ? data.file : "",
     };
     const formData = new FormData();
-    formData.append("id", data.id);
+    formData.append("id", currentUser.uid);
 formData.append("email", currentUser.email);
-formData.append("author", data.author);
+formData.append("author", data.author.trim());
 formData.append("branch", data.branch);
 formData.append("year", data.year);
 formData.append("sem", data.sem);
-formData.append("title", data.title);
+formData.append("title", data.title.trim());
 formData.append("category", data.category);
-formData.append("description", data.description);
+formData.append("description", data.description.trim());
 formData.append("file",data.file ? data.file :" ");
 
     try{
       const res=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/resource/files",formData);
       const custRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/customer/resource/files",emailBody);
-      console.log("email sended");
-    }catch(err){
-      console.log(err);
-      console.log(err.message);
-    }
-
-    // console.log(emailBody);
-    setData({
-     id:'',
+     setData({
+     id:currentUser.uid || "",
+     email:currentUser.email || "",
     author:'',
     title:'',
     branch:'',
@@ -83,13 +80,33 @@ formData.append("file",data.file ? data.file :" ");
     description:'',
     file:null
     });
+    
     e.target.reset();
+    toast.success("Resource uploaded",{
+      position:'top-left'
+    });
+      // console.log("email sended");
+    }catch(err){
+      console.log(err);
+      console.log(err.message);
+    }finally{
+      setLoading(false);
+    }
+
+    // console.log(emailBody);
+   
+
+  }
+
+  const scrollToTop=()=>{
+    window.scrollTo(0,0);
   }
 
   return (
     <div className='p-6'>
     <div className='max-w-2xl'>
       <p className='text-xl font-bold text-gray-900 mb-6'>Upload New Resource</p>
+      <p className='text-sm mb-3 font-mono'><span className='text-red-500 text-lg'>*</span>Your Resource details will be reviewed by the administrator before being listed.</p>
       <form onSubmit={handleSubmit} className='space-y-6'>
         <div>
             <label  className='block text-sm font-medium text-gray-700 mb-2'>Your name</label>
@@ -196,8 +213,26 @@ formData.append("file",data.file ? data.file :" ");
             onChange={handleChange}
               className=' text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 cursor-pointer'  />
         </div>
-        <button type='submit' className='w-full bg-orange-600 text-white py-3 rounded-lg hover:bg-orange-700 transition-colors'>Upload Resource</button>
+        <button 
+        // onClick={()=>scrollToTop()}
+        type='submit' 
+        disabled={loading}
+        className='cursor-pointer w-full bg-orange-600 text-white py-3 rounded-lg hover:bg-orange-500 transition-colors'>
+          {loading ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                </svg>
+                Uploading...
+              </span>
+            ) : (
+              "Upload Resource"
+            )}
+          
+          </button>
       </form>
+      <p className='text-gray-600 text-sm mt-3 text-center'>Your resource details will be reviewed by the administrator before being listed.</p>
     </div>
     </div>
   )

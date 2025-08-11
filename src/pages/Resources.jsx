@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Browsefiles from "../components/Browsefiles";
 import Uploadfiles from "../components/Uploadfiles";
+import ProtectedRoute from "../components/ProtectedRoute";
 const Resources = () => {
   const [resources,setResources]=useState(false); //for the re-toggleing
   return (
@@ -31,7 +32,9 @@ const Resources = () => {
           </div>
         </nav>
       {
-        !resources ? (<Browsefiles/>):(<Uploadfiles/>)
+        !resources ? (<Browsefiles/>):(<ProtectedRoute>
+          <Uploadfiles/>
+        </ProtectedRoute>)
       }
       </div>
       {/* <div className="flex justify-center mt-30">

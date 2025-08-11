@@ -3,9 +3,10 @@ const handleUploadFile=async(req,res)=>{
     try{
         // console.log(req.file);
         console.log(req.body);
-        const {id,author,title,branch,year,sem,category,description,url}=req.body;
+        const {id,author,email,title,branch,year,sem,category,description,url}=req.body;
         const newFile=new File({
             id:id,
+            email:email,
             author:author,
             title:title,
             branch:branch,

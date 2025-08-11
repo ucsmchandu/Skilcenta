@@ -6,6 +6,7 @@ const ResourceFile = () => {
     const {currentUser}=useAuth();
     const [data,setData]=useState({
       id:'',
+      email:'',
       author:'',
       email:'',
       title:'',
@@ -53,9 +54,9 @@ const ResourceFile = () => {
       // formData.append("description",data.description);
       // formData.append("category",data.category);
        const emailBody={
-      id:data.id,
-      author:data.author,
-      email:currentUser.email,
+      id:data.id.trim(),
+      author:data.author.trim(),
+      email:data.email.trim(),
       branch:data.branch,
       year:data.year,
       sem:data.sem,
@@ -111,6 +112,16 @@ const ResourceFile = () => {
                value={data.id}
                onChange={handleChange}
                className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' placeholder='id' />
+          </div>
+            <div>
+              <label  className='block text-sm font-medium text-gray-700 mb-2'>Customer email</label>
+              <input
+               type="email"
+               required 
+               name='email'
+               value={data.email}
+               onChange={handleChange}
+               className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' placeholder='email' />
           </div>
           <div>
               <label  className='block text-sm font-medium text-gray-700 mb-2'>Customer name</label>
