@@ -24,8 +24,17 @@ const handleUploadFile=async(req,res)=>{
     }
 }
 
-const handleGetFile=(req,res)=>{
-    res.send("file retrived");
+const handleGetFile=async(req,res)=>{
+   try{
+    const data=await File.find({});
+    if(data.length===0)
+         return res.status(400).json({message:"No data found"});
+    return res.status(200).json({files:data});
+   }catch(err){
+    console.log(err);
+    console.log(err.message);
+    res.status(500).json({message:err.message});
+   }
 }
 
 module.exports={

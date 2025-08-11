@@ -4,6 +4,6 @@ const fileRouter=express.Router();
 const {handleUploadFile, handleGetFile} =require('../controllers/filecontrollers');
 
 fileRouter.post('/upload/file',handleUploadFile);
-fileRouter.get('/get/file',handleGetFile);
+fileRouter.get('/get/files',handleGetFile);
 
 module.exports=fileRouter;
