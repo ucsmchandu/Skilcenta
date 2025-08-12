@@ -8,7 +8,6 @@ const ResourceFile = () => {
       id:'',
       email:'',
       author:'',
-      email:'',
       title:'',
       branch:'',
       year:'',
@@ -29,13 +28,6 @@ const ResourceFile = () => {
     */
   
     const handleChange=(e)=>{
-      // const {name,value,files}=e.target;
-      // if(name==='file'){
-      //   setData({...data,[name]:files[0]});
-      // }
-      // else{
-      //   setData({...data,[name]:value});
-      // }
       const {name,value}=e.target;
       setData({...data,[name]:value});
     };
@@ -48,7 +40,7 @@ const ResourceFile = () => {
       // formData.append("branch",data.branch);
       // formData.append("year",data.year);
       // formData.append("sem",data.sem);
-      // // formData.append("file",data.file);
+      // formData.append("file",data.file);
       // formData.append("url",data.url);
       // formData.append("title",data.title);
       // formData.append("description",data.description);

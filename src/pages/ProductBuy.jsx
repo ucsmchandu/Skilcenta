@@ -9,6 +9,7 @@ import { addDoc,doc,collection } from 'firebase/firestore';
 import { where,query,getDocs } from 'firebase/firestore';
 // import emailjs from "emailjs-com"
 const ProductBuy = () => {
+  const [loading,setLoading] = useState(false);
   const navigate=useNavigate();
   const {currentUser}=useAuth();
   const location = useLocation();
@@ -32,6 +33,7 @@ const ProductBuy = () => {
   };
 
   const handleSubmit = async(e) => {
+    setLoading(true);
     e.preventDefault();
     
     try{
@@ -124,11 +126,14 @@ const ProductBuy = () => {
         position:'top-left'
       });
     }
+    finally{
+      setLoading(false);
+    }
   };
 
-  const scrollToTop=()=>{
-    window.scrollTo(0,0);
-  }
+  // const scrollToTop=()=>{
+  //   window.scrollTo(0,0);
+  // }
 
   return (
     <div className="min-h-screen mt-20 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-10">
@@ -233,11 +238,22 @@ const ProductBuy = () => {
           />
         </div>
         <button
-        onClick={()=>scrollToTop()}
+        // onClick={()=>scrollToTop()}
           type="submit"
+          disabled={loading}
           className="bg-indigo-600 cursor-pointer text-white rounded-lg px-6 py-2 font-semibold hover:bg-indigo-700 transition mt-2"
         >
-          Place Order
+          {loading ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                </svg>
+               Placing Order...
+              </span>
+            ) : (
+              "Place order"
+            )}
         </button>
       </form>
     </div>

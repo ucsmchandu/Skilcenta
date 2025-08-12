@@ -1,8 +1,10 @@
 const File=require('../models/FileResources');
+
+// this handles the admin to make the resource online
 const handleUploadFile=async(req,res)=>{
     try{
         // console.log(req.file);
-        console.log(req.body);
+        // console.log(req.body);
         const {id,author,email,title,branch,year,sem,category,description,url}=req.body;
         const newFile=new File({
             id:id,
@@ -25,6 +27,7 @@ const handleUploadFile=async(req,res)=>{
     }
 }
 
+// ths gets the data from the db and sends to the frontend
 const handleGetFile=async(req,res)=>{
    try{
     const data=await File.find({});

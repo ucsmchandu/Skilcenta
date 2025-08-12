@@ -40,7 +40,7 @@ const FileSchema=new mongoose.Schema({
     url:{
         type:String,
         required:true
-    }, //thi is for file
+    }, //thi is for pdf file
 },{timestamps:true});
 
 const File=mongoose.model("File",FileSchema);

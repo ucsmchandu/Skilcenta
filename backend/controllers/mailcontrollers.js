@@ -1,13 +1,13 @@
-const sendMail=require('../utils/sendMail')
+const sendMail = require("../utils/sendMail");
 // for ordering
-const handleCustomerBuyEmail=async (req,res)=>{
-    try{
-        const {email,name,productName,cost,description}=req.body;
+const handleCustomerBuyEmail = async (req, res) => {
+    try {
+        const { email, name, productName, cost, description } = req.body;
         //to customer
         await sendMail({
-            to:email,
-            subject:"Order confirmation from Skilcenta",
-            html:`
+            to: email,
+            subject: "Order confirmation from Skilcenta",
+            html: `
            <h2>🧾 Thank you for your purchase!</h2>
 
 <p>Dear ${name},</p>
@@ -21,25 +21,26 @@ const handleCustomerBuyEmail=async (req,res)=>{
 
 <p>Regards,<br>Skilcenta Team</p>
 
-            `
+            `,
         });
-        res.status(200).json({message:"mails sent"});
-    }catch(err){
+        res.status(200).json({ message: "mails sent" });
+    } catch (err) {
         console.log(err);
         console.log(err.message);
-        res.status(500).json({message:"mail Sending failed",error:err.message});
+        res.status(500).json({ message: "mail Sending failed", error: err.message });
     }
-    
-}
+};
 
-const handleAdminBuyEmail=async(req,res)=>{
-    try{
+
+const handleAdminBuyEmail = async (req, res) => {
+    try {
         //data from the frontend user
-        const {productName,buyerAddress,buyerPhone,price,productId}=req.body;
-         await sendMail({
-            to:"skilcenta.orders@gmail.com",
-            subject:"New order Placed",
-           html:`
+        const { productName, buyerAddress, buyerPhone, price, productId } =
+            req.body;
+        await sendMail({
+            to: "skilcenta.orders@gmail.com",
+            subject: "New order Placed",
+            html: `
            <h2>📦 New Order Notification</h2>
 
 <p><strong>Product:</strong> ${productName}</p>
@@ -53,25 +54,37 @@ const handleAdminBuyEmail=async(req,res)=>{
 
 <p>Regards,<br>Skilcenta Team</p>
 
-           `
+           `,
         });
-        res.status(200).json({message:"mail sent"});
-    }catch(err){
+        res.status(200).json({ message: "mail sent" });
+    } catch (err) {
         console.log(err);
         console.log(err.message);
-        res.status(500).json({message:"mail sending failed",error:err.message});
+        res
+            .status(500)
+            .json({ message: "mail sending failed", error: err.message });
     }
-}
+};
 
 //for selling mail
-const handleCustomerSellEmail=async (req,res)=>{
-    try{
-          const {productName,name,email,phone,address,college,price,description,image}=req.body;
-          //for customer
-            await sendMail({
-                to:email,
-                subject:"Your Product Listing is Under Review",
-                html:`
+const handleCustomerSellEmail = async (req, res) => {
+    try {
+        const {
+            productName,
+            name,
+            email,
+            phone,
+            address,
+            college,
+            price,
+            description,
+            image,
+        } = req.body;
+        //for customer
+        await sendMail({
+            to: email,
+            subject: "Your Product Listing is Under Review",
+            html: `
                 <h2>🛍️ Thank you for listing your product!</h2>
 
 <p>Dear ${name},</p>
@@ -101,24 +114,36 @@ const handleCustomerSellEmail=async (req,res)=>{
 <a href="mailto:skilcenta.contact@gmail.com">skilcenta.contact@gmail.com</a>.</p>
 
 <p>Regards,<br>Skilcenta Team</p>
-                `
-            })
-            res.status(200).json({message:"mails are sent"});
-    }catch(err){
+                `,
+        });
+        res.status(200).json({ message: "mails are sent" });
+    } catch (err) {
         console.log(err);
         console.log(err.message);
-        res.status(500).json({message:"mail sending failed",error:err.message});
+        res
+            .status(500)
+            .json({ message: "mail sending failed", error: err.message });
     }
-}
+};
 
-const handleAdminSellEmail=async(req,res)=>{
-    try{
+const handleAdminSellEmail = async (req, res) => {
+    try {
         //data frm the frontend
-        const {productName,name,email,phone,address,college,price,description,image}=req.body;
-         await sendMail({
-                to:"skilcenta.sell@gmail.com",
-                subject:`New Product Submitted for Review – ${productName}`,
-                html:`
+        const {
+            productName,
+            name,
+            email,
+            phone,
+            address,
+            college,
+            price,
+            description,
+            image,
+        } = req.body;
+        await sendMail({
+            to: "skilcenta.sell@gmail.com",
+            subject: `New Product Submitted for Review – ${productName}`,
+            html: `
                <h2>📥 New Product Submission Alert</h2>
 
 <p><strong>Seller Name:</strong> ${name}</p>
@@ -143,24 +168,26 @@ const handleAdminSellEmail=async(req,res)=>{
 
 <p>Regards,<br>Automated Notification – Skilcenta</p>
 
-                `
-            })
-            res.status(200).json({message:"mail sent"});
-    }catch(err){
+                `,
+        });
+        res.status(200).json({ message: "mail sent" });
+    } catch (err) {
         console.log(err);
         console.log(err.message);
-        res.status(500).json({message:"mailed sent failed :",error:err.message});
+        res
+            .status(500)
+            .json({ message: "mailed sent failed :", error: err.message });
     }
-}
+};
 
 // for contact
-const handleContactEmail=async(req,res)=>{
-    try{
-         const {name,email,message}=req.body;
-         await sendMail({
-            to:"skilcenta.contact@gmail.com",
-            subject:`New Contact Form Submission from ${name}`,
-            html:`
+const handleContactEmail = async (req, res) => {
+    try {
+        const { name, email, message } = req.body;
+        await sendMail({
+            to: "skilcenta.contact@gmail.com",
+            subject: `New Contact Form Submission from ${name}`,
+            html: `
             <h2>📩 New Contact Message Received</h2>
 
 <p><strong>Name:</strong> ${name}</p>
@@ -173,27 +200,39 @@ const handleContactEmail=async(req,res)=>{
 <p>Please respond to this message as soon as possible.</p>
 
 <p>Regards,<br>Skilcenta Contact System</p>
-            `
-         })
-         res.status(200).json({message:"mail sent"});
-    }catch(err){
+            `,
+        });
+        res.status(200).json({ message: "mail sent" });
+    } catch (err) {
         console.log(err);
         console.log(err.message);
-        res.status(500).json({message:"mail sending failed",error:err.message})
+        res
+            .status(500)
+            .json({ message: "mail sending failed", error: err.message });
     }
-}
+};
 
 // for uploading the resource files
-const handleResourceFileEmail=async(req,res)=>{
-   try{
-    const {id,author,email,branch,year,sem,title,category,description}=req.body;
-    if(!req.file) return res.status(400).json({message:"no file found"});
-    // console.log(req.file);
-    // console.log(req.body);
-    await sendMail({
-        to:"skilcenta.sell@gmail.com",
-        subject:`New Resources Submitted for Review - ${title}`,
-        html:`
+const handleResourceFileEmail = async (req, res) => {
+    try {
+        const {
+            id,
+            author,
+            email,
+            branch,
+            year,
+            sem,
+            title,
+            category,
+            description,
+        } = req.body;
+        if (!req.file) return res.status(400).json({ message: "no file found" });
+        // console.log(req.file);
+        // console.log(req.body);
+        await sendMail({
+            to: "skilcenta.sell@gmail.com",
+            subject: `New Resources Submitted for Review - ${title}`,
+            html: `
         <h2>📥 New Resource Submission Alert</h2>
 
 <p><strong>User ID:</strong> ${id}</p>
@@ -220,24 +259,36 @@ const handleResourceFileEmail=async(req,res)=>{
 <p>Please log in to the admin panel to review and approve the resource.</p>
 
 <p>Regards,<br>Automated Notification – Skilcenta</p>
-        `
-    });
-    res.status(200).json({message:"mail sent"});
-   }catch(err){
-    console.log(err);
-    console.log(err.message);
-    res.status(500).json({message:"mail sending failed",error:err.message});
-   }
-}
+        `,
+        });
+        res.status(200).json({ message: "mail sent" });
+    } catch (err) {
+        console.log(err);
+        console.log(err.message);
+        res
+            .status(500)
+            .json({ message: "mail sending failed", error: err.message });
+    }
+};
 
-const handleResourceCustomerEmail=async(req,res)=>{
-    try{
-        const {id,author,email,branch,year,sem,title,category,description}=req.body;
+const handleResourceCustomerEmail = async (req, res) => {
+    try {
+        const {
+            id,
+            author,
+            email,
+            branch,
+            year,
+            sem,
+            title,
+            category,
+            description,
+        } = req.body;
         // console.log("cust:",req.body);
-    await sendMail({
-        to:email,
-        subject:"Your Resource Listing is Under Review",
-        html:`
+        await sendMail({
+            to: email,
+            subject: "Your Resource Listing is Under Review",
+            html: `
         <h2>✅ Resource Submission Received</h2>
 
 <p>Hi <strong>${author}</strong>,</p>
@@ -261,25 +312,35 @@ const handleResourceCustomerEmail=async(req,res)=>{
 <p>Our team will review your submission shortly. You’ll be notified once it’s approved and made available to other students.</p>
 
 <p>Regards,<br>Team Skilcenta</p>
-        `
-    })
-res.status(200).json({message:"mails sent"});
-    }catch(err){
+        `,
+        });
+        res.status(200).json({ message: "mails sent" });
+    } catch (err) {
         console.log(err);
         console.log(err.message);
-        res.status(500).json({message:"mail sent failed",error:err.message});
+        res.status(500).json({ message: "mail sent failed", error: err.message });
     }
-}
+};
 
-const handleResourceLiveEmail=async(req,res)=>{
-    try{
-        const { id, author, email, branch, year, sem, title, category, description } = req.body;
-// console.log("cust:", req.body);
+const handleResourceLiveEmail = async (req, res) => {
+    try {
+        const {
+            id,
+            author,
+            email,
+            branch,
+            year,
+            sem,
+            title,
+            category,
+            description,
+        } = req.body;
+        // console.log("cust:", req.body);
 
-await sendMail({
-    to: email,
-    subject: "🎉 Your Resource Submission Has Been Approved – Skilcenta",
-    html: `
+        await sendMail({
+            to: email,
+            subject: "🎉 Your Resource Submission Has Been Approved – Skilcenta",
+            html: `
     <h2>🎉 Resource Submission Approved</h2>
 
     <p>Hi <strong>${author}</strong>,</p>
@@ -305,18 +366,17 @@ await sendMail({
     <p>Thank you for contributing to the Skilcenta community and helping students like you succeed.</p>
 
     <p>Best regards,<br>Team Skilcenta</p>
-    `
-});
-res.status(200).json({message:"mail sent"});
-    }catch(err){
+    `,
+        });
+        res.status(200).json({ message: "mail sent" });
+    } catch (err) {
         console.log(err);
         console.log(err.message);
-        res.status(500).json({message:"mail sent failed",error:err.message});
+        res.status(500).json({ message: "mail sent failed", error: err.message });
     }
-}
+};
 
-
-module.exports={
+module.exports = {
     handleAdminBuyEmail,
     handleAdminSellEmail,
     handleCustomerBuyEmail,
@@ -324,5 +384,5 @@ module.exports={
     handleContactEmail,
     handleResourceFileEmail,
     handleResourceCustomerEmail,
-    handleResourceLiveEmail
-}
+    handleResourceLiveEmail,
+};

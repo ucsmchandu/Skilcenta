@@ -61,7 +61,7 @@ const Browsefiles = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 ">
         
         {
           filteredFiles.length!==0 ? (
@@ -98,6 +98,7 @@ const Browsefiles = () => {
             </div>
             <div>
               <p className="text-sm mt-4 font-bold text-gray-500">Uploaded by {file.author} </p>
+              <p className="text-sm mt-2 font-bold text-gray-500">Email: {file.email}</p>
             </div>
         </div>
             ))

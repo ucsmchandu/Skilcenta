@@ -6,7 +6,7 @@ const storage=new CloudinaryStorage({
     cloudinary:cloudconnect,
     params:{
         folder:"resources-pdf",
-         resource_type: "auto",
+         resource_type: "auto", //auto matically detects the file img for pdf
     }
 });
 
