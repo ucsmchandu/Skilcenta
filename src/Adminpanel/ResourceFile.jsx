@@ -60,9 +60,9 @@ const ResourceFile = () => {
       };
       try{
         // api for add the resource into db
-        const res=await axios.post("http://localhost:3000/skilcenta/api/v1/files/upload/file",emailBody);
+        const res=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/files/upload/file`,emailBody);
         // api for sending mail for the customer for their live product
-        const resLive=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/resource/live",emailBody);
+        const resLive=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/resource/live`,emailBody);
         console.log("mail sent",resLive);
         console.log("file uploaded",res);
       }catch(err){

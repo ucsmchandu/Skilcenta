@@ -3,11 +3,13 @@ import axios from 'axios'
 import { useState } from 'react'
 const Browsefiles = () => {
   const [filesData,setFilesData]=useState([]);
+  const [loading,setLoading]=useState(false);
   const [searchData,setSearchData]=useState('');
 
   const getData=async()=>{
      try{
-       const res=await axios.get("http://localhost:3000/skilcenta/api/v1/files/get/files");
+      setLoading(true);
+       const res=await axios.get(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/files/get/files`);
       // console.log(res);
 
       setFilesData(res.data.files);
@@ -15,6 +17,9 @@ const Browsefiles = () => {
      }catch(err){
       console.log(err.message);
       setFilesData([]);
+     }
+     finally{
+      setLoading(false);
      }
     }
   useEffect(()=>{
@@ -61,8 +66,18 @@ const Browsefiles = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 ">
-        
+       
+        {
+          loading ? (
+      <div className="flex justify-center items-center min-h-[200px]">
+        <svg className="animate-spin h-10 w-10 text-blue-500 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+        </svg>
+        <span className="text-lg text-blue-600 font-semibold">Loading resources...</span>
+      </div>
+    ):
+           (<div className="grid grid-cols-1 md:grid-cols-2 ">
         {
           filteredFiles.length!==0 ? (
             filteredFiles.map((file)=>(
@@ -106,79 +121,11 @@ const Browsefiles = () => {
            <div className='flex justify-center text-gray-600'> <p className='text-2xl font-semibold '>No data found</p></div>
           )
         }
-
-        {/* <div className="border border-gray-200 rounded-lg p-6 m-6 hover:shadow-sm transition-shadow">
-            <div className="sm:flex items-start justify-between space-y-3 ">
-                <div className="flex space-x-4">
-                  <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750941738/blank_js79ji.png" className="h-6" />
-                  <p className="font-semibold">UPSC History Complete Notes 2024</p>
-                  <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750943502/play-button_lgjitk.png" className="h-6" alt="" />
-                </div>
-               <div className="flex space-x-6">
-                 <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750942263/eye_n2qoka.png" className="h-5 cursor-pointer relative top-1 hover:" alt="see" />
-                <button className="bg-orange-400 p-1 rounded-lg text-sm cursor-pointer">↓ Download</button>
-               </div>
-            </div>
-            <div className="flex mt-4 space-x-4">
-              <p className="text-gray-500">15.2MB</p>
-              <div className="flex space-x-1">
-                <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750943083/calendar_o8cy0z.png" className="h-4 relative top-1" alt="" />
-                <p className="text-gray-500">1/15/2024</p>
-              </div>
-            </div>
-            <div>
-              <p className="text-sm mt-4 text-gray-500">Uploaded by chandu </p>
-            </div>
-        </div>
-
-        <div className="border border-gray-200 rounded-lg p-6 m-6 hover:shadow-sm transition-shadow">
-            <div className="sm:flex items-start justify-between space-y-3 ">
-                <div className="flex space-x-4">
-                  <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750941738/blank_js79ji.png" className="h-6" />
-                  <p className="font-semibold">GATE CSE Previous Year Solutions</p>
-                  <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750943502/play-button_lgjitk.png" className="h-6" alt="" />
-                </div>
-               <div className="flex space-x-6">
-                 <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750942263/eye_n2qoka.png" className="h-5 cursor-pointer relative top-1 hover:" alt="see" />
-                <button className="bg-orange-400 p-1 rounded-lg text-sm cursor-pointer">↓ Download</button>
-               </div>
-            </div>
-            <div className="flex mt-4 space-x-4">
-              <p className="text-gray-500">15.2MB</p>
-              <div className="flex space-x-1">
-                <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750943083/calendar_o8cy0z.png" className="h-4 relative top-1" alt="" />
-                <p className="text-gray-500">1/15/2024</p>
-              </div>
-            </div>
-            <div>
-              <p className="text-sm mt-4 text-gray-500">Uploaded by chandu </p>
-            </div>
-        </div>
-
-        <div className="border border-gray-200 rounded-lg p-6 m-6 hover:shadow-sm transition-shadow">
-            <div className="sm:flex items-start justify-between space-y-3 ">
-                <div className="flex space-x-4">
-                  <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750941738/blank_js79ji.png" className="h-6" />
-                  <p className="font-semibold">GATE CSE Previous Year Solutions</p>
-                  <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750943502/play-button_lgjitk.png" className="h-6" alt="" />
-                </div>
-               <div className="flex space-x-6">
-                 <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750942263/eye_n2qoka.png" className="h-5 cursor-pointer relative top-1 hover:" alt="see" />
-                <button className="bg-orange-400 p-1 rounded-lg text-sm cursor-pointer">↓ Download</button>
-               </div>
-            </div>
-            <div className="flex mt-4 space-x-4">
-              <p className="text-gray-500">15.2MB</p>
-              <div className="flex space-x-1">
-                <img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1750943083/calendar_o8cy0z.png" className="h-4 relative top-1" alt="" />
-                <p className="text-gray-500">1/15/2024</p>
-              </div>
-            </div>
-            <div>
-              <p className="text-sm mt-4 text-gray-500">Uploaded by chandu </p>
-            </div>
-        </div> */}
       </div>
+
+        )}
+
+
     </>
   )
 }

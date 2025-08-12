@@ -66,8 +66,8 @@ formData.append("description", data.description.trim());
 formData.append("file",data.file ? data.file :" ");
 
     try{
-      const res=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/resource/files",formData);
-      const custRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/customer/resource/files",emailBody);
+      const res=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/resource/files`,formData);
+      const custRes=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/customer/resource/files`,emailBody);
      setData({
      id:currentUser.uid || "",
      email:currentUser.email || "",
@@ -98,9 +98,9 @@ formData.append("file",data.file ? data.file :" ");
 
   }
 
-  const scrollToTop=()=>{
-    window.scrollTo(0,0);
-  }
+  // const scrollToTop=()=>{
+  //   window.scrollTo(0,0);
+  // }
 
   return (
     <div className='p-6'>
