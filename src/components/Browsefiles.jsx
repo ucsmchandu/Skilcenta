@@ -12,7 +12,7 @@ const Browsefiles = () => {
        const res=await axios.get(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/files/get/files`);
       // console.log(res);
 
-      setFilesData(res.data.files);
+       setFilesData(Array.isArray(res.data?.files) ? res.data.files : []);
       // console.log(filesData);
      }catch(err){
       console.log(err.message);
@@ -79,7 +79,7 @@ const Browsefiles = () => {
     ):
            (<div className="grid grid-cols-1 md:grid-cols-2 ">
         {
-          filteredFiles.length!==0 ? (
+          Array.isArray(filteredFiles) && filteredFiles.length !== 0 ?  (
             filteredFiles.map((file)=>(
                 <div 
                 key={file._id}
