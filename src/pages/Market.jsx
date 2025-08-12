@@ -27,55 +27,57 @@ const Market = () => {
 
       <div className="m-10 lg:m-20 -mt-2 lg:-mt-4 ">
         <div className="bg-white rounded-lg p-6 shadow-md">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className=" flex1/2 relative md:w-2xl ">
-              <img
-                src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1743402566/search_dvvaet.gif"
-                className="h-6 relative left-2 top-2"
-              />
-              <input
-                type="text"
-                value={search}
-                onChange={handleSearch}
-                name="resources"
-                placeholder="search here.."
-                className="w-full pl-10 pr-4 py-2 border relative -top-6 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200"
-              />
-            </div>
-            <div className="relative sm:-top-3 lg:top-0 ">
-              <Link to="/sellitem">
-              <button className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm cursor-pointer md:-p-5">
-                + Sell Item
-              </button>
-              </Link>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-4 md:-mt-3">
-            <div className="flex flex-wrap gap-2 mt-4">
-              <Link to="/orders">
-              <button className="px-4 cursor-pointer py-2 rounded-full text-sm font-medium transition-colors bg-cyan-600 text-white">
-               Your Orders
-              </button>
-              </Link>
-            </div>
-          </div>
-           <div className="mt-5 text-gray-500 font-semibold"><p>*Choose your college :</p></div>
-           <div className="flex space-x-4">
-              <div className="flex flex-wrap gap-2 mt-4">
-              <button 
-              onClick={()=>setSearch("anits")}
-              className=" cursor-pointer px-4 py-2 rounded-full text-sm font-medium transition-colors bg-green-600 text-white">
-                ANITS
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-4">
-              <button
-              onClick={()=>setSearch("au")}
-              className="px-4 cursor-pointer py-2 rounded-full text-sm font-medium transition-colors bg-green-600 text-white">
-               AU
-              </button>
-            </div>
-            </div>
+            <div className="flex flex-col md:flex-row gap-4">
+  <div className=" flex1/2 relative md:w-2xl ">
+    <img
+      src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1743402566/search_dvvaet.gif"
+      className="h-6 relative left-2 top-2"
+    />
+    <input
+      type="text"
+      value={search}
+      onChange={handleSearch}
+      name="resources"
+      placeholder="search here.."
+      className="w-full pl-10 pr-4 py-2 border relative -top-6 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200"
+    />
+  </div>
+  <div className="relative sm:-top-3 lg:top-0 ">
+    <Link to="/sellitem">
+      <button className="flex items-center gap-2 px-5 py-2 rounded-xl cursor-pointer bg-gradient-to-r from-pink-500 via-orange-400 to-yellow-400 text-white font-bold shadow-lg hover:scale-105 hover:from-pink-600 hover:to-yellow-500 transition-all duration-200 text-base">
+        <span className="text-lg">+</span> Sell Item
+      </button>
+    </Link>
+  </div>
+</div>
+<div className="flex flex-wrap gap-2 mt-4 md:-mt-3">
+  <div className="flex flex-wrap gap-2 mt-4">
+    <Link to="/orders">
+      <button className="px-5 py-2 rounded-xl bg-gradient-to-r bg-blue-400 cursor-pointer text-white font-bold shadow-lg hover:scale-105 transition-all duration-200 text-base">
+        Your Orders
+      </button>
+    </Link>
+  </div>
+</div>
+<div className="mt-5 text-gray-500 font-semibold"><p>*Choose your college :</p></div>
+<div className="flex space-x-4">
+  <div className="flex flex-wrap gap-2 mt-4">
+    <button 
+      onClick={()=>setSearch("anits")}
+      className="px-5 py-2 rounded-xl bg-gradient-to-r bg-amber-800 cursor-pointer text-white font-bold shadow-lg hover:scale-105 transition-all duration-200 text-base"
+    >
+      ANITS
+    </button>
+  </div>
+  <div className="flex flex-wrap gap-2 mt-4">
+    <button
+      onClick={()=>setSearch("au")}
+      className="px-5 py-2 rounded-xl bg-gradient-to-r bg-amber-800 cursor-pointer text-white font-bold shadow-lg hover:scale-105 transition-all duration-200 text-base"
+    >
+      AU
+    </button>
+  </div>
+</div>
         </div>
       </div>
 
