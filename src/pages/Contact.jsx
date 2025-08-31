@@ -29,7 +29,7 @@ const Contact = () => {
       message:form.message
     }
     // console.log(emailTemplate);
-    const res=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/contact",emailTemplate);
+    const res=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/contact`,emailTemplate);
    console.log(res);
     if(res){
       // console.log("success",res);

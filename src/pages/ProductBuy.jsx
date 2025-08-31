@@ -98,10 +98,10 @@ const ProductBuy = () => {
     //   "McgVshzTLl63ofZ8I"
     // );
 
-    const custRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/customer/buy",orderedMail);
+    const custRes=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/customer/buy`,orderedMail);
     console.log("Mail sent success for customer :",custRes.data);
 
-    const adminRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/admin/buy",adminMail);
+    const adminRes=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/admin/buy`,adminMail);
     console.log("mail sent success for admin",adminRes);
 
 

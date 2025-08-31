@@ -93,12 +93,12 @@ const Sellitem = () => {
       // );
 
       //for customer
-      const custRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/customer/sell",templateParams);
+      const custRes=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/customer/sell`,templateParams);
       // console.log("mail sent to customer",custRes);
 
 
       //for admin
-      const adminRes=await axios.post("http://localhost:3000/skilcenta/api/v1/mail/admin/sell",templateParams);
+      const adminRes=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/admin/sell`,templateParams);
       // console.log("mail send to admin",adminRes);
 
       toast.success("Details submitted successfully", {
