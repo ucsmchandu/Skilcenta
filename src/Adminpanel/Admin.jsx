@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { firestore } from "../server/Firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import { address } from "motion/react-client";
 
 const Admin = () => {
   const [products, setProducts] = useState([]);

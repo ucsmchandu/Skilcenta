@@ -21,3 +21,4 @@ const firestore=getFirestore(app); //for json structured data
 const auth=getAuth(app);//for authenticate
 export {firestore};
 export {auth};
+// export const RecaptchaVerifier=firebase.auth.RecaptchaVerifier;

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Productlistings from "../components/Productlistings";
 import { Link } from "react-router-dom";
-import { firestore } from "../server/Firebase";
-import { getDoc,doc,where,query } from "firebase/firestore";
 const Market = () => {
   const [search,setSearch]=useState('');
 
@@ -38,7 +36,7 @@ const Market = () => {
       value={search}
       onChange={handleSearch}
       name="resources"
-      placeholder="search here.."
+      placeholder="search by college or product"
       className="w-full pl-10 pr-4 py-2 border relative -top-6 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200"
     />
   </div>

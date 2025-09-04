@@ -8,7 +8,7 @@ const Home = () => {
         <h1 className="text-4xl md:text-6xl  font-serif mb-4">Skilcenta</h1>
         <p className="text-xl text-center md:text-2xl opacity-90 max-w-3xl mx-auto">
           Unleash your potential with a platform that understands your goals,
-          your skills, and your path
+          your skills, and your path.
         </p>
         <p className="mt-6 text-lg font-extralight text-amber-300">
           Dream. Build. Achieve.

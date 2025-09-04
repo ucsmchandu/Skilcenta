@@ -35,9 +35,15 @@ const ProductBuy = () => {
   const handleSubmit = async(e) => {
     setLoading(true);
     e.preventDefault();
-    
+    const phoneRegex=/^(\+91)?[6-9]\d{9}$/;
+    if(!phoneRegex.test(form.number)){
+      toast.error("Enter valid phone number!",{
+        position:'top-left'
+      })
+      setLoading(false);
+      return;
+    }
     try{
-      
       const getImg=query(
         collection(firestore,'products'),
         where('id','==',id)
