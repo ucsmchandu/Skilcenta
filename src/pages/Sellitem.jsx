@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
+import { useAuth } from "../contextApi/AuthContext";
 const Sellitem = () => {
+  const {currentUser}=useAuth();
   const [form, setForm] = useState({
     productName: "",
     sellerName: "",
@@ -56,7 +57,7 @@ const Sellitem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-     const phoneRegex=/^(\+91)?[6-9]\d{9}$/;
+     const phoneRegex=/^[6-9]\d{9}$/;
         if(!phoneRegex.test(form.phone)){
           toast.error("Enter valid phone number!",{
             position:'top-left'
@@ -76,6 +77,7 @@ const Sellitem = () => {
       }
 
       const templateParams = {
+        sellerId:currentUser.uid,
         productName: form.productName,
         name: form.sellerName,
         email: form.email,
@@ -86,19 +88,6 @@ const Sellitem = () => {
         description: form.description,
         image: imgUrl,
       };
-
-      // await emailjs.send(
-      //   "service_90kwoez",
-      //   "template_q7sjax8",
-      //   templateParams,
-      //   "RvlyoDCRmr-EyoSG_"
-      // );
-      // await emailjs.send(
-      //   "service_90kwoez",
-      //   "template_l1qqybe",
-      //   templateParams,
-      //   "RvlyoDCRmr-EyoSG_"
-      // );
 
       //for customer
       const custRes=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/customer/sell`,templateParams);
