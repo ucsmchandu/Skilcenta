@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { firestore } from '../server/Firebase'
-import { collection, getDocs, where, query } from 'firebase/firestore';
+import axios from 'axios';
+// import { firestore } from '../server/Firebase'
+// import { collection, getDocs, where, query } from 'firebase/firestore';
 import { auth } from '../server/Firebase';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contextApi/AuthContext';
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const {currentUser}=useAuth();
   const fetchOrders = async () => {
     if(!auth.currentUser) return;
    try{
      setLoading(true);
-    const q = query(
-      collection(firestore, "orders"),
-      where("buyerId", "==", auth.currentUser.uid)
-    );
-    const querySnapshot = await getDocs(q);
-    const ordersArr = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    setOrders(ordersArr);
-   }
+    const res=await axios.get(`http://localhost:3000/skilcenta/api/v1/market/get/ordered/product/${currentUser.uid}`);
+    console.log(res);
+    setOrders(res.data.products);
+  
+  }
    catch(err){
     console.log(err.message);
    }
@@ -66,26 +65,29 @@ const OrdersPage = () => {
         ) : (
           orders.map(order => (
             <div
-              key={order.id}
+              key={order._id}
               className="bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center border-4 border-indigo-100 hover:shadow-indigo-300 transition-all duration-200"
             >
               <div className="relative mb-6">
                 <img
-                  src={order.productImg || "https://via.placeholder.com/300"}
-                  alt={order.product || "Product"}
+                  src={order.productImageUrl || "https://via.placeholder.com/300"}
+                  alt={order.productName || "Product"}
                   className="w-56 h-56 object-cover rounded-2xl border-4 border-indigo-200 shadow-lg transition-transform hover:scale-105"
                 />
                 <span className="absolute top-2 right-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow">
                   Ordered
                 </span>
               </div>
-              <h3 className="text-2xl font-extrabold text-indigo-800 mb-2 text-center">{order.product}</h3>
+              <h3 className="text-2xl font-extrabold text-indigo-800 mb-2 text-center">{order.productName}</h3>
               <p className="text-lg text-gray-700 mb-1 text-center">
                 <span className="font-semibold text-indigo-600">Cost:</span>{" "}
-                <span className="text-green-700 font-bold text-xl">₹{order.price}</span>
+                <span className="text-green-700 font-bold text-xl">₹{order.productPrice}</span>
               </p>
               <p className="text-sm text-gray-500 mt-2 text-center">
-                Order ID: <span className="font-mono">{order.id}</span>
+                Order ID: <span className="font-mono">{order._id}</span>
+              </p>
+              <p className="text-sm text-gray-800 mt-2 text-center">
+                Our team will contact you within Three days
               </p>
             </div>
           ))

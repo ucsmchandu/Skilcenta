@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Productcard from "./Productcard";
 import axios from "axios";
-// import { firestore } from "../server/Firebase";
-// import { collection,getDocs } from "firebase/firestore";
     
 
 const Productlistings = ({search}) => {
@@ -11,13 +9,6 @@ const Productlistings = ({search}) => {
   const getProducts=async()=>{
     setLoading(true);
     try{
-    //   const docRef=await getDocs(collection(firestore,"products"));
-    // const productsFromFireStore=docRef.docs.map(doc=>({
-    //     id:doc.id,
-    //     ...doc.data()
-    //   }));
-    //   setProducts(productsFromFireStore);
-
     const res=await axios.get('http://localhost:3000/skilcenta/api/v1/market/get/all/products');
     // console.log(res.data.products);
     setProducts(res.data.products);
