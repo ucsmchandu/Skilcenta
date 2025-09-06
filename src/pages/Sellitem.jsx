@@ -56,6 +56,14 @@ const Sellitem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+     const phoneRegex=/^(\+91)?[6-9]\d{9}$/;
+        if(!phoneRegex.test(form.phone)){
+          toast.error("Enter valid phone number!",{
+            position:'top-left'
+          })
+          setLoading(false);
+          return;
+        }
     try {
       const file = e.target.image.files[0];
       const imgUrl = await uploadImageToCloudinary(file);

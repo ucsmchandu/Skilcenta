@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Productcard from "./Productcard";
-import { firestore } from "../server/Firebase";
-import { collection,getDocs } from "firebase/firestore";
+import axios from "axios";
+// import { firestore } from "../server/Firebase";
+// import { collection,getDocs } from "firebase/firestore";
     
 
 const Productlistings = ({search}) => {
@@ -10,12 +11,16 @@ const Productlistings = ({search}) => {
   const getProducts=async()=>{
     setLoading(true);
     try{
-      const docRef=await getDocs(collection(firestore,"products"));
-    const productsFromFireStore=docRef.docs.map(doc=>({
-        id:doc.id,
-        ...doc.data()
-      }));
-      setProducts(productsFromFireStore);
+    //   const docRef=await getDocs(collection(firestore,"products"));
+    // const productsFromFireStore=docRef.docs.map(doc=>({
+    //     id:doc.id,
+    //     ...doc.data()
+    //   }));
+    //   setProducts(productsFromFireStore);
+
+    const res=await axios.get('http://localhost:3000/skilcenta/api/v1/market/get/all/products');
+    // console.log(res.data.products);
+    setProducts(res.data.products);
     }
     catch(err){
       console.log("Error from productlistings.jsx ",err.message);
@@ -32,7 +37,7 @@ const Productlistings = ({search}) => {
   const filteredProducts=search ? 
   products.filter((product)=>(
     (product.productName.toLowerCase().includes(search.toLowerCase().trim()) )||
-    (product.college.toLowerCase().includes(search.toLowerCase().trim()))
+    (product.sellerCollege.toLowerCase().includes(search.toLowerCase().trim()))
 
   )):products;
   return (
@@ -48,8 +53,8 @@ const Productlistings = ({search}) => {
         </div>
         ): filteredProducts.length>0 ? (
           filteredProducts.map((product)=>(
-            <li key={product.id} className="w-full">
-              <Productcard {...product} />
+            <li key={product._id} className="w-full">
+              <Productcard product={product} />
             </li>
           ))
         ):(
