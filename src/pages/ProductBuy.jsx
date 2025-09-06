@@ -30,7 +30,7 @@ const ProductBuy = () => {
       const getProductDetails = await axios.get(
         `http://localhost:3000/skilcenta/api/v1/market/get/product/${id}`
       );
-      console.log(getProductDetails);
+      // console.log(getProductDetails);
       setProductDetails(getProductDetails.data.product);
     } catch (err) {
       console.log(err);
@@ -125,6 +125,15 @@ const ProductBuy = () => {
       console.log("Error :", error.message);
       toast.error("Order not placed!", {
         position: "top-left",
+      });
+      alert(error.response.data.message);
+      setForm({
+        buyerName: "",
+        buyerEmail: "",
+        buyerAddress: "",
+        buyerBranch: "",
+        buyerYear: "",
+        buyerPhone: "",
       });
     } finally {
       setLoading(false);
