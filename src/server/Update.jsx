@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import { firestore } from './Firebase'
-import { doc, updateDoc } from 'firebase/firestore'
+import React, { useState } from "react";
+import axios from "axios";
 
 const Update = () => {
   const [updateId, setUpdateId] = useState("");
   const [form, setForm] = useState({
-    id: "",
+    sellerId: "",
+    sellerName: "",
     productName: "",
-    soldBy: "",
-    cost: "",
-    description: "",
-    img: "",
+    sellerAddress: "",
+    sellerCollege: "",
+    sellerEmail: "",
+    sellerPhone: "",
+    productDescription: "",
+    productPrice: "",
+    productImageUrl: "",
   });
 
   const handleChange = (e) => {
@@ -21,22 +24,39 @@ const Update = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await updateDoc(doc(firestore, "products", updateId), {
-        id: form.id,
-        productName: form.productName,
-        soldBy: form.soldBy,
-        cost: Number(form.cost),
-        description: form.description,
-        img: form.img,
-      });
+      const phoneRegex = /^[6-9]\d{9}$/;
+      if (!phoneRegex.test(form.sellerPhone)) {
+        toast.error("Enter valid phone number!", {
+          position: "top-left",
+        });
+        return;
+      }
+      const updateProduct={
+        sellerId: form.sellerId.trim(),
+        sellerName: form.sellerName.trim(),
+        productName:form.productName.trim(),
+        sellerAddress:form.sellerAddress.trim(),
+        sellerCollege: form.sellerCollege.trim(),
+        sellerEmail: form.sellerEmail.trim(),
+        sellerPhone: form.sellerPhone.trim(),
+        productDescription: form.productDescription.trim(),
+        productPrice: form.productPrice.trim(),
+        productImageUrl: form.productImageUrl.trim(),
+      }
+
+      const res=await axios.put(`http://localhost:3000/skilcenta/api/v1/market/update/product/${updateId}`,updateProduct);
       alert("Product updated!");
       setForm({
-        id: "",
+        sellerId: "",
+        sellerName: "",
         productName: "",
-        soldBy: "",
-        cost: "",
-        description: "",
-        img: "",
+        sellerAddress: "",
+        sellerCollege: "",
+        sellerEmail: "",
+        sellerPhone: "",
+        productDescription: "",
+        productPrice: "",
+        productImageUrl: "",
       });
       setUpdateId("");
     } catch (error) {
@@ -48,23 +68,25 @@ const Update = () => {
   return (
     <div className="min-h-screen mt-10 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-indigo-700">Update Product</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-indigo-700">
+          Update Product
+        </h2>
         <form onSubmit={handleUpdate} className="flex flex-col space-y-4">
           <input
             type="text"
             value={updateId}
-            onChange={e => setUpdateId(e.target.value)}
+            onChange={(e) => setUpdateId(e.target.value)}
             className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
             placeholder="Enter Firestore Product ID"
             required
           />
           <input
             type="text"
-            name="id"
-            value={form.id}
+            name="sellerId"
+            value={form.sellerId}
             onChange={handleChange}
             className="border border-gray-300 rounded-lg px-4 py-2"
-            placeholder="Manual Product ID"
+            placeholder="seller ID"
             required
           />
           <input
@@ -78,35 +100,73 @@ const Update = () => {
           />
           <input
             type="text"
-            name="soldBy"
-            value={form.soldBy}
+            name="sellerName"
+            value={form.sellerName}
             onChange={handleChange}
             className="border border-gray-300 rounded-lg px-4 py-2"
             placeholder="Customer Name"
             required
           />
           <input
-            type="number"
-            name="cost"
-            value={form.cost}
+            type="text"
+            name="sellerAddress"
+            value={form.sellerAddress}
             onChange={handleChange}
             className="border border-gray-300 rounded-lg px-4 py-2"
-            placeholder="Cost"
-            min="0"
+            placeholder="address"
+            required
+          />
+          <input
+            type="text"
+            name="sellerCollege"
+            value={form.sellerCollege}
+            onChange={handleChange}
+            className="border border-gray-300 rounded-lg px-4 py-2"
+            placeholder="college name"
+            required
+          />
+          <input
+            type="email"
+            name="sellerEmail"
+            value={form.sellerEmail}
+            onChange={handleChange}
+            className="border border-gray-300 rounded-lg px-4 py-2"
+            placeholder="email"
+            required
+          />
+          <input
+            type="tel"
+            name="sellerPhone"
+            value={form.sellerPhone}
+            onChange={handleChange}
+            pattern="[0-9]{10}"
+            maxLength={10}
+            minLength={10}
+            className="border border-gray-300 rounded-lg px-4 py-2"
+            placeholder="phone"
+            required
+          />
+          <input
+            type="text"
+            name="productPrice"
+            value={form.productPrice}
+            onChange={handleChange}
+            className="border border-gray-300 rounded-lg px-4 py-2"
+            placeholder="price"
             required
           />
           <input
             type="url"
-            name="img"
-            value={form.img}
+            name="productImageUrl"
+            value={form.productImageUrl}
             onChange={handleChange}
             className="border border-gray-300 rounded-lg px-4 py-2"
             placeholder="Product Image URL"
             required
           />
           <textarea
-            name="description"
-            value={form.description}
+            name="productDescription"
+            value={form.productDescription}
             onChange={handleChange}
             className="border border-gray-300 rounded-lg px-4 py-2"
             placeholder="Description"
@@ -122,7 +182,7 @@ const Update = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Update
+export default Update;

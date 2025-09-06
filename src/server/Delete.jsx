@@ -1,22 +1,25 @@
 import React, { useState } from 'react'
-import { firestore } from './Firebase'
-import { doc, deleteDoc } from 'firebase/firestore'
+// import { firestore } from './Firebase'
+// import { doc, deleteDoc } from 'firebase/firestore'
+import axios from 'axios';
 
 const Delete = () => {
   const [deleteId, setDeleteId] = useState("");
   const handleDelete = (e) => {
     const data = e.target.value;
     setDeleteId(data);
-    console.log(data);
+    // console.log(data);
   }
   const deleteProduct = async (e) => {
     e.preventDefault();
     try {
-      await deleteDoc(doc(firestore, "products", deleteId));
-      alert("product delete");
+      const deleteProduct=await axios.delete(`http://localhost:3000/skilcenta/api/v1/market/delete/product/${deleteId}`);
+     alert(deleteProduct.data.message);
     }
     catch (error) {
       console.log(error);
+      alert("check console");
+      return;
     }
   }
   return (
