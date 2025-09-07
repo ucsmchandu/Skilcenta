@@ -24,7 +24,7 @@ import OrdersPage from './pages/OrdersPage'
 import AllOrders from './Adminpanel/AllOrders'
 import Scroll from './components/Scroll'
 import ResourceFile from './Adminpanel/ResourceFile'
-import Uploadfiles from './components/Uploadfiles'
+import SellerDashboard from './pages/SellerDashboard'
 const App = () => {
   return (
     <AuthContextProvider>
@@ -40,6 +40,11 @@ const App = () => {
         <Route path="contact" element={
           <ProtectedRoute>
             <Contact/>
+          </ProtectedRoute>
+        }/>
+         <Route path="sellerDashboard" element={
+          <ProtectedRoute>
+            <SellerDashboard/>
           </ProtectedRoute>
         }/>
         <Route path="profile" element={

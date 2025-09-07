@@ -41,9 +41,9 @@ const Market = () => {
     />
   </div>
   <div className="relative sm:-top-3 lg:top-0 ">
-    <Link to="/sellitem">
+    <Link to="/sellerDashboard">
       <button className="flex items-center gap-2 px-5 py-2 rounded-xl cursor-pointer bg-gradient-to-r from-pink-500 via-orange-400 to-yellow-400 text-white font-bold shadow-lg hover:scale-105 hover:from-pink-600 hover:to-yellow-500 transition-all duration-200 text-base">
-        <span className="text-lg">+</span> Sell Item
+        <span className="text-lg">+</span>Seller Dashboard
       </button>
     </Link>
   </div>
@@ -51,8 +51,15 @@ const Market = () => {
 <div className="flex flex-wrap gap-2 mt-4 md:-mt-3">
   <div className="flex flex-wrap gap-2 mt-4">
     <Link to="/orders">
-      <button className="px-5 py-2 rounded-xl bg-gradient-to-r bg-blue-400 cursor-pointer text-white font-bold shadow-lg hover:scale-105 transition-all duration-200 text-base">
-        Your Orders
+      <button className="flex space-x-1 px-5 py-2 rounded-xl bg-gradient-to-r bg-blue-400 cursor-pointer text-white font-bold shadow-lg hover:scale-105 transition-all duration-200 text-base">
+        <span><img src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1757259056/order_rf29nq.png" alt="" className="h-7" /></span> <span className="mt-0.5 font-semibold">Orders</span>
+      </button>
+    </Link>
+  </div>
+    <div className="flex flex-wrap gap-2 mt-4">
+    <Link to="/sellitem">
+      <button className="px-5 py-2.5 rounded-xl bg-gradient-to-r bg-blue-400 cursor-pointer text-white font-bold shadow-lg hover:scale-105 transition-all duration-200 text-base">
+        + Sell Item
       </button>
     </Link>
   </div>
