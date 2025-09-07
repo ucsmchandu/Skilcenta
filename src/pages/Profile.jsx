@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 
 const Profile = () => {
   const { currentUser } = useAuth();
-
+  // console.log(currentUser);
   const handleLogout = async () => {
     try {
       await auth.signOut();

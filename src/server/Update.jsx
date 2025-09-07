@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { useAuth } from "../contextApi/AuthContext";
 const Update = () => {
   const {currentUser}=useAuth();
@@ -45,7 +46,7 @@ const Update = () => {
         productImageUrl: form.productImageUrl.trim(),
       }
 
-      const res=await axios.put(`http://localhost:3000/skilcenta/api/v1/market/update/product/${updateId}`,updateProduct);
+      const res=await axios.put(`http://localhost:3000/skilcenta/api/v1/market/update/product/${updateId.trim()}`,updateProduct);
       alert("Product updated!");
       setForm({
         sellerId: "",

@@ -49,36 +49,22 @@ const Admin = () => {
     e.preventDefault();
     try {
       const product = {
-        sellerId: form.sellerId,
-        sellerName: form.sellerName,
-        productName: form.productName,
-        sellerAddress: form.sellerAddress,
-        sellerCollege: form.sellerCollege,
-        sellerEmail: form.sellerEmail,
-        sellerPhone: form.sellerPhone,
-        productDescription: form.productDescription,
-        productPrice: form.productPrice,
-        productImageUrl: form.productImageUrl,
+        sellerId: form.sellerId.trim(),
+        sellerName: form.sellerName.trim(),
+        productName: form.productName.trim(),
+        sellerAddress: form.sellerAddress.trim(),
+        sellerCollege: form.sellerCollege.trim(),
+        sellerEmail: form.sellerEmail.trim(),
+        sellerPhone: form.sellerPhone.trim(),
+        productDescription: form.productDescription.trim(),
+        productPrice: form.productPrice.trim(),
+        productImageUrl: form.productImageUrl.trim(),
       };
       const res = await axios.post(
         "http://localhost:3000/skilcenta/api/v1/market/add/product",
         product
       );
-      console.log(res);
-
-      const newProduct = {
-        sellerId: form.sellerId,
-        sellerName: form.sellerName,
-        productName: form.productName,
-        sellerAddress: form.sellerAddress,
-        sellerCollege: form.sellerCollege,
-        sellerEmail: form.sellerEmail,
-        sellerPhone: form.sellerPhone,
-        productDescription: form.productDescription,
-        productPrice: form.productPrice,
-        productImageUrl: form.productImageUrl,
-      };
-      setProducts([...products, newProduct]);
+      // console.log(res);
       setForm({
         sellerId: "",
         sellerName: "",
@@ -117,9 +103,6 @@ const Admin = () => {
   );
 
   return (
-    // {
-    //   currentUser.email==="chanduuppu0@gmail.com" ?():()
-    // }
     <div className="min-h-screen mt-30 bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-8 px-2 flex flex-col items-center">
       {currentUser.email === "chanduuppu0@gmail.com" ? (
         <>
@@ -272,7 +255,7 @@ const Admin = () => {
                 className="ml-3 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
                 onClick={() => {
                   setProducts((prev) =>
-                    [...prev].sort((a, b) => Number(a.id) - Number(b.id))
+                    [...prev].sort((a, b) => a._id.localeCompare(b._id))
                   );
                 }}
                 style={{ whiteSpace: "nowrap" }}

@@ -14,6 +14,11 @@ const ProductBuy = () => {
   const productName = params.get("name") || "";
   const price = params.get("cost") || "";
   const id = params.get("id") || ""; //this is product id
+  if (!currentUser) {
+  toast.error("You must be logged in to place an order.");
+  setLoading(false);
+  return;
+}
   const [form, setForm] = useState({
     buyerName: "",
     buyerEmail: "",
@@ -62,17 +67,17 @@ const ProductBuy = () => {
     }
     try {
       const orderDetails = {
-        sellerId: productDetails.sellerId,
-        buyerName: form.buyerName,
-        sellerName: productDetails.sellerName,
-        productName: productName,
-        productImageUrl: productDetails.productImageUrl,
-        buyerEmail: form.buyerEmail,
-        buyerAddress: form.buyerAddress,
-        buyerBranch: form.buyerBranch,
-        buyerPhone: form.buyerPhone,
-        buyerYear: form.buyerYear,
-        productPrice: price,
+        sellerId: productDetails.sellerId.trim(),
+        buyerName: form.buyerName.trim(),
+        sellerName: productDetails.sellerName.trim(),
+        productName: productName.trim(),
+        productImageUrl: productDetails.productImageUrl.trim(),
+        buyerEmail: form.buyerEmail.trim(),
+        buyerAddress: form.buyerAddress.trim(),
+        buyerBranch: form.buyerBranch.trim(),
+        buyerPhone: form.buyerPhone.trim(),
+        buyerYear: form.buyerYear.trim(),
+        productPrice: price.trim(),
       };
       // api path for the calling
       const res = await axios.post(
@@ -81,31 +86,33 @@ const ProductBuy = () => {
       );
       // for customer
       const orderedMail = {
-        email: form.buyerEmail,
-        name: form.buyerName,
-        productName: productName,
-        cost: price,
-        description: productDetails.productDescription || "",
+        email: form.buyerEmail.trim(),
+        name: form.buyerName.trim(),
+        productName: productName.trim(),
+        cost: price.trim(),
+        description: productDetails.productDescription || "".trim(),
       };
       const adminMail = {
-        productName: productName,
-        buyerAddress: form.buyerAddress,
-        buyerPhone: form.buyerPhone,
-        price: price,
-        productId: id,
+        productName: productName.trim(),
+        buyerAddress: form.buyerAddress.trim(),
+        buyerPhone: form.buyerPhone.trim(),
+        price: price.trim(),
+        productId: id.trim(),
       };
 
       const custRes = await axios.post(
-        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/customer/buy`,
+        `${
+          import.meta.env.VITE_SKILCENTA_URL
+        }/skilcenta/api/v1/mail/customer/buy`,
         orderedMail
       );
-      console.log("Mail sent success for customer :", custRes.data);
+      // console.log("Mail sent success for customer :", custRes.data);
 
       const adminRes = await axios.post(
         `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/admin/buy`,
         adminMail
       );
-      console.log("mail sent success for admin", adminRes);
+      // console.log("mail sent success for admin", adminRes);
 
       setForm({
         buyerName: "",

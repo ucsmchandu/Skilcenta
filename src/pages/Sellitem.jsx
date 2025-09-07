@@ -3,14 +3,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuth } from "../contextApi/AuthContext";
 const Sellitem = () => {
-  const {currentUser}=useAuth();
+  const { currentUser } = useAuth();
   const [form, setForm] = useState({
     productName: "",
     sellerName: "",
     email: "",
     phone: "",
     address: "",
-    college:"",
+    college: "",
     description: "",
     price: "",
     image: null,
@@ -57,14 +57,14 @@ const Sellitem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-     const phoneRegex=/^[6-9]\d{9}$/;
-        if(!phoneRegex.test(form.phone)){
-          toast.error("Enter valid phone number!",{
-            position:'top-left'
-          })
-          setLoading(false);
-          return;
-        }
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phoneRegex.test(form.phone)) {
+      toast.error("Enter valid phone number!", {
+        position: "top-left",
+      });
+      setLoading(false);
+      return;
+    }
     try {
       const file = e.target.image.files[0];
       const imgUrl = await uploadImageToCloudinary(file);
@@ -77,25 +77,34 @@ const Sellitem = () => {
       }
 
       const templateParams = {
-        sellerId:currentUser.uid,
-        productName: form.productName,
-        name: form.sellerName,
-        email: form.email,
-        phone: form.phone,
-        address: form.address,
-        college:form.college,
-        price: form.price,
-        description: form.description,
-        image: imgUrl,
+        sellerId: currentUser.uid.trim(),
+        productName: form.productName.trim(),
+        name: form.sellerName.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        address: form.address.trim(),
+        college: form.college.trim(),
+        price: form.price.trim(),
+        description: form.description.trim(),
+        image: imgUrl.trim(),
       };
 
       //for customer
-      const custRes=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/customer/sell`,templateParams);
+      const custRes = await axios.post(
+        `${
+          import.meta.env.VITE_SKILCENTA_URL
+        }/skilcenta/api/v1/mail/customer/sell`,
+        templateParams
+      );
       // console.log("mail sent to customer",custRes);
 
-
       //for admin
-      const adminRes=await axios.post(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/admin/sell`,templateParams);
+      const adminRes = await axios.post(
+        `${
+          import.meta.env.VITE_SKILCENTA_URL
+        }/skilcenta/api/v1/mail/admin/sell`,
+        templateParams
+      );
       // console.log("mail send to admin",adminRes);
 
       toast.success("Details submitted successfully", {
@@ -111,14 +120,14 @@ const Sellitem = () => {
     } finally {
       setLoading(false);
     }
-   // console.log(form);
+    // console.log(form);
     setForm({
       productName: "",
       sellerName: "",
       email: "",
       phone: "",
       address: "",
-      college:"",
+      college: "",
       description: "",
       price: "",
       image: null,
@@ -126,9 +135,9 @@ const Sellitem = () => {
     e.target.reset();
   };
 
-  const scrollToTop=()=>{
-    window.scrollTo(0,0);
-  }
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="mt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-10">
@@ -308,7 +317,7 @@ const Sellitem = () => {
             />
           </div>
           <button
-          onClick={()=>scrollToTop()}
+            onClick={() => scrollToTop()}
             type="submit"
             className="w-full bg-gradient-to-r cursor-pointer from-orange-500 to-orange-600 text-white py-3 rounded-lg font-bold text-lg shadow hover:from-orange-600 hover:to-orange-700 transition-all"
           >
