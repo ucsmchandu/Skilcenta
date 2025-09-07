@@ -3,11 +3,14 @@ import Productcard from "./Productcard";
 import axios from "axios";
 
 const Productlistings = ({ search }) => {
+  const [orders,setOrders]=useState([]);
+  const [ordersMap,setOrdersMap]=useState(new Map());
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const getProducts = async () => {
     setLoading(true);
     try {
+      // fetching all products from here
       const res = await axios.get(
         `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/all/products`
       );
@@ -20,8 +23,30 @@ const Productlistings = ({ search }) => {
     }
   };
 
+  // newMap.set(key, value);
+  //       return newMap;
+
+  const getOrders=async()=>{
+    try{
+      const res=await axios.get(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/all/orders`);
+      setOrders(res.data.orders);
+      // setting the number of orders
+     const map=new Map();
+     res.data.orders.forEach(order=>{
+      map.set(order.productId,(map.get(order.productId) || 0)+1);
+     });
+     setOrdersMap(map);
+    //  console.log(map);
+      // console.log(ordersMap);
+    }catch(err){
+      console.log(err);
+      console.log("Error from the product listings",err.message);
+    }
+  }
+
   useEffect(() => {
     getProducts();
+    getOrders();
   }, []);
 
   const filteredProducts = search
@@ -64,7 +89,7 @@ const Productlistings = ({ search }) => {
       ) : filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
           <li key={product._id} className="w-full">
-            <Productcard product={product} />
+            <Productcard product={product} orderCount={ordersMap.get(product._id) || 0} />
           </li>
         ))
       ) : (
