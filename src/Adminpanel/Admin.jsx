@@ -12,7 +12,7 @@ const Admin = () => {
   const getProducts = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/skilcenta/api/v1/market/get/all/products"
+        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/all/products`
       );
       // console.log(res);
       setProducts(res.data.products);
@@ -61,12 +61,12 @@ const Admin = () => {
         productImageUrl: form.productImageUrl.trim(),
       };
       const res = await axios.post(
-        "http://localhost:3000/skilcenta/api/v1/market/add/product",
+        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/add/product`,
         product
       );
       // console.log(res);
       const sendMail=await axios.post(
-        "http://localhost:3000/skilcenta/api/v1/mail/product/live",
+        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/mail/product/live`,
         product
       );
       setForm({

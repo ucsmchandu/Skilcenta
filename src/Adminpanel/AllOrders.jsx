@@ -8,7 +8,7 @@ const AllOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try{
-        const res=await axios.get('http://localhost:3000/skilcenta/api/v1/market/all/orders');
+        const res=await axios.get(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/all/orders`);
         console.log(res);
         setOrders(res.data.orders);
       }catch(err){

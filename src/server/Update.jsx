@@ -46,7 +46,7 @@ const Update = () => {
         productImageUrl: form.productImageUrl.trim(),
       }
 
-      const res=await axios.put(`http://localhost:3000/skilcenta/api/v1/market/update/product/${updateId.trim()}`,updateProduct);
+      const res=await axios.put(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/update/product/${updateId.trim()}`,updateProduct);
       alert("Product updated!");
       setForm({
         sellerId: "",

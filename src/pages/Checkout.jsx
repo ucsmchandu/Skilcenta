@@ -23,7 +23,7 @@ const Checkout = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:3000/skilcenta/api/v1/market/get/product/${id}`
+        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/product/${id}`
       );
       // console.log(res);
       setProduct(res.data.product);

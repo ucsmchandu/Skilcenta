@@ -13,7 +13,7 @@ const OrdersPage = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:3000/skilcenta/api/v1/market/get/ordered/product/${currentUser.uid}`
+        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/ordered/product/${currentUser.uid}`
       );
       console.log(res);
       setOrders(res.data.products);

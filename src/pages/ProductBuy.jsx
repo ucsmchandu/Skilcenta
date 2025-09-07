@@ -33,7 +33,7 @@ const ProductBuy = () => {
     setLoading(true);
     try {
       const getProductDetails = await axios.get(
-        `http://localhost:3000/skilcenta/api/v1/market/get/product/${id}`
+        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/product/${id}`
       );
       // console.log(getProductDetails);
       setProductDetails(getProductDetails.data.product);
@@ -81,7 +81,7 @@ const ProductBuy = () => {
       };
       // api path for the calling
       const res = await axios.post(
-        `http://localhost:3000/skilcenta/api/v1/market/order/product/${id}/${currentUser.uid}`,
+        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/order/product/${id}/${currentUser.uid}`,
         orderDetails
       );
       // for customer

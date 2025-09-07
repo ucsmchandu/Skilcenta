@@ -13,7 +13,7 @@ const Delete = () => {
   const deleteProduct = async (e) => {
     e.preventDefault();
     try {
-      const deleteProduct=await axios.delete(`http://localhost:3000/skilcenta/api/v1/market/delete/product/${deleteId.trim()}`);
+      const deleteProduct=await axios.delete(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/delete/product/${deleteId.trim()}`);
      alert(deleteProduct.data.message);
     }
     catch (error) {

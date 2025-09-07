@@ -9,7 +9,7 @@ const Productlistings = ({ search }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "http://localhost:3000/skilcenta/api/v1/market/get/all/products"
+        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/all/products`
       );
       // console.log(res.data.products);
       setProducts(res.data.products);
