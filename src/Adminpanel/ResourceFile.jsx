@@ -17,15 +17,6 @@ const ResourceFile = () => {
       // file:null
       url:''
     });
-    /*
-    title:dbms notes
-    branch:it
-    year:2nd year
-    sem:1st sem
-    category:gate/upsc/academic
-    description:some stuff
-    file:pdf  
-    */
   
     const handleChange=(e)=>{
       const {name,value}=e.target;
@@ -34,17 +25,6 @@ const ResourceFile = () => {
   
     const handleSubmit=async(e)=>{
       e.preventDefault();
-      // const formData=new FormData();
-      // formData.append("id",data.id);
-      // formData.append("author",data.author);
-      // formData.append("branch",data.branch);
-      // formData.append("year",data.year);
-      // formData.append("sem",data.sem);
-      // formData.append("file",data.file);
-      // formData.append("url",data.url);
-      // formData.append("title",data.title);
-      // formData.append("description",data.description);
-      // formData.append("category",data.category);
        const emailBody={
       id:data.id.trim(),
       author:data.author.trim(),

@@ -65,6 +65,10 @@ const Admin = () => {
         product
       );
       // console.log(res);
+      const sendMail=await axios.post(
+        "http://localhost:3000/skilcenta/api/v1/mail/product/live",
+        product
+      );
       setForm({
         sellerId: "",
         sellerName: "",
