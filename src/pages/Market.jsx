@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Productlistings from "../components/Productlistings";
 import { Link } from "react-router-dom";
+import MarketPlacePopup from "../components/MarketPlacePopup";
 const Market = () => {
   const [search,setSearch]=useState('');
 
@@ -8,9 +9,24 @@ const Market = () => {
     setSearch(e.target.value);
     // console.log(search);
   }
-  
+  const message={
+    title:"Welcome to Skilcenta Marketplace!",
+    subTitle:"Here’s how ordering works:"
+  }
+  const points=[
+    <>
+      If you’re the <strong>first buyer</strong>, your chance of getting the product is highest (100%).
+    </>,
+    <>
+      If multiple buyers order the same product, the chance is <strong>shared fairly</strong> among everyone.
+      </>,
+      <>
+      The earlier you place your order, the <strong>better your chances!</strong>
+      </>
+  ]
   return (
     <div className="mt-30">
+      <MarketPlacePopup message={message} points={points}/>
       <div className=" flex flex-col shadow-lg p-6 justify-center rounded-2xl text-white h-auto items-center m-6 bg-gradient-to-r from-[#80B3FF] to-[#f5dbdb]">
         <h1 className="text-4xl md:text-6xl  text-black font-serif mb-4">
           Student Marketplace

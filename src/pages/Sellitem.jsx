@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuth } from "../contextApi/AuthContext";
+import MarketPlacePopup from "../components/MarketPlacePopup";
 const Sellitem = () => {
   const { currentUser } = useAuth();
   const [form, setForm] = useState({
@@ -138,14 +139,42 @@ const Sellitem = () => {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
+  const msgData={
+    title:" Ready to Sell on Skilcenta?",
+    subTitle:"Before you list your product, please follow these rules:"
+  }
+  const points=[
+    <>
+     Provide a <span className="font-semibold">clear title</span> and
+            accurate description.
+    </>,
+    <>
+     Upload a <span className="font-semibold">good quality image</span>{" "}
+            (so buyers trust your listing).
+    </>,
+    <>
+    Set a <span className="font-semibold">fair price</span> to attract
+            more buyers.
+    </>,
+    <>
+    Keep your product info <span className="font-semibold">honest</span>{" "}
+            — it builds credibility.
+    </>,
+    <>
+     Once someone <span className="font-semibold">orders your product</span>, 
+    you must <span className="font-semibold">submit it to our team</span>. 
+    Our team will come and <span className="font-semibold">receive the product ASAP</span>.
+    </>
+  ]
 
   return (
     <div className="mt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-10">
+      <MarketPlacePopup message={msgData} points={points}/>
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8">
         <h2 className="text-3xl font-extrabold text-gray-900 mb-2 text-center">
           Sell Your Product
         </h2>
-        <p className="text-gray-600 mb-8 text-center">
+        <p className="text-red-600 mb-8 text-center">
           Fill in the details below. Your product info will be sent to the site
           administrator for approval.
         </p>
@@ -324,7 +353,7 @@ const Sellitem = () => {
             Submit for Review
           </button>
         </form>
-        <div className="mt-8 text-center text-gray-500 text-sm">
+        <div className="mt-8 text-center text-red-500 text-sm">
           Your product details will be reviewed by the administrator before
           being listed.
         </div>

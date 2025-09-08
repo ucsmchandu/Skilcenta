@@ -22,9 +22,9 @@ const OrderPop = () => {
           Thank you for your purchase. You will receive a confirmation email soon.<br />
           For any queries, feel free to <Link to="/contact" className="text-blue-600 font-semibold hover:underline">contact us</Link>.
         </p>
-        <Link to="/" className="mt-4">
-          <button className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-3 rounded-xl font-bold text-lg shadow-lg hover:from-green-600 hover:to-blue-600 transition">
-            Back to Home
+        <Link to="/orders" className="mt-4">
+          <button className="cursor-pointer bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-3 rounded-xl font-bold text-lg shadow-lg hover:from-green-600 hover:to-blue-600 transition">
+            Go to Orders
           </button>
         </Link>
       </div>
