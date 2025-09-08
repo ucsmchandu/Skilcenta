@@ -61,55 +61,57 @@ const Checkout = () => {
 
   return (
     <>
-      <div className="min-h-screen mt-20 md:mt-0 flex items-center justify-center bg-gradient-to-br from-[#f5f7fa] to-[#c3cfe2] py-10">
-        <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-10 flex flex-col md:flex-row items-center gap-12 border-2 border-blue-100">
+      <div className="text-md min-h-screen mt-20 md:mt-10 flex items-center justify-center bg-gray-100 py-10">
+        <div className="w-full max-w-4xl bg-white rounded-xl shadow-2xl p-10 flex flex-col md:flex-row items-center gap-12  ">
           <img
             src={product.productImageUrl || "https://via.placeholder.com/300"}
             alt={product.productName}
-            className="w-80 h-auto object-cover rounded-2xl border-4 border-blue-300 shadow-lg transition-transform hover:scale-105"
+            className="w-80 h-auto object-cover rounded-2xl border-4 border-gray-400 shadow-lg transition-transform hover:scale-105"
           />
-          <div className="flex-1">
-            <h2 className="text-4xl font-extrabold text-blue-800 mb-4">
+          <div className="flex-1 ">
+            <h2 className="text-2xl font-light text-black mb-4 border-2 border-cyan-200 rounded p-1 bg-cyan-100">
               {product.productName}
             </h2>
-            <p className="text-xl text-gray-700 mb-3">
-              <span className="font-semibold text-blue-700">Owner:</span>
-              <span className="font-semibold text-gray-900 ml-2">
+            <hr className="border-dashed mb-3" />
+           <div className="border-3 border-[#d5f4c5] p-2 rounded-lg bg-[#ECFAE5] text-white shadow-md mb-2">
+             <p className="text-lg text-gray-800 mb-3">
+              <span className="font-semibold text-gray-800">Seller:</span>
+              <span className="font-semibold  text-gray-500  ml-2">
                 {product.sellerName}
               </span>
             </p>
-            <p className="text-xl text-gray-700 mb-3">
-              <span className="font-semibold text-blue-700">Cost:</span>
-              <span className="font-semibold text-green-700 ml-2 text-2xl">
+            <p className="text-lg text-gray-800 mb-3">
+              <span className="font-semibold text-gray-800">Cost:</span>
+              <span className="font-semibold text-emerald-700 ml-2 text-xl">
                 ₹{product.productPrice}
               </span>
             </p>
-            <p className="text-lg text-gray-700 mb-3">
-              <span className="font-semibold text-blue-700">Description:</span>
-              <span className="font-medium text-gray-900 ml-2">
+            <p className="text-lg text-gray-800 mb-3">
+              <span className="font-semibold text-gray-800">Description:</span>
+              <span className="font-medium text-gray-500 ml-2">
                 {product.productDescription}
               </span>
             </p>
-            {/* <p className="text-lg text-gray-700 mb-3">
-            <span className="font-semibold text-blue-700">Contact Owner:</span>
-            <span className="font-medium text-gray-900 ml-2">{product.email}</span>
-          </p> */}
-            <p className="text-lg text-gray-700 mb-3">
-              <span className="font-semibold text-blue-700">
-                Owner Address:
+            <p className="text-lg text-gray-800 mb-3">
+              <span className="font-semibold text-gray-800">
+                Seller Address:
               </span>
-              <span className="font-medium text-gray-900 ml-2">
+              <span className="font-medium text-gray-500 ml-2">
                 {product.sellerAddress}
               </span>
             </p>
-            <p className="text-lg text-gray-700 mb-3">
-              <span className="font-semibold text-blue-700">
-                Owner college:
+            <p className="text-lg text-gray-800 mb-3">
+              <span className="font-semibold text-gray-800">
+                Seller college:
               </span>
-              <span className="font-medium text-gray-900 ml-2">
+              <span className="font-medium text-gray-500 ml-2">
                 {product.sellerCollege}
               </span>
             </p>
+           </div>
+            <span className="font-medium text-red-600 ml-2">
+               Payment Mode: Only Cash On Delivery(COD)
+              </span>
             <div className="mt-6 flex items-center bg-blue-50 rounded-lg p-3">
               <img
                 src="https://res.cloudinary.com/dllvcgpsk/image/upload/v1751291333/info_fbbhkq.png"
@@ -129,7 +131,7 @@ const Checkout = () => {
             <div className="mt-8 flex justify-end">
               <button
                 onClick={buyProduct}
-                className="px-8 py-3 cursor-pointer bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold text-lg shadow-lg hover:from-blue-700 hover:to-indigo-700 transition"
+                className="px-7 py-2 cursor-pointer bg-gradient-to-r from-yellow-300 to-yellow-400 text-black rounded-xl font-medium shadow-md hover:shadow-lg"
               >
                 Proceed to Buy
               </button>

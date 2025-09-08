@@ -139,45 +139,82 @@ const Sellitem = () => {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
-  const msgData={
-    title:" Ready to Sell on Skilcenta?",
-    subTitle:"Before you list your product, please follow these rules:"
-  }
-  const points=[
+  const msgData = {
+    title: " Ready to Sell on Skilcenta?",
+    subTitle: "Before you list your product, please follow these rules:",
+  };
+  const points = [
     <>
-     Provide a <span className="font-semibold">clear title</span> and
-            accurate description.
+      Provide a <span className="font-semibold">clear title</span> and accurate
+      description.
     </>,
     <>
-     Upload a <span className="font-semibold">good quality image</span>{" "}
-            (so buyers trust your listing).
+      Upload a <span className="font-semibold">good quality image</span> (so
+      buyers trust your listing).
     </>,
     <>
-    Set a <span className="font-semibold">fair price</span> to attract
-            more buyers.
+      Set a <span className="font-semibold">fair price</span> to attract more
+      buyers.
     </>,
     <>
-    Keep your product info <span className="font-semibold">honest</span>{" "}
-            — it builds credibility.
+      Keep your product info <span className="font-semibold">honest</span> — it
+      builds credibility.
     </>,
     <>
-     Once someone <span className="font-semibold">orders your product</span>, 
-    you must <span className="font-semibold">submit it to our team</span>. 
-    Our team will come and <span className="font-semibold">receive the product ASAP</span>.
-    </>
-  ]
+      Once someone <span className="font-semibold">orders your product</span>,
+      you must <span className="font-semibold">submit it to our team</span>. Our
+      team will come and{" "}
+      <span className="font-semibold">receive the product ASAP</span>.
+    </>,
+  ];
 
   return (
     <div className="mt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fafc] to-[#e0e7ff] py-10">
-      <MarketPlacePopup message={msgData} points={points}/>
+      <MarketPlacePopup message={msgData} points={points} />
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8">
         <h2 className="text-3xl font-extrabold text-gray-900 mb-2 text-center">
           Sell Your Product
         </h2>
-        <p className="text-red-600 mb-8 text-center">
-          Fill in the details below. Your product info will be sent to the site
-          administrator for approval.
-        </p>
+        <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <h2 className="text-lg font-semibold text-gray-800 mb-2">
+             Selling Instructions
+          </h2>
+          <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
+            <li>
+              Every product will be{" "}
+              <span className="font-semibold">reviewed by admin</span> before
+              approval.
+            </li>
+            <li>
+              Products with{" "}
+              <span className="font-semibold">
+                false details, fake images, or misleading prices
+              </span>{" "}
+              will be rejected.
+            </li>
+            <li>
+              Once a buyer orders, you must{" "}
+              <span className="font-semibold">
+                submit the product to our team
+              </span>{" "}
+              immediately.
+            </li>
+            <li>
+              Our team will{" "}
+              <span className="font-semibold">collect the product ASAP</span>{" "}
+              and deliver it to the buyer.
+            </li>
+            <li>
+              Payments are currently{" "}
+              <span className="font-semibold">Cash on Delivery (COD)</span> and{" "}
+              <span className="font-semibold">Offline only</span>.
+            </li>
+            <li>
+              ⚠ Repeated violations may lead to{" "}
+              <span className="font-semibold">account suspension</span>.
+            </li>
+          </ul>
+        </div>
         {loading ? (
           <div className="flex flex-col items-center py-12">
             <svg

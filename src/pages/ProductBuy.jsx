@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contextApi/AuthContext";
+import PlaceOrderPopup from "../components/PlaceOrderPopup";
 const ProductBuy = () => {
   const [loading, setLoading] = useState(false);
   const [productDetails, setProductDetails] = useState([]); //getting products from the backend database
@@ -15,10 +16,10 @@ const ProductBuy = () => {
   const price = params.get("cost") || "";
   const id = params.get("id") || ""; //this is product id
   if (!currentUser) {
-  toast.error("You must be logged in to place an order.");
-  setLoading(false);
-  return;
-}
+    toast.error("You must be logged in to place an order.");
+    setLoading(false);
+    return;
+  }
   const [form, setForm] = useState({
     buyerName: "",
     buyerEmail: "",
@@ -33,7 +34,9 @@ const ProductBuy = () => {
     setLoading(true);
     try {
       const getProductDetails = await axios.get(
-        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/product/${id}`
+        `${
+          import.meta.env.VITE_SKILCENTA_URL
+        }/skilcenta/api/v1/market/get/product/${id}`
       );
       // console.log(getProductDetails);
       setProductDetails(getProductDetails.data.product);
@@ -81,7 +84,9 @@ const ProductBuy = () => {
       };
       // api path for the calling
       const res = await axios.post(
-        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/order/product/${id}/${currentUser.uid}`,
+        `${
+          import.meta.env.VITE_SKILCENTA_URL
+        }/skilcenta/api/v1/market/order/product/${id}/${currentUser.uid}`,
         orderDetails
       );
       // for customer
@@ -150,16 +155,59 @@ const ProductBuy = () => {
   // const scrollToTop=()=>{
   //   window.scrollTo(0,0);
   // }
+  // 📝 Ordering Instructions
 
+  // ✔ Provide accurate details (name, address, contact) for smooth delivery.
+
+  // 💳 Currently, payments are only via Cash on Delivery (COD) and Offline payments.
+
+  // 📦 Once you place an order, please be available when our team arrives to deliver or collect payment.
+
+  // ⚠ Fake or incomplete orders may lead to cancellation or account restrictions.
+
+  // ⏳ Delivery/pickup time will be communicated by our team — stay responsive.
   return (
     <div className="min-h-screen mt-20 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-10">
+      <PlaceOrderPopup />
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white rounded-2xl shadow-2xl p-8 flex flex-col gap-4"
+        className=" w-lg md:w-2xl bg-white rounded-xl shadow-2xl p-8 flex flex-col gap-4"
       >
-        <h2 className="text-2xl font-bold text-indigo-800 mb-4 text-center">
+        <h2 className="text-2xl font-semibold text-blue-400 mb-4 text-center">
           Place Order
         </h2>
+        <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <h2 className="text-lg font-semibold text-gray-800 mb-2">
+           Ordering Instructions
+          </h2>
+          <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
+            <li>
+              Provide <span className="font-semibold">accurate details</span>{" "}
+              for smooth delivery.
+            </li>
+            <li>
+              Payments accepted:{" "}
+              <span className="font-semibold">Cash on Delivery (COD)</span> and{" "}
+              <span className="font-semibold">Offline payments</span>.
+            </li>
+            <li>
+              Be available when our team arrives to{" "}
+              <span className="font-semibold">deliver or collect payment</span>.
+            </li>
+            <li>
+              ⚠ Fake or incomplete orders may lead to{" "}
+              <span className="font-semibold">
+                cancellation or account restrictions
+              </span>
+              .
+            </li>
+            <li>
+              Our team will inform you about the{" "}
+              <span className="font-semibold">delivery/pickup time</span> —
+              please stay responsive.
+            </li>
+          </ul>
+        </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Product Name
