@@ -9,7 +9,7 @@ const AllOrders = () => {
     const fetchOrders = async () => {
       try{
         const res=await axios.get(`${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/all/orders`);
-        console.log(res);
+        // console.log(res);
         setOrders(res.data.orders);
       }catch(err){
         console.log(err);
@@ -46,6 +46,7 @@ const AllOrders = () => {
         <table className="min-w-full bg-white rounded-xl shadow text-sm">
           <thead>
             <tr className="bg-gray-100">
+              <th className="py-2 px-3">Ordered Date</th>  
               <th className="py-2 px-3">Product Id</th>  
               <th className="py-2 px-3">Order Id</th> 
                 <th className="py-2 px-3">Buyer ID</th>
@@ -72,6 +73,7 @@ const AllOrders = () => {
             ) : (
               filteredOrders.map((order) => (
                 <tr key={order._id} className="border-b">
+                  <td className="py-2 px-3">{order.createdAt.split("T")[0]}</td>
                   <td className="py-2 px-3">{order.productId}</td>
                   <td className="py-2 px-3">{order._id}</td>
                     <td className="py-2 px-3">{order.buyerId}</td>

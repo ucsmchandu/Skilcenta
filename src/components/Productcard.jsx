@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const Productcard = ({product,orderCount}) => {
-  // console.log(product._id);
+  // console.log(product);
   // console.log(orderCount);
   const [count,setCount]=useState('');
 
@@ -9,12 +9,13 @@ const Productcard = ({product,orderCount}) => {
     if(orderCount===0) {
       setCount(100);
     }else{
-      setCount(100/(orderCount+1));
+      const cal= orderCount+1;
+      setCount(100/cal);
     }
   }
   useEffect(()=>{
     calculateProbability();
-  },[]);
+  },[orderCount]);
 
   return (
     <div className="bg-white rounded-lg shadow-sm  hover:shadow-xl transition-shadow group">
@@ -39,6 +40,9 @@ const Productcard = ({product,orderCount}) => {
          <div className="text-sm text-gray-600 mb-4">
           Availability Chance :<span className="font-medium"> {count}%</span>{" "}{orderCount>0 ? (<span className="text-red-500">(WL)</span>):(<></>)}
         </div>
+        {/* <div className="text-sm text-gray-600 mb-4">
+          Availability Chance :<span className="font-medium">{product.createdAt.split("T")[0]}</span>
+        </div> */}
        <Link to={`/product/${product._id}`}>
         <button className="w-full bg-green-600 cursor-pointer text-white py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
           <span>Buy</span>

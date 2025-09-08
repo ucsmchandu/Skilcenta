@@ -9,7 +9,9 @@ const SellerDashboard = () => {
   const getProducts = async (req, res) => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/seller/products/${currentUser.uid}`
+        `${
+          import.meta.env.VITE_SKILCENTA_URL
+        }/skilcenta/api/v1/market/get/seller/products/${currentUser.uid}`
       );
       console.log(res);
       setProducts(res.data.products);
@@ -28,11 +30,11 @@ const SellerDashboard = () => {
           <div className="flex flex-col space-y-4 mt-10 w-full">
             <button
               onClick={() => navigate("/sellitem")}
-              className="bg-[#FFD6BA] cursor-pointer w-full p-3 text-left rounded-lg  hover:shadow-md transition"
+              className="bg-[#FFD6BA] cursor-pointer w-full p-3 text-left rounded-lg shadow-sm  hover:shadow-md transition"
             >
               ➕ Sell Item
             </button>
-            <button className="bg-[#EBFFD8] cursor-pointer w-full p-3 text-left rounded-lg  hover:shadow-md transition">
+            <button className="bg-[#EBFFD8] cursor-pointer w-full p-3 text-left rounded-lg shadow-sm  hover:shadow-md transition">
               📦 My Products
             </button>
           </div>
@@ -55,8 +57,12 @@ const SellerDashboard = () => {
               <option value="" disabled>
                 Select
               </option>
-              <option value="sell" className="bg-[#EBFFD8] ">➕ Sell Item</option>
-              <option value="products" className="bg-[#FFD6BA] ">📦 My Products</option>
+              <option value="sell" className="bg-[#EBFFD8] ">
+                ➕ Sell Item
+              </option>
+              <option value="products" className="bg-[#FFD6BA] ">
+                📦 My Products
+              </option>
             </select>
           </div>
           {/* products here */}
@@ -104,9 +110,13 @@ const SellerDashboard = () => {
                     Best Price
                   </span> */}
                     </div>
-                    {/* <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg font-medium hover:bg-green-600 transition">
-                  Buy Now
-                </button> */}
+                    <a
+                      href={`https://skilcenta.vercel.app/product/${product._id}`}
+                    >
+                      <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg font-medium hover:bg-green-600 transition">
+                        Check Product
+                      </button>
+                    </a>
                   </div>
                 </div>
               ))

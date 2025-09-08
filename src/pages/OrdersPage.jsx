@@ -15,7 +15,7 @@ const OrdersPage = () => {
       const res = await axios.get(
         `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/ordered/product/${currentUser.uid}`
       );
-      console.log(res);
+      // console.log(res);
       setOrders(res.data.products);
     } catch (err) {
       console.log(err.message);
@@ -91,6 +91,9 @@ const OrdersPage = () => {
               </p>
               <p className="text-sm text-gray-500 mt-2 text-center">
                 Order ID: <span className="font-mono">{order._id}</span>
+              </p>
+               <p className="text-sm text-gray-500 mt-2 text-center">
+                Ordered On: <span className="font-mono">{order.createdAt.split("T")[0]}</span>
               </p>
               <p className="text-sm text-gray-800 mt-2 text-center">
                 Our team will contact you within Three days
