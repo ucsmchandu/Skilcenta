@@ -1,10 +1,9 @@
 import { li } from "motion/react-client";
 import React, { useState, useEffect } from "react";
 
-const MarketPlacePopup = ({ message, points }) => {
+const MarketPlacePopup = ({ message, points,warranty }) => {
   const [isOpen, setIsOpen] = useState(true);
   if (!isOpen) return null;
-
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-white/1 backdrop-blur-sm bg-opacity-40 z-50">
       <div className="bg-white w-96 rounded-xl shadow-lg p-6 relative">
@@ -25,7 +24,12 @@ const MarketPlacePopup = ({ message, points }) => {
                 {m}
             </li>
           ))}
+         
         </ul>
+       {
+        warranty ? (warranty[0]):(null)
+       }
+       <p className="mb-6"></p>
 
         <button
           onClick={() => setIsOpen(false)}

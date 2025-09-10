@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { auth } from "../server/Firebase";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contextApi/AuthContext";
 
@@ -8,14 +7,16 @@ const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const { currentUser } = useAuth();
+
   const fetchOrders = async () => {
     if (!currentUser) return;
     try {
       setLoading(true);
       const res = await axios.get(
-        `${import.meta.env.VITE_SKILCENTA_URL}/skilcenta/api/v1/market/get/ordered/product/${currentUser.uid}`
+        `${
+          import.meta.env.VITE_SKILCENTA_URL
+        }/skilcenta/api/v1/market/get/ordered/product/${currentUser.uid}`
       );
-      // console.log(res);
       setOrders(res.data.products);
     } catch (err) {
       console.log(err.message);
@@ -45,7 +46,8 @@ const OrdersPage = () => {
           Your Orders
         </span>
       </h2>
-      <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+
+      <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {orders.length === 0 ? (
           <div className="col-span-full flex flex-col items-center mt-20">
             <img
@@ -66,42 +68,68 @@ const OrdersPage = () => {
           orders.map((order) => (
             <div
               key={order._id}
-              className="bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center border-4 border-indigo-100 hover:shadow-indigo-300 transition-all duration-200"
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
             >
-              <div className="relative mb-6">
+              <div className="relative">
                 <img
                   src={
                     order.productImageUrl || "https://via.placeholder.com/300"
                   }
                   alt={order.productName || "Product"}
-                  className="w-56 h-56 object-cover rounded-2xl border-4 border-indigo-200 shadow-lg transition-transform hover:scale-105"
+                  className="w-full h-42 object-cover"
                 />
-                <span className="absolute top-2 right-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                <span className="absolute top-3 right-3 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow">
                   Ordered
                 </span>
               </div>
-              <h3 className="text-2xl font-extrabold text-indigo-800 mb-2 text-center">
-                {order.productName}
-              </h3>
-              <p className="text-lg text-gray-700 mb-1 text-center">
-                <span className="font-semibold text-indigo-600">Cost:</span>{" "}
-                <span className="text-green-700 font-bold text-xl">
+
+              <div className="p-6 flex flex-col space-y-3">
+                <h3 className="text-xl font-bold text-gray-900 text-center">
+                  {order.productName}
+                </h3>
+                <p className="text-lg font-semibold text-green-600 text-center">
                   ₹{order.productPrice}
-                </span>
-              </p>
-              <p className="text-sm text-gray-500 mt-2 text-center">
-                Order ID: <span className="font-mono">{order._id}</span>
-              </p>
-               <p className="text-sm text-gray-500 mt-2 text-center">
-                Ordered On: <span className="font-mono">{order.createdAt.split("T")[0]}</span>
-              </p>
-              <p className="text-sm text-gray-800 mt-2 text-center">
-                Our team will contact you within Three days
-              </p>
+                </p>
+
+                <div className="text-sm text-gray-600 space-y-1 text-center">
+                  <p>
+                    <span className="font-semibold text-gray-800">
+                      Order ID:
+                    </span>{" "}
+                    <span className="font-mono">{order._id}</span>
+                  </p>
+                  <p>
+                    <span className="font-semibold text-gray-800">
+                      Ordered On:
+                    </span>{" "}
+                    {order.createdAt.split("T")[0]}
+                  </p>
+                   <p>
+                    <span className="font-semibold text-gray-800">
+                     Warranty:
+                    </span>{" "}
+                    {order.warranty}
+                  </p>
+                </div>
+
+                <p className="text-sm text-gray-700 mt-2 text-center">
+                  Our team will contact you within{" "}
+                  <span className="font-semibold">3 days</span>
+                </p>
+                <div className="flex justify-center mt-4">
+                  <Link to="/contact">
+                    <button className="px-4 py-2 text-sm rounded-lg font-semibold bg-indigo-600 text-white hover:bg-indigo-700 transition cursor-pointer">
+                      Support
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           ))
         )}
       </div>
+
       <div className="mt-16 text-center text-gray-400 text-sm">
         Need help?{" "}
         <Link

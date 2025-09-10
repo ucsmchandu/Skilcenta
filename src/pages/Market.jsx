@@ -13,6 +13,27 @@ const Market = () => {
     title:"Welcome to Skilcenta Marketplace!",
     subTitle:"Here’s how ordering works:"
   }
+ const warranty = [
+  <>
+    <p className="font-semibold text-red-600">⚠️ Important Notice</p>
+    <p>
+      <span className="font-semibold">Warranty on products</span> is{" "}
+      <span className="font-semibold text-yellow-600">decided by the seller</span>.
+    </p>
+    <p>
+      If a seller provides a <span className="font-semibold text-green-600">warranty</span>, it will be clearly 
+      mentioned on the product details page.
+    </p>
+    <p>
+      If <span className="font-semibold text-red-600">no warranty</span> is provided by the seller, 
+      the product is considered{" "}
+      <span className="font-semibold text-yellow-600">pre-owned and sold as-is</span>. Skilcenta is{" "}
+      <span className="font-semibold text-red-600">not responsible</span> for such items.
+    </p>
+  </>,
+];
+
+
   const points=[
     <>
       If you’re the <strong>first buyer</strong>, your chance of getting the product is highest (100%).
@@ -26,7 +47,7 @@ const Market = () => {
   ]
   return (
     <div className="mt-30">
-      <MarketPlacePopup message={message} points={points}/>
+      <MarketPlacePopup message={message} points={points} warranty={warranty}/>
       <div className=" flex flex-col shadow-lg p-6 justify-center rounded-2xl text-white h-auto items-center m-6 bg-gradient-to-r from-[#80B3FF] to-[#f5dbdb]">
         <h1 className="text-4xl md:text-6xl  text-black font-serif mb-4">
           Student Marketplace

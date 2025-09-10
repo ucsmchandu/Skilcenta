@@ -102,6 +102,9 @@ const SellerDashboard = () => {
                     <p className="text-gray-600 text-sm">
                       Your Phone: {product.sellerPhone}
                     </p>
+                      <p className="text-gray-600 text-sm">
+                      Warranty: {product.warranty}
+                    </p>
                     <div className="flex items-center justify-between mt-3">
                       <span className="text-xl font-bold text-green-600">
                         ₹{product.productPrice}

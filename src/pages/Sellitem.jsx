@@ -14,6 +14,7 @@ const Sellitem = () => {
     college: "",
     description: "",
     price: "",
+    warranty:"",
     image: null,
   });
 
@@ -86,6 +87,7 @@ const Sellitem = () => {
         address: form.address.trim(),
         college: form.college.trim(),
         price: form.price.trim(),
+        warranty:form.warranty.trim(),
         description: form.description.trim(),
         image: imgUrl.trim(),
       };
@@ -131,6 +133,7 @@ const Sellitem = () => {
       college: "",
       description: "",
       price: "",
+      warranty:"",
       image: null,
     });
     e.target.reset();
@@ -177,9 +180,9 @@ const Sellitem = () => {
         </h2>
         <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h2 className="text-lg font-semibold text-gray-800 mb-2">
-             Selling Instructions
+            Selling Instructions
           </h2>
-          <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
+          <ul className="list-disc ml-5 text-sm text-gray-700 space-y-1">
             <li>
               Every product will be{" "}
               <span className="font-semibold">reviewed by admin</span> before
@@ -214,6 +217,31 @@ const Sellitem = () => {
               <span className="font-semibold">account suspension</span>.
             </li>
           </ul>
+          <div className="mt-4 text-sm">
+            <p className="font-semibold text-green-700 text-lg">Warranty?</p>
+            <ul className="list-disc ml-5 mt-2 space-y-1">
+              <li>
+                Products with a{" "}
+                <span className="font-semibold text-green-600">warranty</span>{" "}
+                have a{" "}
+                <span className="font-semibold">
+                  higher chance of getting sold
+                </span>
+                .
+              </li>
+              <li>
+                You can{" "}
+                <span className="font-semibold text-blue-600">
+                  set a slightly higher price
+                </span>{" "}
+                since buyers value extra assurance.
+              </li>
+            </ul>
+            <p className="mt-2 text-sm text-gray-600">
+              Adding a warranty is optional, but it increases trust and boosts
+              your sales potential.
+            </p>
+          </div>
         </div>
         {loading ? (
           <div className="flex flex-col items-center py-12">
@@ -382,6 +410,65 @@ const Sellitem = () => {
               className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 cursor-pointer"
             />
           </div>
+          <hr className="border-2 border-blue-300" />
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Warranty
+            </label>
+            <input
+              type="text"
+              name="warranty"
+              required
+              value={form.warranty}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
+              placeholder="Enter Warranty (eg: 1 day)"
+            />
+          </div>
+          <div className="border-2 border-gray-300 p-3 rounded-lg bg-gray-50 text-sm text-gray-700">
+            <p className="font-semibold mb-2 text-gray-900">
+               Warranty Terms for Used Products
+            </p>
+            <ul className="list-disc ml-5 space-y-1">
+              <li>
+                <span className="font-semibold text-blue-600">
+                  No Warranty:
+                </span>{" "}
+                Just type NA
+              </li>
+              <li>
+                <span className="font-semibold text-blue-600">
+                  Minimum Warranty:
+                </span>{" "}
+                1 days
+              </li>
+              <li>
+                <span className="font-semibold text-blue-600">
+                  Maximum Warranty:
+                </span>{" "}
+                30 days (1 month)
+              </li>
+              <li>
+                Warranty should only cover{" "}
+                <span className="font-semibold text-green-600">
+                  functional issues
+                </span>{" "}
+                (example: product not working as described).
+              </li>
+              <li>
+                Warranty does{" "}
+                <span className="font-semibold text-red-600">not</span> cover{" "}
+                <span className="italic">
+                  physical damage, wear &amp; tear, or misuse
+                </span>
+                .
+              </li>
+                <li>
+               Our team will contact you about the <strong>product</strong> and <strong>Warranty</strong>
+              </li>
+            </ul>
+          </div>
+
           <button
             onClick={() => scrollToTop()}
             type="submit"

@@ -40,9 +40,9 @@ const Productcard = ({product,orderCount}) => {
          <div className="text-sm text-gray-600 mb-4">
           <strong>Availability Chance:</strong><span className="font-medium"> {count}%</span>{" "}{orderCount>0 ? (<span className="text-red-500">(WL)</span>):(<></>)}
         </div>
-        {/* <div className="text-sm text-gray-600 mb-4">
-          Availability Chance :<span className="font-medium">{product.createdAt.split("T")[0]}</span>
-        </div> */}
+        <div className="text-sm text-gray-600 mb-4">
+        Warranty: <span className="font-medium">{product.warranty}</span>
+        </div>
        <Link to={`/product/${product._id}`}>
         <button className="w-full bg-yellow-300  cursor-pointer text-black py-2 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
           <span className="font-semibold">Buy at ₹{product.productPrice}</span>

@@ -108,6 +108,14 @@ const Checkout = () => {
                 {product.sellerCollege}
               </span>
             </p>
+             <p className="text-lg text-red-600 mb-3">
+              <span className="font-semibold text-red-600">
+               Warranty:
+              </span>
+              <span className="font-medium text-gray-500 ml-2">
+                {product.warranty}
+              </span>
+            </p>
            </div>
             <span className="font-medium text-red-600 ml-2">
                Payment Mode: Only Cash On Delivery(COD)

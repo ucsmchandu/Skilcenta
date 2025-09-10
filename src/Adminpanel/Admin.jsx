@@ -37,6 +37,7 @@ const Admin = () => {
     sellerPhone: "",
     productDescription: "",
     productPrice: "",
+    warranty:"",
     productImageUrl: "",
   });
 
@@ -58,6 +59,7 @@ const Admin = () => {
         sellerPhone: form.sellerPhone.trim(),
         productDescription: form.productDescription.trim(),
         productPrice: form.productPrice.trim(),
+        warranty:form.warranty.trim(),
         productImageUrl: form.productImageUrl.trim(),
       };
       const res = await axios.post(
@@ -79,6 +81,7 @@ const Admin = () => {
         sellerPhone: "",
         productDescription: "",
         productPrice: "",
+        warranty:"",
         productImageUrl: "",
       });
       alert("Product added!");
@@ -213,6 +216,15 @@ const Admin = () => {
                   placeholder="Cost (₹)"
                   min="0"
                 />
+                 <input
+                  type="text"
+                  name="warranty"
+                  required
+                  value={form.warranty}
+                  onChange={handleChange}
+                  className="px-3 py-2 border border-gray-300 rounded-lg"
+                  placeholder="warranty"
+                />
                 <input
                   type="url"
                   name="productImageUrl"
@@ -285,6 +297,7 @@ const Admin = () => {
                     <th className="py-2 px-3">Customer Address</th>
                     <th className="py-2 px-3">College</th>
                     <th className="py-2 px-3">Cost</th>
+                       <th className="py-2 px-3">warranty</th>
                     <th className="py-2 px-3">Description</th>
                     <th className="py-2 px-3">Image</th>
                   </tr>
@@ -301,6 +314,7 @@ const Admin = () => {
                       <td className="py-2 px-3">{p.sellerAddress}</td>
                       <td className="py-2 px-3">{p.sellerCollege}</td>
                       <td className="py-2 px-3">₹{p.productPrice}</td>
+                      <td className="py-2 px-3">{p.warranty}</td>
                       <td className="py-2 px-3">{p.productDescription}</td>
                       <td className="py-2 px-3">
                         {p.productImageUrl ? (

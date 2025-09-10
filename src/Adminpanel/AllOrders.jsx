@@ -5,6 +5,7 @@ const AllOrders = () => {
   const [orders, setOrders] = useState([]);
   const [search, setSearch] = useState("");
 
+
   useEffect(() => {
     const fetchOrders = async () => {
       try{
@@ -47,6 +48,7 @@ const AllOrders = () => {
           <thead>
             <tr className="bg-gray-100">
               <th className="py-2 px-3">Ordered Date</th>  
+               <th className="py-2 px-3">Ordered Time</th>  
               <th className="py-2 px-3">Product Id</th>  
               <th className="py-2 px-3">Order Id</th> 
                 <th className="py-2 px-3">Buyer ID</th>
@@ -60,6 +62,7 @@ const AllOrders = () => {
               <th className="py-2 px-3">Branch</th>
               <th className="py-2 px-3">Year</th>
               <th className="py-2 px-3">seller name</th>
+              <th className="py-2 px-3">warranty</th>
              <th className="py-2 px-3">Image</th>
             </tr>
           </thead>
@@ -74,6 +77,7 @@ const AllOrders = () => {
               filteredOrders.map((order) => (
                 <tr key={order._id} className="border-b">
                   <td className="py-2 px-3">{order.createdAt.split("T")[0]}</td>
+                   <td className="py-2 px-3">{order.createdAt.split("T")[1].split(".")[0]}</td>
                   <td className="py-2 px-3">{order.productId}</td>
                   <td className="py-2 px-3">{order._id}</td>
                     <td className="py-2 px-3">{order.buyerId}</td>
@@ -87,6 +91,7 @@ const AllOrders = () => {
                   <td className="py-2 px-3">{order.buyerBranch}</td>
                   <td className="py-2 px-3">{order.buyerYear}</td>
                   <td className="py-2 px-3">{order.sellerName}</td>
+                   <td className="py-2 px-3">{order.warranty}</td>
                  <td className="py-2 px-3">
                     <img
                       src={order.productImageUrl || "https://via.placeholder.com/60"}
