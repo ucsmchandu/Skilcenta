@@ -74,22 +74,33 @@ const Checkout = () => {
             </h2>
             <hr className="border-dashed mb-3" />
            <div className="border-3 border-[#d5f4c5] p-2 rounded-lg bg-[#ECFAE5] text-white shadow-md mb-2">
-             <p className="text-lg text-gray-800 mb-3">
-              <span className="font-semibold text-gray-800">Seller:</span>
-              <span className="font-semibold  text-gray-500  ml-2">
-                {product.sellerName}
-              </span>
-            </p>
-            <p className="text-lg text-gray-800 mb-3">
+              <p className="text-lg text-gray-800 mb-3">
               <span className="font-semibold text-gray-800">Cost:</span>
               <span className="font-semibold text-emerald-700 ml-2 text-xl">
                 ₹{product.productPrice}
               </span>
             </p>
-            <p className="text-lg text-gray-800 mb-3">
+             <p className="text-lg text-red-600 mb-3">
+              <span className="font-semibold text-red-600">
+               Warranty:
+              </span>
+              <span className="font-medium text-gray-500 ml-2">
+                {product.warranty}
+              </span>
+            </p>
+             <p className="text-lg text-gray-800 mb-3">
               <span className="font-semibold text-gray-800">Description:</span>
               <span className="font-medium text-gray-500 ml-2">
                 {product.productDescription}
+              </span>
+            </p>
+           </div>
+            <hr className="border border-dashed mb-2 text-gray-400" />
+            <div className="border-3 border-[#d5f4c5] p-2 rounded-lg bg-[#ECFAE5] text-white shadow-md mb-2">
+               <p className="text-lg text-gray-800 mb-3">
+              <span className="font-semibold text-gray-800">Seller:</span>
+              <span className="font-semibold  text-gray-500  ml-2">
+                {product.sellerName}
               </span>
             </p>
             <p className="text-lg text-gray-800 mb-3">
@@ -108,15 +119,8 @@ const Checkout = () => {
                 {product.sellerCollege}
               </span>
             </p>
-             <p className="text-lg text-red-600 mb-3">
-              <span className="font-semibold text-red-600">
-               Warranty:
-              </span>
-              <span className="font-medium text-gray-500 ml-2">
-                {product.warranty}
-              </span>
-            </p>
-           </div>
+            </div>
+
             <span className="font-medium text-red-600 ml-2">
                Payment Mode: Only Cash On Delivery(COD)
               </span>
