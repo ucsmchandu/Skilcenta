@@ -119,6 +119,14 @@ const Market = () => {
       AU
     </button>
   </div>
+  <div className="flex flex-wrap gap-2 mt-4">
+    <button
+      onClick={()=>setSearch("rec")}
+      className="px-5 py-2 rounded-xl bg-gradient-to-r bg-amber-800 cursor-pointer text-white font-bold shadow-lg hover:scale-105 transition-all duration-200 text-base"
+    >
+      REC
+    </button>
+  </div>
 </div>
         </div>
       </div>

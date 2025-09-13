@@ -334,6 +334,7 @@ const Sellitem = () => {
               <option value="">select college</option>
               <option value="Anits">Anits</option>
               <option value="Au">Au</option>
+              <option value="Rec">REC</option>
             </select>
           </div>
           <div>
