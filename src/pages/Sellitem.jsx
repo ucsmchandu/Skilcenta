@@ -5,6 +5,7 @@ import { useAuth } from "../contextApi/AuthContext";
 import MarketPlacePopup from "../components/MarketPlacePopup";
 const Sellitem = () => {
   const { currentUser } = useAuth();
+  // console.log(currentUser.uid);
   const [form, setForm] = useState({
     productName: "",
     sellerName: "",

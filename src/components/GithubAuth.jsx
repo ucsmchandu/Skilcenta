@@ -1,9 +1,9 @@
+import { GithubAuthProvider, signInWithPopup, fetchSignInMethodsForEmail } from 'firebase/auth'
 import React from 'react'
+import { doc, setDoc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
-import { GithubAuthProvider, signInWithPopup } from 'firebase/auth'
 import { firestore, auth } from '../server/Firebase'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { doc, setDoc } from 'firebase/firestore'
 
 const GithubAuth = () => {
   const navigate = useNavigate();
@@ -26,8 +26,29 @@ const GithubAuth = () => {
         navigate(from, { replace: true });
       }
     } catch (err) {
-      console.log("Error :", err.message);
-      toast.error("GitHub login failed", { position: 'top-left' });
+      //handling the firebase error
+      if(err.code==="auth/account-exists-with-different-credential"){
+        const email=err.customData?.email; //getting email form the error
+        const pendingCred=err.credential; //store cred
+
+        //fetch existing sign-in methods for that email (checking with google)
+        const methods=await fetchSignInMethodsForEmail(auth,email);
+        if(methods[0]==="google.com"){
+          toast.error(
+          `You already signed up using Google for ${email}. Please use Google login instead.`,
+          { position: "top-left" }
+        );
+        } else{
+           toast.error(
+          `This email is already linked with another provider: ${methods.join(", ")}`,
+          { position: "top-left" }
+        );
+        }
+        console.log("Existing methods :",methods);
+      }else{
+        console.log("Error :", err.message);
+        toast.error("GitHub login failed", { position: 'top-left' });
+      }
     }
   }
 
