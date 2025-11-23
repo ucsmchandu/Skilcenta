@@ -25,6 +25,11 @@ import AllOrders from './Adminpanel/AllOrders'
 import Scroll from './components/Scroll'
 import ResourceFile from './Adminpanel/ResourceFile'
 import SellerDashboard from './pages/SellerDashboard'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsConditions from './pages/TermsConditions'
+import Faq from './pages/Faq'
+import RefundPolicy from './pages/RefundPolicy'
+// import CookiePolicy from './pages/CookiePolicy'
 const App = () => {
   return (
     <AuthContextProvider>
@@ -68,6 +73,11 @@ const App = () => {
         <Route path='orders' element={<OrdersPage/>} />
         <Route path='allorders' element={<AllOrders/>} />
         <Route path='admin/resourceFiles' element={<ResourceFile/>} />
+        <Route path='privacy-policy' element={<PrivacyPolicy/>} />
+        <Route path='terms-conditions' element={<TermsConditions/>} />
+        <Route path='faq' element={<Faq/>} />
+        <Route path='refund-policy' element={<RefundPolicy/>} />
+        {/* <Route path='cookies/policy' element={<CookiePolicy/>} /> */}
         </Route>
       </Routes>
       <ToastContainer/>
