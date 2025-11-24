@@ -51,7 +51,7 @@ const GeminiChat = () => {
         <header className="flex items-center gap-3 px-8 py-6 border-b border-indigo-100 bg-gradient-to-r from-indigo-500/80 to-blue-500/80 rounded-t-3xl">
           <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="AI" className="h-10 w-10 rounded-full shadow" />
           <div>
-            <h2 className="text-2xl font-bold text-white tracking-tight">Gemini AI Chatbot</h2>
+            <h2 className="text-2xl font-bold text-white tracking-tight"> AI Chatbot</h2>
             <p className="text-xs text-indigo-100 font-mono">Your smart study assistant</p>
           </div>
         </header>
